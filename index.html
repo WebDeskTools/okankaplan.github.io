@@ -120,96 +120,84 @@
 }
 </script>
 
+<style>
+ 
+    .search-container {
+        max-width: 300px;
+        margin-right: 45px;
+    }
+    #search-input {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        border-radius: 20px;
+        padding: 5px 15px;
+        font-size: 14px;
+        transition: all 0.3s;
+ 
+    }
+    #search-input:focus {
+        background: rgba(255, 255, 255, 0.2);
+        outline: none;
+        box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+    #search-input::placeholder { color: rgba(255,255,255,0.6); }
 
+ 
+    .grid-item.is-hidden {
+        display: none !important;
+    }
+</style>
 
-    <script>
+<script>
+    if (!sessionStorage.getItem('auto_refreshed')) {
+        localStorage.removeItem("ok_academy_cache");
+        sessionStorage.setItem('auto_refreshed', 'true');
+        window.location.reload();
+    }
 
-        if (!sessionStorage.getItem('auto_refreshed')) {
-            localStorage.removeItem("ok_academy_cache"); // Eski cache'i temizle
-            sessionStorage.setItem('auto_refreshed', 'true'); // İşareti koy
-            window.location.reload(); // Sayfayı bir kez yenile
-        }
-
-        fetch("https://raw.githubusercontent.com/bandanee/root/main/import/head.html")
-            .then(r => r.text())
-            .then(t => document.head.insertAdjacentHTML("beforeend", t))
-            .catch(e => console.error(e));
-    </script>
+    fetch("https://raw.githubusercontent.com/bandanee/root/main/import/head.html")
+        .then(r => r.text())
+        .then(t => document.head.insertAdjacentHTML("beforeend", t))
+        .catch(e => console.error(e));
+</script>
 </head>
 <body>
 
-<button
-  type="button"
-  class="btn btn-primary shadow"
-  id="offcanvasLeftToggle"
-  data-bs-toggle="offcanvas"
-  data-bs-target="#offcanvasLeft"
-  aria-controls="offcanvasLeft"
-  aria-label="Open navigation menu"
->
-  <span aria-hidden="true">☰</span>
+<button type="button" class="btn btn-primary shadow" id="offcanvasLeftToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft">
+  <span>☰</span>
 </button>
 
-
-<button
-  type="button"
-  class="btn btn-success shadow"
-  id="offcanvasRightToggle"
-  data-bs-toggle="offcanvas"
-  data-bs-target="#offcanvasRight"
-  aria-controls="offcanvasRight"
-  aria-label="Open contact panel"
->
-  <i class="fas fa-comment-dots" aria-hidden="true"></i>
+<button type="button" class="btn btn-success shadow" id="offcanvasRightToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
+  <i class="fas fa-comment-dots"></i>
 </button>
 
-
-
-<nav class="navbar navbar-dark fixed-top shadow" aria-label="Main navigation">
-  <div class="container-fluid">
-
-    <a
-      class="navbar-brand fw-bold ps-4"
-      href="/"
-      aria-label="Go to homepage - Okan Kaplan"
-     style="margin-left:20px">
-      Okan Kaplan
-    </a>
-
+<nav class="navbar navbar-dark fixed-top shadow">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+    <a class="navbar-brand fw-bold ps-4" href="/" style="margin-left:20px"> Okan Kaplan </a>
+    
+    <div class="search-container flex-grow-1 d-flex justify-content-end">
+        <input type="text" id="search-input" placeholder="search ..." aria-label="Search">
+    </div>
   </div>
 </nav>
 
-
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft">
- <div class="offcanvas-header border-bottom" role="banner">
-  <h5 class="offcanvas-title" id="offcanvasNavTitle">
-    Navigation
-  </h5>
-
-  <button
-    type="button"
-    class="btn-close"
-    data-bs-dismiss="offcanvas"
-    aria-label="Close navigation menu"
-  ></button>
-</div>
-
-<div class="offcanvas-body p-0 h-100">
-  <iframe
-    src="https://okankaplanedu.github.io/archive.html"
-    title="Navigation Menu"
-    class="w-100 h-100 border-0"
-    loading="lazy"
-  ></iframe>
-</div>
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title">Navigation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body p-0 h-100">
+        <iframe src="https://okankaplanedu.github.io/archive.html" class="w-100 h-100 border-0"></iframe>
+    </div>
 </div>
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight">
     <div id="toc-placeholder"></div>
 </div>
 
-<main class="container-fluid px-4">
-    <div class="text-center" style="display:none">
+<main class="container-fluid px-4" >
+    <div class="text-center" id="status-container" style="display:none">
         <div id="status">
             <div class="spinner-border spinner-border-sm text-primary" role="status" id="status-spinner"></div>
             <span id="status-message">Sistem hazırlanıyor...</span>
@@ -229,7 +217,6 @@
 <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 
 <script>
-
 const CONFIG = {
     owner: "okankaplanedu",
     repo: "okankaplanedu.github.io",
@@ -246,6 +233,7 @@ let tempArchive = [];
 function initMasonry() {
     masonryGrid = $('#masonry-container').masonry({
         itemSelector: '.grid-item',
+        columnWidth: '.grid-sizer',
         percentPosition: true,
         transitionDuration: '0.4s'
     });
@@ -266,35 +254,42 @@ const Cache = {
 };
 
 function renderCard(article) {
-const cardHTML = `
-  <div class="grid-item">
-    <div class="card-custom">
-
-      <article>
-        ${article.content}
-      </article>
-
-      <a
-        href="${article.url}"
-        class="btn-open"
-        target="_top"
-        rel="noopener"
-        aria-label="Open article details"
-      >
-        View Details →
-      </a>
-
-    </div>
-  </div>
-`;
+    // Arama için içerik metnini data attribute olarak ekliyoruz
+    const plainText = article.content.replace(/<[^>]*>/g, '').toLowerCase();
+    const cardHTML = `
+      <div class="grid-item" data-search="${plainText}">
+        <div class="card-custom">
+          <article>${article.content}</article>
+          <a href="${article.url}" class="btn-open" target="_top">View Details →</a>
+        </div>
+      </div>`;
     
     const $item = $(cardHTML);
     $('#masonry-container').append($item);
     
     $item.imagesLoaded(() => {
-        masonryGrid.masonry('appended', $item).masonry('layout');
+        if(masonryGrid) {
+            masonryGrid.masonry('appended', $item).masonry('layout');
+        }
     });
 }
+
+// ARAMA FONKSİYONU
+$('#search-input').on('keyup', function() {
+    const val = $(this).val().toLowerCase();
+    
+    $('.grid-item').each(function() {
+        const text = $(this).data('search');
+        if (text.indexOf(val) > -1) {
+            $(this).removeClass('is-hidden');
+        } else {
+            $(this).addClass('is-hidden');
+        }
+    });
+
+    // Masonry düzenini gizlenen öğelere göre yeniden hesapla
+    masonryGrid.masonry('layout');
+});
 
 async function scanAndCache(path) {
     try {
@@ -327,20 +322,17 @@ async function scanAndCache(path) {
     } catch (e) { console.error("Tarama Hatası:", e); }
 }
 
-function updateUIStatus(msg, color = "#0d6efd") {
+function updateUIStatus(msg) {
     const txt = document.getElementById("status-message");
-    if(txt) { txt.innerText = msg; txt.style.color = color; }
+    if(txt) txt.innerText = msg;
 }
 
 function finalizeUI(isCache = false) {
     const spinner = document.getElementById("status-spinner");
     if (spinner) spinner.style.display = "none";
     const status = document.getElementById("status");
- 
-    status.innerHTML = `
-        <span style="color:#10b981">●</span> 
-        <span style="font-size:13px; font-weight:600;">${isCache ? 'Hızlı Yükleme Aktif' : 'Arşiv Güncellendi'}</span>
-    `;
+    status.innerHTML = `<span style="color:#10b981">●</span> <span style="font-size:13px; font-weight:600;">${isCache ? 'Hızlı Yükleme' : 'Arşiv Güncel'}</span>`;
+    setTimeout(() => $('#status-container').fadeOut(), 3000);
 }
 
 async function startApp() {
@@ -348,11 +340,9 @@ async function startApp() {
     const cachedArticles = Cache.get();
 
     if (cachedArticles) {
-        updateUIStatus("Önbellek yükleniyor...");
         cachedArticles.forEach(art => renderCard(art));
         finalizeUI(true);
     } else {
-        updateUIStatus("Arşiv taranıyor (Oturum ilk açılışı)...");
         await scanAndCache(CONFIG.baseFolder);
         if (tempArchive.length > 0) Cache.set(tempArchive);
         finalizeUI(false);
@@ -361,7 +351,7 @@ async function startApp() {
 
 $(document).ready(startApp);
 
-
+// Harici bileşen yüklemeleri
 fetch('https://raw.githubusercontent.com/bandanee/root/main/import/toc.html').then(r => r.text()).then(h => document.getElementById('toc-placeholder').innerHTML = h);
 fetch('https://raw.githubusercontent.com/bandanee/root/main/import/footer.html').then(r => r.text()).then(h => document.getElementById('footer-placeholder').innerHTML = h);
 
