@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -250,23 +250,6 @@ table.dataTable tbody td{
     display:none;
 }
 
-/* REFRESH */
-.btn-refresh{
-    font-size:10px;
-    padding:4px 10px;
-    border-radius:20px;
-    border:1px solid #e2e8f0;
-    background:#fff;
-    color:#64748b;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.btn-refresh:hover{
-    background:#f1f5f9;
-    color:var(--accent);
-}
-
 /* MOBILE */
 @media(max-width:480px){
 
@@ -298,7 +281,7 @@ table.dataTable tbody td{
             </div>
 
             <div>
-               
+                <h1>DailyMind</h1>
                 <p>Smart Search Archive</p>
             </div>
 
@@ -348,8 +331,7 @@ table.dataTable tbody td{
 
 /**
  * DailyMind – Smart Search Archive
- * Modern Soft UI Version
- * System Protected
+ * Auto Session Refresh Enabled
  */
 
 const CONFIG = {
@@ -359,7 +341,10 @@ const CONFIG = {
     branch: "main",
     cacheKey: "dailymind_table_cache",
     cacheTime: 3600000,
-    delay: 150
+    delay: 150,
+
+    /* SESSION REFRESH KEY */
+    sessionKey: "dailymind_first_session_loaded"
 };
 
 let tableData = [];
@@ -367,18 +352,56 @@ let tableData = [];
 /* HELPERS */
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-/* CACHE */
+/* =========================================================
+   FIRST SESSION AUTO REFRESH
+   ========================================================= */
+
+/*
+   Only refresh ONCE
+   - First browser session → refresh automatically
+   - Page reloads later → NO refresh
+   - Browser/tab fully closed → new session starts
+*/
+
+(function(){
+
+    const alreadyLoaded =
+        sessionStorage.getItem(CONFIG.sessionKey);
+
+    if(!alreadyLoaded){
+
+        sessionStorage.setItem(
+            CONFIG.sessionKey,
+            "true"
+        );
+
+        window.location.replace(
+            window.location.href
+        );
+
+    }
+
+})();
+
+/* =========================================================
+   CACHE SYSTEM
+   ========================================================= */
+
 const Cache = {
 
     get: () => {
 
-        const stored = localStorage.getItem(CONFIG.cacheKey);
+        const stored =
+            localStorage.getItem(CONFIG.cacheKey);
 
         if(!stored) return null;
 
         const parsed = JSON.parse(stored);
 
-        if(Date.now() - parsed.timestamp > CONFIG.cacheTime){
+        if(
+            Date.now() - parsed.timestamp
+            > CONFIG.cacheTime
+        ){
             return null;
         }
 
@@ -396,18 +419,14 @@ const Cache = {
             CONFIG.cacheKey,
             JSON.stringify(obj)
         );
-    },
-
-    clear: () => {
-
-        localStorage.removeItem(CONFIG.cacheKey);
-
-        location.reload();
     }
 
 };
 
-/* REPO SCAN */
+/* =========================================================
+   REPOSITORY SCAN
+   ========================================================= */
+
 async function scanRepo(path){
 
     try{
@@ -419,7 +438,7 @@ async function scanRepo(path){
         if(response.status === 403){
 
             updateStatus(
-                "⚠ API rate limit reached. Please wait.",
+                "⚠ API rate limit reached.",
                 false
             );
 
@@ -438,9 +457,12 @@ async function scanRepo(path){
 
                 await scanRepo(item.path);
 
-            }else if(item.name === "index.html"){
+            }
+            else if(item.name === "index.html"){
 
-                updateStatus(`Processing: ${item.path}`);
+                updateStatus(
+                    `Processing: ${item.path}`
+                );
 
                 await processFile(item.path);
 
@@ -448,15 +470,22 @@ async function scanRepo(path){
 
         }
 
-    }catch(error){
+    }
+    catch(error){
 
-        console.error("Scan Error:", error);
+        console.error(
+            "Scan Error:",
+            error
+        );
 
     }
 
 }
 
-/* PROCESS FILE */
+/* =========================================================
+   PROCESS FILE
+   ========================================================= */
+
 async function processFile(filePath){
 
     try{
@@ -469,8 +498,12 @@ async function processFile(filePath){
 
         const html = await res.text();
 
-        const doc = new DOMParser()
-            .parseFromString(html, "text/html");
+        const doc =
+            new DOMParser()
+            .parseFromString(
+                html,
+                "text/html"
+            );
 
         const fileInfo = {
 
@@ -478,16 +511,20 @@ async function processFile(filePath){
             `https://${CONFIG.owner}.github.io/${filePath.replace('index.html','')}`,
 
             title:
-            doc.querySelector("title")?.innerText
-            || "Untitled",
+            doc.querySelector("title")
+            ?.innerText || "Untitled",
 
             desc:
-            doc.querySelector('meta[name="description"]')
-            ?.content || "No description available.",
+            doc.querySelector(
+                'meta[name="description"]'
+            )?.content
+            || "No description available.",
 
             keys:
-            doc.querySelector('meta[name="keywords"]')
-            ?.content || "No keywords"
+            doc.querySelector(
+                'meta[name="keywords"]'
+            )?.content
+            || "No keywords"
 
         };
 
@@ -495,15 +532,22 @@ async function processFile(filePath){
 
         addRowToDOM(fileInfo);
 
-    }catch(e){
+    }
+    catch(e){
 
-        console.error("Process Error:", filePath);
+        console.error(
+            "Process Error:",
+            filePath
+        );
 
     }
 
 }
 
-/* ADD ROW */
+/* =========================================================
+   ADD ROW
+   ========================================================= */
+
 function addRowToDOM(info){
 
     const row = `
@@ -548,23 +592,36 @@ function addRowToDOM(info){
 
     document
         .getElementById("tableBody")
-        .insertAdjacentHTML('beforeend', row);
+        .insertAdjacentHTML(
+            'beforeend',
+            row
+        );
 
 }
 
-/* STATUS */
+/* =========================================================
+   STATUS
+   ========================================================= */
+
 function updateStatus(text, showLoader = true){
 
-    document.getElementById("status-text").innerText = text;
+    document.getElementById(
+        "status-text"
+    ).innerText = text;
 
-    document.getElementById("loader-icon").style.display =
+    document.getElementById(
+        "loader-icon"
+    ).style.display =
         showLoader
         ? "inline-block"
         : "none";
 
 }
 
-/* DATATABLE */
+/* =========================================================
+   DATATABLE
+   ========================================================= */
+
 function startDataTable(){
 
     $("#archiveTable").show();
@@ -583,7 +640,8 @@ function startDataTable(){
 
             search: "",
 
-            searchPlaceholder: "Search archive...",
+            searchPlaceholder:
+                "Search archive...",
 
             paginate: {
 
@@ -599,55 +657,72 @@ function startDataTable(){
 
 }
 
-/* FINALIZE */
+/* =========================================================
+   FINALIZE
+   ========================================================= */
+
 function finalize(msg){
 
     const loader =
-        document.getElementById("loader-icon");
+        document.getElementById(
+            "loader-icon"
+        );
 
     if(loader){
         loader.style.display = "none";
     }
 
-    document.getElementById("status").innerHTML = `
+    document.getElementById(
+        "status"
+    ).innerHTML = `
 
-        <span style="color:#10b981">●</span>
-
-        <span style="margin-right:10px;">
-            ${msg}
+        <span style="color:#10b981">
+            ●
         </span>
 
-        <button class="btn-refresh"
-                onclick="Cache.clear()">
-
-            Refresh
-
-        </button>
+        <span>
+            ${msg}
+        </span>
 
     `;
 
 }
 
-/* INIT */
+/* =========================================================
+   INIT
+   ========================================================= */
+
 async function init(){
 
-    const cachedData = Cache.get();
+    const cachedData =
+        Cache.get();
 
     if(cachedData){
 
-        updateStatus("Loading from cache...");
+        updateStatus(
+            "Loading from cache..."
+        );
 
-        cachedData.forEach(info => addRowToDOM(info));
+        cachedData.forEach(
+            info => addRowToDOM(info)
+        );
 
         startDataTable();
 
-        finalize("Archive Ready (Cache)");
+        finalize(
+            "Archive Ready"
+        );
 
-    }else{
+    }
+    else{
 
-        updateStatus("Starting repository scan...");
+        updateStatus(
+            "Scanning repository..."
+        );
 
-        await scanRepo(CONFIG.baseFolder);
+        await scanRepo(
+            CONFIG.baseFolder
+        );
 
         if(tableData.length > 0){
 
@@ -655,7 +730,9 @@ async function init(){
 
             startDataTable();
 
-            finalize("Archive Updated");
+            finalize(
+                "Archive Updated"
+            );
 
         }
 
