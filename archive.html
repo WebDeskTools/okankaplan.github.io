@@ -3,144 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DailyMind – Archive</title>
+    <title>DailyMind – Compact Archive</title>
 
     <!-- External CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-soft: #f8fafc;
-            --border-color: #e2e8f0;
-            --text-dark: #334155;
-            --text-muted: #64748b;
-            --accent-soft: #0ea5e9;
+            --bg-body: #f1f5f9;
+            --accent: #0284c7;
+            --text-main: #1e293b;
+            --border: #e2e8f0;
         }
 
         body {
-            background-color: var(--bg-soft);
-            color: var(--text-dark);
-            font-family: 'Montserrat', sans-serif;
-            padding: 1.5rem;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            padding: 10px;
             margin: 0;
         }
 
-        /* Container & Layout */
-        .archive-wrapper {
+        .archive-container {
             background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            width: 100%;
+            border-radius: 10px;
+            padding: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            width: 98%;
+            margin: 0 auto;
         }
 
         #statusDisplay {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
-        /* Soft Table Styling */
+        /* Table UI Optimization */
         table.dataTable {
             width: 100% !important;
-            border-collapse: collapse !important;
-            margin-top: 1rem !important;
+            margin-top: 10px !important;
+            border: none !important;
         }
 
         table.dataTable thead th {
-            background-color: #f1f5f9 !important;
-            color: var(--text-dark) !important;
-            font-weight: 600;
-            font-size: 0.75rem;
+            background: #f8fafc !important;
+            font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 0.025em;
-            border-bottom: 2px solid var(--border-color) !important;
-            padding: 12px 10px !important;
+            letter-spacing: 0.5px;
+            padding: 10px !important;
+            border-bottom: 2px solid var(--border) !important;
         }
 
         table.dataTable tbody td {
+            font-size: 13px;
             padding: 8px 10px !important;
+            border-bottom: 1px solid var(--border) !important;
             vertical-align: middle;
-            border-bottom: 1px solid var(--border-color) !important;
-            font-size: 0.85rem;
         }
 
-        /* 50px Scrollable Cell Constraint */
-        .cell-content {
-            height: 50px;
+        /* Tiny Link Button Styling */
+        .btn-link-go {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--accent);
+            color: white !important;
+            text-decoration: none !important;
+            font-weight: 600;
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 5px;
+            transition: opacity 0.2s;
+        }
+
+        .btn-link-go:hover { opacity: 0.8; }
+
+        /* Content Constraints for Tight Spaces */
+        .scroll-cell {
+            max-height: 45px;
             overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: #cbd5e1 transparent;
-            line-height: 1.4;
+            line-height: 1.3;
+            scrollbar-width: none; /* Firefox */
         }
+        .scroll-cell::-webkit-scrollbar { display: none; } /* Chrome/Safari */
 
-        .cell-content::-webkit-scrollbar { width: 4px; }
-        .cell-content::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-
-        .folder-link {
-            color: var(--accent-soft);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .folder-link:hover { text-decoration: underline; }
-
-        /* Minimal DataTables Controls */
+        /* DataTables Customization */
         .dataTables_wrapper .dataTables_filter input {
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--border);
             border-radius: 6px;
-            padding: 4px 10px;
-            font-size: 0.85rem;
-            outline: none;
+            font-size: 12px;
+            padding: 5px;
         }
 
-        .dataTables_wrapper .dataTables_length select {
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 0.85rem;
-        }
-
-        .dataTables_wrapper .dataTables_info,
+        .dataTables_wrapper .dataTables_info, 
         .dataTables_wrapper .dataTables_paginate {
-            font-size: 0.75rem;
-            color: var(--text-muted) !important;
-            margin-top: 1rem;
+            font-size: 11px;
+            margin-top: 10px;
         }
 
-        @media (max-width: 768px) {
-            body { padding: 10px; }
-            .archive-wrapper { padding: 10px; }
+        @media (max-width: 576px) {
+            .hide-mobile { display: none; }
         }
     </style>
 </head>
 <body>
 
-<div class="archive-wrapper">
+<div class="archive-container">
     <div id="statusDisplay">
-        <span class="spinner-grow spinner-grow-sm text-primary" role="status"></span>
-        Syncing repository data...
+        <div class="spinner-grow spinner-grow-sm text-primary" role="status"></div>
+        <span>Syncing Data...</span>
     </div>
 
-    <table id="archiveTable" class="display responsive" style="width:100%; display:none;">
+    <table id="archiveTable" class="display responsive nowrap" style="width:100%; display:none;">
       <thead>
         <tr>
-          <th>Path</th>
+          <th style="width: 40px;">Link</th>
           <th>Page Title</th>
-          <th>Meta Description</th>
-          <th>Keywords</th>
+          <th class="hide-mobile">Description</th>
+          <th class="hide-mobile">Keywords</th>
         </tr>
       </thead>
       <tbody id="tableBody"></tbody>
     </table>
 </div>
 
-<!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
@@ -166,7 +158,7 @@ async function scanFolders(currentPath) {
                 await processFile(item.path);
             }
         }
-    } catch (e) { console.error("Sync error:", currentPath); }
+    } catch (e) { console.error("Error:", currentPath); }
 }
 
 async function processFile(filePath) {
@@ -178,41 +170,43 @@ async function processFile(filePath) {
             const doc = new DOMParser().parseFromString(htmlText, "text/html");
             
             const meta = {
-                title: doc.querySelector("title")?.innerText || "Untitled",
+                title: doc.querySelector("title")?.innerText || "No Title",
                 desc: doc.querySelector('meta[name="description"]')?.content || "-",
                 keys: doc.querySelector('meta[name="keywords"]')?.content || "-"
             };
 
             const siteLink = `https://${CONFIG.repo}/${filePath}`;
+            
             const row = `
                 <tr>
-                    <td><div class="cell-content"><a href="${siteLink}" target="_blank" class="folder-link">${filePath}</a></div></td>
-                    <td><div class="cell-content">${meta.title}</div></td>
-                    <td><div class="cell-content">${meta.desc}</div></td>
-                    <td><div class="cell-content">${meta.keys}</div></td>
+                    <td class="text-center">
+                        <a href="${siteLink}" target="_blank" class="btn-link-go" title="Visit: ${filePath}">GO</a>
+                    </td>
+                    <td><div class="scroll-cell"><strong>${meta.title}</strong></div></td>
+                    <td class="hide-mobile"><div class="scroll-cell">${meta.desc}</div></td>
+                    <td class="hide-mobile"><div class="scroll-cell">${meta.keys}</div></td>
                 </tr>
             `;
-            document.getElementById("tableBody").innerHTML += row;
+            document.getElementById("tableBody").insertAdjacentHTML('beforeend', row);
         }
-    } catch (e) { console.error("File error:", filePath); }
+    } catch (e) {}
 }
 
 async function init() {
     await scanFolders(CONFIG.baseFolder);
 
-    document.getElementById("statusDisplay").innerHTML = 
-        `<span style="color: #10b981;">●</span> Repository Synchronized`;
+    document.getElementById("statusDisplay").innerHTML = `<span style="color: #10b981;">●</span> Sync Complete`;
     
     $("#archiveTable").show();
     $('#archiveTable').DataTable({
-        pageLength: 15,
+        pageLength: 10,
         responsive: true,
-        order: [[0, "asc"]],
+        dom: '<"top"f>rt<"bottom"ip><"clear">',
         language: {
-            search: "Search Archive:",
-            lengthMenu: "_MENU_ per page",
-            info: "Showing _START_ to _END_ of _TOTAL_",
-            paginate: { previous: "←", next: "→" }
+            search: "_INPUT_",
+            searchPlaceholder: "Search...",
+            info: "_TOTAL_ items",
+            paginate: { previous: "«", next: "»" }
         }
     });
 }
