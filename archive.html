@@ -3,130 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DailyMind – Compact Archive</title>
+    <title>DailyMind – Ultra Compact Archive</title>
 
-    <!-- External CSS -->
+    <!-- CSS Resources -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-body: #f1f5f9;
-            --accent: #0284c7;
-            --text-main: #1e293b;
-            --border: #e2e8f0;
+            --accent: #0ea5e9;
+            --bg: #ffffff;
+            --border: #f1f5f9;
         }
 
         body {
-            background-color: var(--bg-body);
-            color: var(--text-main);
+            background-color: #f8fafc;
             font-family: 'Inter', sans-serif;
-            padding: 10px;
             margin: 0;
+            padding: 5px; /* Minimum padding */
         }
 
-        .archive-container {
-            background: #ffffff;
-            border-radius: 10px;
-            padding: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        .archive-card {
+            background: var(--bg);
             width: 98%;
             margin: 0 auto;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
-        #statusDisplay {
-            font-size: 12px;
-            font-weight: 500;
-            margin-bottom: 10px;
+        #status {
+            font-size: 11px;
+            color: #94a3b8;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
         }
 
-        /* Table UI Optimization */
+        /* Table Optimization */
         table.dataTable {
             width: 100% !important;
-            margin-top: 10px !important;
             border: none !important;
         }
 
         table.dataTable thead th {
-            background: #f8fafc !important;
-            font-size: 11px;
+            font-size: 10px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 10px !important;
-            border-bottom: 2px solid var(--border) !important;
+            background: #f8fafc !important;
+            padding: 8px !important;
+            border-bottom: 1px solid #e2e8f0 !important;
         }
 
         table.dataTable tbody td {
-            font-size: 13px;
-            padding: 8px 10px !important;
-            border-bottom: 1px solid var(--border) !important;
-            vertical-align: middle;
-        }
-
-        /* Tiny Link Button Styling */
-        .btn-link-go {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--accent);
-            color: white !important;
-            text-decoration: none !important;
-            font-weight: 600;
-            font-size: 11px;
-            padding: 4px 8px;
-            border-radius: 5px;
-            transition: opacity 0.2s;
-        }
-
-        .btn-link-go:hover { opacity: 0.8; }
-
-        /* Content Constraints for Tight Spaces */
-        .scroll-cell {
-            max-height: 45px;
-            overflow-y: auto;
-            line-height: 1.3;
-            scrollbar-width: none; /* Firefox */
-        }
-        .scroll-cell::-webkit-scrollbar { display: none; } /* Chrome/Safari */
-
-        /* DataTables Customization */
-        .dataTables_wrapper .dataTables_filter input {
-            border: 1px solid var(--border);
-            border-radius: 6px;
             font-size: 12px;
-            padding: 5px;
+            padding: 6px 8px !important;
+            vertical-align: middle;
+            border-bottom: 1px solid var(--border) !important;
         }
 
-        .dataTables_wrapper .dataTables_info, 
-        .dataTables_wrapper .dataTables_paginate {
-            font-size: 11px;
-            margin-top: 10px;
+        /* Link Button - Iframe Killer */
+        .go-link {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff !important;
+            text-decoration: none !important;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 4px;
+            text-align: center;
         }
 
-        @media (max-width: 576px) {
-            .hide-mobile { display: none; }
+        .go-link:hover { opacity: 0.9; }
+
+        /* Compact Scroll Cells */
+        .txt-limit {
+            max-height: 40px;
+            overflow-y: auto;
+            scrollbar-width: none;
+            line-height: 1.2;
+        }
+        .txt-limit::-webkit-scrollbar { display: none; }
+
+        /* DataTables UI Fixes */
+        .dataTables_filter input {
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 4px !important;
+            font-size: 12px !important;
+            padding: 2px 8px !important;
+        }
+
+        .dataTables_info, .dataTables_paginate {
+            font-size: 10px !important;
+            margin-top: 8px !important;
+        }
+
+        @media (max-width: 500px) {
+            .m-hide { display: none; }
         }
     </style>
 </head>
 <body>
 
-<div class="archive-container">
-    <div id="statusDisplay">
-        <div class="spinner-grow spinner-grow-sm text-primary" role="status"></div>
-        <span>Syncing Data...</span>
+<div class="archive-card">
+    <div id="status">
+        <div class="spinner-border spinner-border-sm text-info" role="status" style="width:10px; height:10px;"></div>
+        Syncing...
     </div>
 
     <table id="archiveTable" class="display responsive nowrap" style="width:100%; display:none;">
       <thead>
         <tr>
-          <th style="width: 40px;">Link</th>
-          <th>Page Title</th>
-          <th class="hide-mobile">Description</th>
-          <th class="hide-mobile">Keywords</th>
+          <th style="width: 30px;">Link</th>
+          <th>Title</th>
+          <th class="m-hide">Description</th>
+          <th class="m-hide">Keywords</th>
         </tr>
       </thead>
       <tbody id="tableBody"></tbody>
@@ -144,69 +137,56 @@ const CONFIG = {
     branch: "main"
 };
 
-async function scanFolders(currentPath) {
-    const apiUrl = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${currentPath}`;
+async function scan(path) {
     try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) return;
-        const items = await response.json();
-
+        const res = await fetch(`https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${path}`);
+        const items = await res.json();
         for (const item of items) {
-            if (item.type === "dir") {
-                await scanFolders(item.path);
-            } else if (item.name === "index.html") {
-                await processFile(item.path);
-            }
+            if (item.type === "dir") await scan(item.path);
+            else if (item.name === "index.html") await renderRow(item.path);
         }
-    } catch (e) { console.error("Error:", currentPath); }
+    } catch (e) { console.error("Scan Error"); }
 }
 
-async function processFile(filePath) {
-    const rawUrl = `https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${filePath}`;
+async function renderRow(filePath) {
     try {
-        const res = await fetch(rawUrl);
-        if (res.ok) {
-            const htmlText = await res.text();
-            const doc = new DOMParser().parseFromString(htmlText, "text/html");
-            
-            const meta = {
-                title: doc.querySelector("title")?.innerText || "No Title",
-                desc: doc.querySelector('meta[name="description"]')?.content || "-",
-                keys: doc.querySelector('meta[name="keywords"]')?.content || "-"
-            };
+        const res = await fetch(`https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${filePath}`);
+        if (!res.ok) return;
+        const html = await res.text();
+        const doc = new DOMParser().parseFromString(html, "text/html");
+        
+        const title = doc.querySelector("title")?.innerText || "No Title";
+        const desc = doc.querySelector('meta[name="description"]')?.content || "-";
+        const keys = doc.querySelector('meta[name="keywords"]')?.content || "-";
+        const url = `https://${CONFIG.repo}/${filePath}`;
 
-            const siteLink = `https://${CONFIG.repo}/${filePath}`;
-            
-            const row = `
-                <tr>
-                    <td class="text-center">
-                        <a href="${siteLink}" target="_blank" class="btn-link-go" title="Visit: ${filePath}">GO</a>
-                    </td>
-                    <td><div class="scroll-cell"><strong>${meta.title}</strong></div></td>
-                    <td class="hide-mobile"><div class="scroll-cell">${meta.desc}</div></td>
-                    <td class="hide-mobile"><div class="scroll-cell">${meta.keys}</div></td>
-                </tr>
-            `;
-            document.getElementById("tableBody").insertAdjacentHTML('beforeend', row);
-        }
+        const row = `
+            <tr>
+                <td><a href="${url}" target="_top" class="go-link">OPEN</a></td>
+                <td><div class="txt-limit"><strong>${title}</strong></div></td>
+                <td class="m-hide"><div class="txt-limit">${desc}</div></td>
+                <td class="m-hide"><div class="txt-limit">${keys}</div></td>
+            </tr>
+        `;
+        document.getElementById("tableBody").insertAdjacentHTML('beforeend', row);
     } catch (e) {}
 }
 
 async function init() {
-    await scanFolders(CONFIG.baseFolder);
-
-    document.getElementById("statusDisplay").innerHTML = `<span style="color: #10b981;">●</span> Sync Complete`;
+    await scan(CONFIG.baseFolder);
+    document.getElementById("status").innerHTML = "● Online";
     
     $("#archiveTable").show();
     $('#archiveTable').DataTable({
-        pageLength: 10,
+        pageLength: 12,
         responsive: true,
-        dom: '<"top"f>rt<"bottom"ip><"clear">',
+        dom: '<"d-flex justify-content-between" f l>rtip',
         language: {
-            search: "_INPUT_",
-            searchPlaceholder: "Search...",
-            info: "_TOTAL_ items",
-            paginate: { previous: "«", next: "»" }
+            search: "",
+            searchPlaceholder: "Quick search...",
+            lengthMenu: "_MENU_",
+            info: "_TOTAL_ files",
+            paginate: { previous: "‹", next: "›" }
         }
     });
 }
