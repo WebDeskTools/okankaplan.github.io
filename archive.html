@@ -1,106 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DailyMind – Deep Search Archive</title>
+    <title>DailyMind – Smart Search Archive</title>
 
-    <!-- CSS Resources -->
+    <!-- Resources -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
-        :root {
-            --accent: #0ea5e9;
-            --bg: #ffffff;
-            --border: #f1f5f9;
-        }
+        :root { --accent: #0ea5e9; --bg: #ffffff; --border: #f1f5f9; }
+        body { background-color: #f8fafc; font-family: 'Inter', sans-serif; margin: 0; padding: 5px; }
+        .archive-card { background: var(--bg); width: 98%; margin: 0 auto; border-radius: 8px; padding: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        
+        #status { font-size: 11px; color: #94a3b8; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        
+        /* Table UI */
+        table.dataTable { width: 100% !important; border: none !important; }
+        table.dataTable thead th { font-size: 10px; text-transform: uppercase; background: #f8fafc !important; padding: 10px !important; border-bottom: 1px solid #e2e8f0 !important; }
+        table.dataTable tbody td { font-size: 12px; padding: 8px !important; vertical-align: middle; border-bottom: 1px solid var(--border) !important; }
 
-        body {
-            background-color: #f8fafc;
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 5px;
-        }
-
-        .archive-card {
-            background: var(--bg);
-            width: 98%;
-            margin: 0 auto;
-            border-radius: 8px;
-            padding: 10px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-
-        #status {
-            font-size: 11px;
-            color: #94a3b8;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* Table UI Optimization */
-        table.dataTable {
-            width: 100% !important;
-            border: none !important;
-        }
-
-        table.dataTable thead th {
-            font-size: 10px;
-            text-transform: uppercase;
-            background: #f8fafc !important;
-            padding: 10px !important;
-            border-bottom: 1px solid #e2e8f0 !important;
-        }
-
-        table.dataTable tbody td {
-            font-size: 12px;
-            padding: 8px !important;
-            vertical-align: middle;
-            border-bottom: 1px solid var(--border) !important;
-        }
-
-        .go-link {
-            display: inline-block;
-            background: var(--accent);
-            color: #fff !important;
-            text-decoration: none !important;
-            font-size: 10px;
-            font-weight: 600;
-            padding: 4px 12px;
-            border-radius: 4px;
-            transition: opacity 0.2s;
-        }
-
+        .go-link { display: inline-block; background: var(--accent); color: #fff !important; text-decoration: none !important; font-size: 10px; font-weight: 600; padding: 4px 12px; border-radius: 4px; transition: opacity 0.2s; }
         .go-link:hover { opacity: 0.8; }
 
-        .txt-limit {
-            max-height: 42px;
-            overflow-y: auto;
-            scrollbar-width: none;
-            line-height: 1.4;
-        }
+        .txt-limit { max-height: 42px; overflow-y: auto; scrollbar-width: none; line-height: 1.4; }
         .txt-limit::-webkit-scrollbar { display: none; }
 
-        .dataTables_filter input {
-            border: 1px solid #e2e8f0 !important;
-            border-radius: 6px !important;
-            font-size: 12px !important;
-            padding: 4px 10px !important;
-            outline: none;
-        }
-
-        .dataTables_info, .dataTables_paginate {
-            font-size: 10px !important;
-            margin-top: 10px !important;
-        }
-
-        @media (max-width: 500px) {
-            .m-hide { display: none; }
-        }
+        .btn-refresh { font-size: 9px; padding: 2px 8px; border-radius: 20px; border: 1px solid #e2e8f0; background: #fff; color: #64748b; cursor: pointer; transition: all 0.2s; }
+        .btn-refresh:hover { background: #f1f5f9; color: var(--accent); }
     </style>
 </head>
 <body>
@@ -108,7 +37,7 @@
 <div class="archive-card">
     <div id="status">
         <div id="loader-icon" class="spinner-border spinner-border-sm text-info" role="status" style="width:12px; height:12px;"></div>
-        <span id="status-text">İndeksler taranıyor...</span>
+        <span id="status-text">Başlatılıyor...</span>
     </div>
 
     <table id="archiveTable" class="display responsive nowrap" style="width:100%; display:none;">
@@ -129,49 +58,65 @@
 
 <script>
 /**
- * Proje: DailyMind – Deep Search Archive
- * Sahibi: Okan Kaplan / Bandanee
+ * DailyMind – Smart Search Archive (Cache Enabled)
+ * Okan Kaplan / Bandanee
  */
 const CONFIG = {
     owner: "webdesktools",
     repo: "webdesktools.github.io",
     baseFolder: "categories",
     branch: "main",
-    delay: 150 // İstekler arası gecikme (ms) - API limiti koruması
+    cacheKey: "dailymind_table_cache",
+    cacheTime: 3600000, // 1 Saat
+    delay: 150
 };
 
-// Bekleme fonksiyonu
+let tableData = [];
+
+// Yardımcı Fonksiyonlar
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-async function scan(path) {
+const Cache = {
+    get: () => {
+        const stored = localStorage.getItem(CONFIG.cacheKey);
+        if (!stored) return null;
+        const parsed = JSON.parse(stored);
+        if (Date.now() - parsed.timestamp > CONFIG.cacheTime) return null;
+        return parsed.data;
+    },
+    set: (data) => {
+        const obj = { timestamp: Date.now(), data: data };
+        localStorage.setItem(CONFIG.cacheKey, JSON.stringify(obj));
+    },
+    clear: () => {
+        localStorage.removeItem(CONFIG.cacheKey);
+        location.reload();
+    }
+};
+
+async function scanRepo(path) {
     try {
         const response = await fetch(`https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${path}`);
-        
         if (response.status === 403) {
-            updateStatus("⚠ API Sınırı Aşıldı. Lütfen bekleyin.", false);
+            updateStatus("⚠ API Limiti. Lütfen bekleyin.", false);
             return;
         }
-        
-        if (!response.ok) throw new Error("GitHub bağlantı hatası.");
+        if (!response.ok) return;
 
         const items = await response.json();
-        
         for (const item of items) {
-            await sleep(CONFIG.delay); // Stabilite için her öğe arasında bekle
-            
+            await sleep(CONFIG.delay);
             if (item.type === "dir") {
-                await scan(item.path);
+                await scanRepo(item.path);
             } else if (item.name === "index.html") {
                 updateStatus(`İşleniyor: ${item.path}`);
-                await renderRow(item.path);
+                await processFile(item.path);
             }
         }
-    } catch (error) {
-        console.error("Scan Error:", error);
-    }
+    } catch (error) { console.error("Scan Error:", error); }
 }
 
-async function renderRow(filePath) {
+async function processFile(filePath) {
     try {
         const res = await fetch(`https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${filePath}`);
         if (!res.ok) return;
@@ -179,25 +124,26 @@ async function renderRow(filePath) {
         const html = await res.text();
         const doc = new DOMParser().parseFromString(html, "text/html");
         
-        const title = doc.querySelector("title")?.innerText || "Başlıksız";
-        const desc = doc.querySelector('meta[name="description"]')?.content || "-";
-        const keys = doc.querySelector('meta[name="keywords"]')?.content || "-";
-        
-        // URL'i kullanıcı dostu hale getir (index.html'i kaldır)
-        const cleanUrl = `https://${CONFIG.owner}.github.io/${filePath.replace('index.html', '')}`;
+        const fileInfo = {
+            url: `https://${CONFIG.owner}.github.io/${filePath.replace('index.html', '')}`,
+            title: doc.querySelector("title")?.innerText || "Başlıksız",
+            desc: doc.querySelector('meta[name="description"]')?.content || "-",
+            keys: doc.querySelector('meta[name="keywords"]')?.content || "-"
+        };
+        tableData.push(fileInfo);
+        addRowToDOM(fileInfo);
+    } catch (e) { console.error("Process Error:", filePath); }
+}
 
-        const row = `
-            <tr>
-                <td><a href="${cleanUrl}" target="_top" class="go-link">GİT</a></td>
-                <td><div class="txt-limit"><strong>${title}</strong></div></td>
-                <td class="m-hide"><div class="txt-limit">${desc}</div></td>
-                <td class="m-hide"><div class="txt-limit">${keys}</div></td>
-            </tr>
-        `;
-        document.getElementById("tableBody").insertAdjacentHTML('beforeend', row);
-    } catch (e) {
-        console.error("Row Render Error:", filePath);
-    }
+function addRowToDOM(info) {
+    const row = `
+        <tr>
+            <td><a href="${info.url}" target="_top" class="go-link">GİT</a></td>
+            <td><div class="txt-limit"><strong>${info.title}</strong></div></td>
+            <td class="m-hide"><div class="txt-limit">${info.desc}</div></td>
+            <td class="m-hide"><div class="txt-limit">${info.keys}</div></td>
+        </tr>`;
+    document.getElementById("tableBody").insertAdjacentHTML('beforeend', row);
 }
 
 function updateStatus(text, showLoader = true) {
@@ -205,32 +151,54 @@ function updateStatus(text, showLoader = true) {
     document.getElementById("loader-icon").style.display = showLoader ? "inline-block" : "none";
 }
 
-async function init() {
-    // 1. Önce tüm taramayı bitir
-    await scan(CONFIG.baseFolder);
-    
-    // 2. Durumu güncelle
-    updateStatus("● Arşiv Yayında", false);
-    
-    // 3. Tabloyu görünür yap ve DataTables'ı başlat
+function startDataTable() {
     $("#archiveTable").show();
     $('#archiveTable').DataTable({
         pageLength: 15,
         responsive: true,
-        order: [[1, 'asc']], // Başlığa göre sırala
+        order: [[1, 'asc']],
         dom: '<"d-flex justify-content-between align-items-center mb-2" f l>rtip',
         language: {
             search: "",
-            searchPlaceholder: "Arşivde ara...",
-            lengthMenu: "Göster: _MENU_",
-            info: "_TOTAL_ kayıt bulundu",
+            searchPlaceholder: "Ara...",
+            lengthMenu: "_MENU_",
+            info: "_TOTAL_ kayıt",
             paginate: { previous: "‹", next: "›" }
         }
     });
 }
 
+function finalize(msg) {
+    const loader = document.getElementById("loader-icon");
+    if(loader) loader.style.display = "none";
+    document.getElementById("status").innerHTML = `
+        <span style="color:#10b981">●</span> 
+        <span style="margin-right:10px;">${msg}</span>
+        <button class="btn-refresh" onclick="Cache.clear()">Verileri Tazele</button>
+    `;
+}
+
+async function init() {
+    const cachedData = Cache.get();
+
+    if (cachedData) {
+        updateStatus("Önbellekten yükleniyor...");
+        cachedData.forEach(info => addRowToDOM(info));
+        startDataTable();
+        finalize("Arşiv Hazır (Önbellek)");
+    } else {
+        updateStatus("API Taraması başlatılıyor...");
+        await scanRepo(CONFIG.baseFolder);
+        if (tableData.length > 0) {
+            Cache.set(tableData);
+            startDataTable();
+            finalize("Arşiv Güncellendi");
+        }
+    }
+}
+
 $(document).ready(init);
-</script>
+</script> 
 
 </body>
 </html>
