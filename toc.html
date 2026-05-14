@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation & Contact Portal</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #0ea5e9;
+            --wa-green: #25d366;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --bg-soft: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: transparent;
+            margin: 0;
+            padding: 10px;
+            color: var(--text-dark);
+        }
+
+        /* Form Styling */
+        .contact-section {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .form-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .form-control {
+            font-size: 14px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+            outline: none;
+        }
+
+        .btn-wa {
+            background-color: var(--wa-green);
+            color: white;
+            font-weight: 700;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: transform 0.1s ease, opacity 0.2s ease;
+        }
+
+        .btn-wa:hover { opacity: 0.9; color: white; }
+        .btn-wa:active { transform: scale(0.98); }
+
+        /* Social Media Icons */
+        .social-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .social-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .social-grid a {
+            color: var(--text-muted);
+            font-size: 18px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--bg-soft);
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .social-grid a:hover {
+            color: var(--primary-blue);
+            background: #f1f5f9;
+            transform: translateY(-3px);
+        }
+
+        /* Utilities */
+        .user-info { margin-bottom: 15px; font-size: 14px; }
+        .user-info strong { color: var(--primary-blue); }
+    </style>
+</head>
+<body>
+
+<div class="contact-section">
+    <div class="user-info">
+        <strong>Name:</strong> Okan Kaplan
+    </div>
+
+    <form id="waContactForm" novalidate>
+        <div class="mb-3">
+            <label for="uName" class="form-label">Your Name</label>
+            <input type="text" class="form-control" id="uName" placeholder="Name Surname" required maxlength="50">
+        </div>
+
+        <div class="mb-3">
+            <label for="uMsg" class="form-label">Message</label>
+            <textarea class="form-control" id="uMsg" rows="3" placeholder="How can I help you?" required maxlength="500"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-wa w-100" id="sendBtn">
+            <i class="fab fa-whatsapp"></i> WhatsApp Send
+        </button>
+    </form>
+
+    <h6 class="social-title">Social Platforms</h6>
+    <div class="social-grid">
+        <a href="https://www.youtube.com/@Ki%C5%9FiselGeli%C5%9Fim-Video-Pdf-img" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.udemy.com/user/okan-kaplan-7" target="_blank" title="Udemy"><i class="fas fa-graduation-cap"></i></a>
+        <a href="https://www.shopier.com/Okan_Kaplan" target="_blank" title="Shopier"><i class="fas fa-store"></i></a>
+        <a href="https://linkedin.com/in/canvasor" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://kisisel-gelisim-video-pdfders-imgpack.blogspot.com" target="_blank" title="Blog"><i class="fab fa-blogger"></i></a>
+        <a href="https://www.etsy.com/shop/bandanee" target="_blank" title="Etsy"><i class="fab fa-etsy"></i></a>
+        <a href="https://dev.to/okan_kaplan_livehtml" target="_blank" title="DEV"><i class="fab fa-dev"></i></a>
+        <a href="https://sketchfab.com/canvasor" target="_blank" title="Sketchfab"><i class="fas fa-cube"></i></a>
+        <a href="https://codepen.io/livehtml" target="_blank" title="CodePen"><i class="fab fa-codepen"></i></a>
+        <a href="https://www.tiktok.com/@canvasornet" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="https://vimeo.com/canvasor" target="_blank" title="Vimeo"><i class="fab fa-vimeo"></i></a>
+        <a href="https://www.patreon.com/c/livehtml" target="_blank" title="Patreon"><i class="fab fa-patreon"></i></a>
+        <a href="https://medium.com/@livehtml" target="_blank" title="Medium"><i class="fab fa-medium"></i></a>
+        <a href="https://wordpress.com/" target="_blank" title="WordPress"><i class="fab fa-wordpress"></i></a>
+        <a href="https://hashnode.com/@bandanee" target="_blank" title="Hashnode"><i class="fas fa-hashtag"></i></a>
+        <a href="https://creativemarket.com/users/okankaplan1" target="_blank" title="Creative Market"><i class="fas fa-palette"></i></a>
+        <a href="https://gitlab.com/bandanee/" target="_blank" title="GitLab"><i class="fab fa-gitlab"></i></a>
+        <a href="https://www.behance.net/okankaplan1" target="_blank" title="Behance"><i class="fab fa-behance"></i></a>
+    </div>
+</div>
+
+<script>
+    document.getElementById('waContactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('uName').value.trim();
+        const message = document.getElementById('uMsg').value.trim();
+        const btn = document.getElementById('sendBtn');
+        
+        // KRİTİK: Iframe'in içinde bulunduğu üst sayfanın linkini alır
+        const sourceUrl = window.parent.location.href;
+
+        if (!name || !message) return;
+
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+
+        const phone = '905362279390';
+        const formattedMsg = encodeURIComponent(
+            `*New Inquiry from Website*\n\n` +
+            `*Name:* ${name}\n` +
+            `*Message:* ${message}\n\n` +
+            `*Sent From:* ${sourceUrl}`
+        );
+
+        const waUrl = `https://wa.me/${phone}?text=${formattedMsg}`;
+
+        // Yeni pencerede aç
+        window.open(waUrl, '_blank', 'noopener,noreferrer');
+
+        setTimeout(() => {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fab fa-whatsapp"></i> WhatsApp Send';
+            this.reset();
+        }, 1500);
+    });
+</script>
+
+</body>
+</html>
