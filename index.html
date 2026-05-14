@@ -47,7 +47,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Okan Kaplan Academy – IoT Real-World Projects & Courses">
 <meta name="twitter:description" content="Learn IoT through real-world projects. Expert-led courses in embedded systems, sensors, and smart devices.">
-<meta name="twitter:image" content="https://okankaplanedu.github.io/assets/cover.jpg">
+<meta name="twitter:image"  content="https://okankaplanedu.github.io/assets/cover.jpg">
 
 <link rel="manifest" href="/manifest.json">
 
@@ -61,7 +61,7 @@
 
 <link href="https://okankaplanedu.github.io/assets/css/ind.css" rel="stylesheet">
 
-<!-- Performance hints -->
+ 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
@@ -193,8 +193,16 @@
 </div>
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight">
-    <div id="toc-placeholder"></div>
+  <div id="toc-placeholder" style="width: 100%; height: auto; min-height: 500px;">
+    <iframe 
+        src="https://okankaplanedu.github.io/toc.html" 
+        id="toc-iframe"
+        style="width: 100%; height: 600px; border: none; overflow: hidden;"
+        title="Contact and Social"
+        loading="lazy">
+    </iframe>
 </div>
+</div> 
 
 <main class="container-fluid px-4" >
     <div class="text-center" id="status-container" style="display:none">
@@ -254,7 +262,7 @@ const Cache = {
 };
 
 function renderCard(article) {
-    // Arama için içerik metnini data attribute olarak ekliyoruz
+  
     const plainText = article.content.replace(/<[^>]*>/g, '').toLowerCase();
     const cardHTML = `
       <div class="grid-item" data-search="${plainText}">
@@ -274,7 +282,7 @@ function renderCard(article) {
     });
 }
 
-// ARAMA FONKSİYONU
+ 
 $('#search-input').on('keyup', function() {
     const val = $(this).val().toLowerCase();
     
@@ -287,7 +295,7 @@ $('#search-input').on('keyup', function() {
         }
     });
 
-    // Masonry düzenini gizlenen öğelere göre yeniden hesapla
+ 
     masonryGrid.masonry('layout');
 });
 
@@ -351,8 +359,8 @@ async function startApp() {
 
 $(document).ready(startApp);
 
-// Harici bileşen yüklemeleri
-fetch('https://raw.githubusercontent.com/bandanee/root/main/import/toc.html').then(r => r.text()).then(h => document.getElementById('toc-placeholder').innerHTML = h);
+ 
+
 fetch('https://raw.githubusercontent.com/bandanee/root/main/import/footer.html').then(r => r.text()).then(h => document.getElementById('footer-placeholder').innerHTML = h);
 
 </script>
