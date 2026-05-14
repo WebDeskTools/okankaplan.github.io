@@ -1,204 +1,672 @@
-<!DOCTYPE html>
-<html lang="tr">
+ <!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DailyMind – Smart Search Archive</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Resources -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<title>DailyMind – Smart Search Archive</title>
 
-    <style>
-        :root { --accent: #0ea5e9; --bg: #ffffff; --border: #f1f5f9; }
-        body { background-color: #f8fafc; font-family: 'Inter', sans-serif; margin: 0; padding: 5px; }
-        .archive-card { background: var(--bg); width: 98%; margin: 0 auto; border-radius: 8px; padding: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        
-        #status { font-size: 11px; color: #94a3b8; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-        
-        /* Table UI */
-        table.dataTable { width: 100% !important; border: none !important; }
-        table.dataTable thead th { font-size: 10px; text-transform: uppercase; background: #f8fafc !important; padding: 10px !important; border-bottom: 1px solid #e2e8f0 !important; }
-        table.dataTable tbody td { font-size: 12px; padding: 8px !important; vertical-align: middle; border-bottom: 1px solid var(--border) !important; }
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        .go-link { display: inline-block; background: var(--accent); color: #fff !important; text-decoration: none !important; font-size: 10px; font-weight: 600; padding: 4px 12px; border-radius: 4px; transition: opacity 0.2s; }
-        .go-link:hover { opacity: 0.8; }
+<!-- DataTables -->
+<link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
 
-        .txt-limit { max-height: 42px; overflow-y: auto; scrollbar-width: none; line-height: 1.4; }
-        .txt-limit::-webkit-scrollbar { display: none; }
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-        .btn-refresh { font-size: 9px; padding: 2px 8px; border-radius: 20px; border: 1px solid #e2e8f0; background: #fff; color: #64748b; cursor: pointer; transition: all 0.2s; }
-        .btn-refresh:hover { background: #f1f5f9; color: var(--accent); }
-    </style>
+<!-- Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
+<style>
+
+:root{
+    --accent:#0ea5e9;
+    --bg:#f4f7fb;
+    --card:#ffffff;
+    --border:#edf2f7;
+    --text:#0f172a;
+    --muted:#94a3b8;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    padding:8px;
+    background:var(--bg);
+    font-family:'Inter',sans-serif;
+    color:var(--text);
+}
+
+/* OFFCANVAS READY */
+.archive-card{
+    width:100%;
+    max-width:450px;
+    margin:auto;
+    background:var(--card);
+    border-radius:22px;
+    padding:14px;
+    border:1px solid var(--border);
+    box-shadow:
+        0 2px 8px rgba(15,23,42,.03),
+        0 1px 2px rgba(15,23,42,.02);
+}
+
+/* HEADER */
+.topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:14px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.brand-icon{
+    width:42px;
+    height:42px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#38bdf8,#0ea5e9);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:15px;
+    box-shadow:0 4px 12px rgba(14,165,233,.25);
+}
+
+.brand h1{
+    margin:0;
+    font-size:14px;
+    font-weight:600;
+    line-height:1;
+}
+
+.brand p{
+    margin:4px 0 0;
+    font-size:11px;
+    color:var(--muted);
+}
+
+/* STATUS */
+#status{
+    font-size:11px;
+    color:var(--muted);
+    margin-bottom:12px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+/* TABLE */
+table.dataTable{
+    width:100% !important;
+    border:none !important;
+}
+
+table.dataTable thead{
+    display:none;
+}
+
+table.dataTable tbody tr{
+    transition:.2s;
+}
+
+table.dataTable tbody tr:hover{
+    background:#fafcff;
+}
+
+table.dataTable tbody td{
+    padding:12px 0 !important;
+    border-bottom:1px solid var(--border) !important;
+    vertical-align:top;
+}
+
+/* ITEM */
+.archive-item{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+}
+
+/* CONTENT */
+.item-content{
+    flex:1;
+    min-width:0;
+}
+
+.item-title{
+    font-size:13px;
+    font-weight:600;
+    line-height:1.45;
+    margin-bottom:5px;
+
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+}
+
+.item-desc{
+    font-size:11px;
+    color:var(--muted);
+    line-height:1.55;
+
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+}
+
+.item-keywords{
+    margin-top:7px;
+    font-size:10px;
+    color:#64748b;
+
+    display:-webkit-box;
+    -webkit-line-clamp:1;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+}
+
+/* LINK BUTTON */
+.go-link{
+    min-width:38px;
+    width:38px;
+    height:38px;
+    border-radius:12px;
+    background:#f0f9ff;
+    color:var(--accent) !important;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none !important;
+    transition:.2s;
+    border:none;
+    font-size:13px;
+}
+
+.go-link:hover{
+    background:var(--accent);
+    color:#fff !important;
+    transform:translateY(-1px);
+}
+
+/* SEARCH */
+.dataTables_filter{
+    width:100%;
+    margin-bottom:12px;
+}
+
+.dataTables_filter label{
+    width:100%;
+}
+
+.dataTables_filter input{
+    width:100% !important;
+    margin-left:0 !important;
+    height:42px;
+    border-radius:14px !important;
+    border:1px solid var(--border) !important;
+    background:#f8fafc !important;
+    padding:0 14px !important;
+    font-size:12px !important;
+    outline:none !important;
+    box-shadow:none !important;
+}
+
+/* PAGINATION */
+.dataTables_paginate{
+    margin-top:12px !important;
+    display:flex;
+    justify-content:center;
+    gap:4px;
+}
+
+.paginate_button{
+    border:none !important;
+    border-radius:10px !important;
+    font-size:11px !important;
+    background:#f8fafc !important;
+    color:#64748b !important;
+}
+
+.paginate_button.current{
+    background:var(--accent) !important;
+    color:#fff !important;
+}
+
+/* HIDE */
+.dataTables_length,
+.dataTables_info{
+    display:none;
+}
+
+/* REFRESH */
+.btn-refresh{
+    font-size:10px;
+    padding:4px 10px;
+    border-radius:20px;
+    border:1px solid #e2e8f0;
+    background:#fff;
+    color:#64748b;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.btn-refresh:hover{
+    background:#f1f5f9;
+    color:var(--accent);
+}
+
+/* MOBILE */
+@media(max-width:480px){
+
+    body{
+        padding:5px;
+    }
+
+    .archive-card{
+        border-radius:18px;
+        padding:12px;
+    }
+
+}
+
+</style>
 </head>
+
 <body>
 
 <div class="archive-card">
-    <div id="status">
-        <div id="loader-icon" class="spinner-border spinner-border-sm text-info" role="status" style="width:12px; height:12px;"></div>
-        <span id="status-text">Başlatılıyor...</span>
+
+    <!-- HEADER -->
+    <div class="topbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
+
+            <div>
+               
+                <p>Smart Search Archive</p>
+            </div>
+
+        </div>
+
     </div>
 
-    <table id="archiveTable" class="display responsive nowrap" style="width:100%; display:none;">
-      <thead>
-        <tr>
-          <th style="width: 40px;">Link</th>
-          <th>Başlık</th>
-          <th class="m-hide">Açıklama</th>
-          <th class="m-hide">Anahtar Kelimeler</th>
-        </tr>
-      </thead>
-      <tbody id="tableBody"></tbody>
+    <!-- STATUS -->
+    <div id="status">
+
+        <div id="loader-icon"
+             class="spinner-border spinner-border-sm text-info"
+             role="status"
+             style="width:12px;height:12px;">
+        </div>
+
+        <span id="status-text">
+            Initializing archive...
+        </span>
+
+    </div>
+
+    <!-- TABLE -->
+    <table id="archiveTable"
+           class="display responsive nowrap"
+           style="width:100%;display:none;">
+
+        <thead>
+            <tr>
+                <th>Archive</th>
+            </tr>
+        </thead>
+
+        <tbody id="tableBody"></tbody>
+
     </table>
+
 </div>
 
+<!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<!-- DataTables -->
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
 <script>
+
 /**
- * DailyMind – Smart Search Archive (Cache Enabled)
- * Okan Kaplan / Bandanee
+ * DailyMind – Smart Search Archive
+ * Modern Soft UI Version
+ * System Protected
  */
+
 const CONFIG = {
     owner: "okankaplanedu",
     repo: "okankaplanedu.github.io",
     baseFolder: "categories",
     branch: "main",
     cacheKey: "dailymind_table_cache",
-    cacheTime: 3600000, // 1 Saat
+    cacheTime: 3600000,
     delay: 150
 };
 
 let tableData = [];
 
-// Yardımcı Fonksiyonlar
+/* HELPERS */
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
+/* CACHE */
 const Cache = {
+
     get: () => {
+
         const stored = localStorage.getItem(CONFIG.cacheKey);
-        if (!stored) return null;
+
+        if(!stored) return null;
+
         const parsed = JSON.parse(stored);
-        if (Date.now() - parsed.timestamp > CONFIG.cacheTime) return null;
+
+        if(Date.now() - parsed.timestamp > CONFIG.cacheTime){
+            return null;
+        }
+
         return parsed.data;
     },
+
     set: (data) => {
-        const obj = { timestamp: Date.now(), data: data };
-        localStorage.setItem(CONFIG.cacheKey, JSON.stringify(obj));
+
+        const obj = {
+            timestamp: Date.now(),
+            data: data
+        };
+
+        localStorage.setItem(
+            CONFIG.cacheKey,
+            JSON.stringify(obj)
+        );
     },
+
     clear: () => {
+
         localStorage.removeItem(CONFIG.cacheKey);
+
         location.reload();
     }
+
 };
 
-async function scanRepo(path) {
-    try {
-        const response = await fetch(`https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${path}`);
-        if (response.status === 403) {
-            updateStatus("⚠ API Limiti. Lütfen bekleyin.", false);
+/* REPO SCAN */
+async function scanRepo(path){
+
+    try{
+
+        const response = await fetch(
+            `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${path}`
+        );
+
+        if(response.status === 403){
+
+            updateStatus(
+                "⚠ API rate limit reached. Please wait.",
+                false
+            );
+
             return;
         }
-        if (!response.ok) return;
+
+        if(!response.ok) return;
 
         const items = await response.json();
-        for (const item of items) {
+
+        for(const item of items){
+
             await sleep(CONFIG.delay);
-            if (item.type === "dir") {
+
+            if(item.type === "dir"){
+
                 await scanRepo(item.path);
-            } else if (item.name === "index.html") {
-                updateStatus(`İşleniyor: ${item.path}`);
+
+            }else if(item.name === "index.html"){
+
+                updateStatus(`Processing: ${item.path}`);
+
                 await processFile(item.path);
+
             }
+
         }
-    } catch (error) { console.error("Scan Error:", error); }
+
+    }catch(error){
+
+        console.error("Scan Error:", error);
+
+    }
+
 }
 
-async function processFile(filePath) {
-    try {
-        const res = await fetch(`https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${filePath}`);
-        if (!res.ok) return;
-        
+/* PROCESS FILE */
+async function processFile(filePath){
+
+    try{
+
+        const res = await fetch(
+            `https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${filePath}`
+        );
+
+        if(!res.ok) return;
+
         const html = await res.text();
-        const doc = new DOMParser().parseFromString(html, "text/html");
-        
+
+        const doc = new DOMParser()
+            .parseFromString(html, "text/html");
+
         const fileInfo = {
-            url: `https://${CONFIG.owner}.github.io/${filePath.replace('index.html', '')}`,
-            title: doc.querySelector("title")?.innerText || "Başlıksız",
-            desc: doc.querySelector('meta[name="description"]')?.content || "-",
-            keys: doc.querySelector('meta[name="keywords"]')?.content || "-"
+
+            url:
+            `https://${CONFIG.owner}.github.io/${filePath.replace('index.html','')}`,
+
+            title:
+            doc.querySelector("title")?.innerText
+            || "Untitled",
+
+            desc:
+            doc.querySelector('meta[name="description"]')
+            ?.content || "No description available.",
+
+            keys:
+            doc.querySelector('meta[name="keywords"]')
+            ?.content || "No keywords"
+
         };
+
         tableData.push(fileInfo);
+
         addRowToDOM(fileInfo);
-    } catch (e) { console.error("Process Error:", filePath); }
+
+    }catch(e){
+
+        console.error("Process Error:", filePath);
+
+    }
+
 }
 
-function addRowToDOM(info) {
+/* ADD ROW */
+function addRowToDOM(info){
+
     const row = `
-        <tr>
-            <td><a href="${info.url}" target="_top" class="go-link">GİT</a></td>
-            <td><div class="txt-limit"><strong>${info.title}</strong></div></td>
-            <td class="m-hide"><div class="txt-limit">${info.desc}</div></td>
-            <td class="m-hide"><div class="txt-limit">${info.keys}</div></td>
-        </tr>`;
-    document.getElementById("tableBody").insertAdjacentHTML('beforeend', row);
-}
 
-function updateStatus(text, showLoader = true) {
-    document.getElementById("status-text").innerText = text;
-    document.getElementById("loader-icon").style.display = showLoader ? "inline-block" : "none";
-}
+    <tr>
 
-function startDataTable() {
-    $("#archiveTable").show();
-    $('#archiveTable').DataTable({
-        pageLength: 15,
-        responsive: true,
-        order: [[1, 'asc']],
-        dom: '<"d-flex justify-content-between align-items-center mb-2" f l>rtip',
-        language: {
-            search: "",
-            searchPlaceholder: "Ara...",
-            lengthMenu: "_MENU_",
-            info: "_TOTAL_ kayıt",
-            paginate: { previous: "‹", next: "›" }
-        }
-    });
-}
+        <td>
 
-function finalize(msg) {
-    const loader = document.getElementById("loader-icon");
-    if(loader) loader.style.display = "none";
-    document.getElementById("status").innerHTML = `
-        <span style="color:#10b981">●</span> 
-        <span style="margin-right:10px;">${msg}</span>
-        <button class="btn-refresh" onclick="Cache.clear()">Verileri Tazele</button>
+            <div class="archive-item">
+
+                <div class="item-content">
+
+                    <div class="item-title">
+                        ${info.title}
+                    </div>
+
+                    <div class="item-desc">
+                        ${info.desc}
+                    </div>
+
+                    <div class="item-keywords">
+                        ${info.keys}
+                    </div>
+
+                </div>
+
+                <a href="${info.url}"
+                   target="_top"
+                   class="go-link">
+
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                </a>
+
+            </div>
+
+        </td>
+
+    </tr>
+
     `;
+
+    document
+        .getElementById("tableBody")
+        .insertAdjacentHTML('beforeend', row);
+
 }
 
-async function init() {
+/* STATUS */
+function updateStatus(text, showLoader = true){
+
+    document.getElementById("status-text").innerText = text;
+
+    document.getElementById("loader-icon").style.display =
+        showLoader
+        ? "inline-block"
+        : "none";
+
+}
+
+/* DATATABLE */
+function startDataTable(){
+
+    $("#archiveTable").show();
+
+    $('#archiveTable').DataTable({
+
+        pageLength: 10,
+
+        responsive: true,
+
+        ordering: false,
+
+        dom: 'ftip',
+
+        language: {
+
+            search: "",
+
+            searchPlaceholder: "Search archive...",
+
+            paginate: {
+
+                previous: "‹",
+
+                next: "›"
+
+            }
+
+        }
+
+    });
+
+}
+
+/* FINALIZE */
+function finalize(msg){
+
+    const loader =
+        document.getElementById("loader-icon");
+
+    if(loader){
+        loader.style.display = "none";
+    }
+
+    document.getElementById("status").innerHTML = `
+
+        <span style="color:#10b981">●</span>
+
+        <span style="margin-right:10px;">
+            ${msg}
+        </span>
+
+        <button class="btn-refresh"
+                onclick="Cache.clear()">
+
+            Refresh
+
+        </button>
+
+    `;
+
+}
+
+/* INIT */
+async function init(){
+
     const cachedData = Cache.get();
 
-    if (cachedData) {
-        updateStatus("Önbellekten yükleniyor...");
+    if(cachedData){
+
+        updateStatus("Loading from cache...");
+
         cachedData.forEach(info => addRowToDOM(info));
+
         startDataTable();
-        finalize("Arşiv Hazır (Önbellek)");
-    } else {
-        updateStatus("API Taraması başlatılıyor...");
+
+        finalize("Archive Ready (Cache)");
+
+    }else{
+
+        updateStatus("Starting repository scan...");
+
         await scanRepo(CONFIG.baseFolder);
-        if (tableData.length > 0) {
+
+        if(tableData.length > 0){
+
             Cache.set(tableData);
+
             startDataTable();
-            finalize("Arşiv Güncellendi");
+
+            finalize("Archive Updated");
+
         }
+
     }
+
 }
 
+/* START */
 $(document).ready(init);
-</script> 
+
+</script>
 
 </body>
 </html>
