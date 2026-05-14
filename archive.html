@@ -140,12 +140,19 @@ const CONFIG = {
 async function scan(path) {
     try {
         const res = await fetch(`https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${path}`);
-        const items = await res.json();
-        for (const item of items) {
-            if (item.type === "dir") await scan(item.path);
-            else if (item.name === "index.html") await renderRow(item.path);
+        
+        // Check if the response is actually okay (e.g., 403 Forbidden for rate limit)
+        if (!res.ok) {
+            const errorData = await res.json();
+            console.error(`API Error (${res.status}):`, errorData.message);
+            return;
         }
-    } catch (e) { console.error("Scan Error"); }
+
+        const items = await res.json();
+        // ... rest of your code
+    } catch (e) { 
+        console.error("Network or Parsing Error:", e); 
+    }
 }
 
 async function renderRow(filePath) {
