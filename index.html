@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Okan Kaplan</title>
-<meta name="title" content="New Article - Okan Kaplan Academy">
-<meta name="description" content="Page description content here.">
-<meta name="keywords" content="undefined">
-<meta name="author" content="undefined">
-<meta name="creator" content="undefined">
-<meta name="publisher" content="undefined">
+<title>Okan Kaplan Academy – IoT Real-World Projects & Courses</title>
+<meta name="title" content="Okan Kaplan Academy – IoT Real-World Projects & Online Courses">
+<meta name="description" content="Learn IoT with hands-on real-world projects. Okan Kaplan Academy offers expert-led courses on Internet of Things, embedded systems, sensors, microcontrollers, and smart device development.">
+<meta name="keywords" content="IoT courses, Internet of Things, real-world IoT projects, embedded systems, microcontroller, Arduino, Raspberry Pi, smart devices, online learning, Okan Kaplan Academy">
+<meta name="author" content="Okan Kaplan">
+<meta name="creator" content="Okan Kaplan">
+<meta name="publisher" content="Okan Kaplan Academy">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="googlebot" content="index, follow">
 <meta name="bingbot" content="index, follow">
@@ -26,16 +26,16 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Okan Kaplan Academy">
 <meta property="og:locale" content="en_US">
-<meta property="og:title" content="New Article - Okan Kaplan Academy">
-<meta property="og:description" content="Page description content here.">
+<meta property="og:title" content="Okan Kaplan Academy – IoT Real-World Projects & Online Courses">
+<meta property="og:description" content="Learn IoT with hands-on real-world projects. Okan Kaplan Academy offers expert-led courses on Internet of Things, embedded systems, and smart device development.">
 <meta property="og:url" content="https://okankaplanedu.github.io/">
 <meta property="og:image" content="https://okankaplanedu.github.io/assets/cover.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Okan Kaplan Academy">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="New Article - Okan Kaplan Academy">
-<meta name="twitter:description" content="Page description content here.">
+<meta name="twitter:title" content="Okan Kaplan Academy – IoT Real-World Projects & Online Courses">
+<meta name="twitter:description" content="Learn IoT with hands-on real-world projects. Okan Kaplan Academy offers expert-led courses on Internet of Things, embedded systems, and smart device development.">
 <meta name="twitter:image" content="https://okankaplanedu.github.io/assets/cover.jpg">
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -60,7 +60,7 @@
       as="style"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
       onload="this.onload=null;this.rel='stylesheet'">
-
+ 
 <noscript>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </noscript>
@@ -71,14 +71,14 @@
   "@type": "WebSite",
   "name": "Okan Kaplan Academy",
   "url": "https://okankaplanedu.github.io/",
-  "description": "Page description content here.",
+  "description": "Okan Kaplan Academy offers expert-led IoT courses and real-world projects covering Internet of Things, embedded systems, microcontrollers, and smart device development.",
   "publisher": {
     "@type": "Organization",
     "name": "Okan Kaplan Academy"
   }
 }
 </script>
-
+ 
 <!-- JSON-LD: Organization Schema -->
 <script type="application/ld+json">
 {
@@ -88,49 +88,100 @@
   "url": "https://okankaplanedu.github.io/",
   "logo": "https://okankaplanedu.github.io/assets/logo.png",
   "sameAs": [
-    "https://twitter.com/kullaniciadin",
+    "https://github.com/okankaplanedu",
     "https://github.com/bandanee"
   ]
 }
 </script>
+ 
 
-
-
-
-<script>
-  fetch("https://raw.githubusercontent.com/bandanee/root/main/import/head.html").then(r => r.text()).then(t => document.head.insertAdjacentHTML("beforeend", t)).catch(e => console.error(e));
-</script>
+    <script>
+        // Head içeriğini dışarıdan çekme (Mevcut mantığın)
+        fetch("https://raw.githubusercontent.com/bandanee/root/main/import/head.html")
+            .then(r => r.text())
+            .then(t => document.head.insertAdjacentHTML("beforeend", t))
+            .catch(e => console.error("Head fetch error:", e));
+    </script>
 </head>
 <body>
 
-<!-- UI CONTROLS -->
-<button class="btn btn-primary shadow" id="offcanvasLeftToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft"> &#9776; </button>
-<button class="btn btn-success shadow" id="offcanvasRightToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"> <i class="fas fa-comment-dots"></i> </button>
+<!-- Left Offcanvas Toggle -->
+<button
+  type="button"
+  class="btn btn-primary shadow"
+  id="offcanvasLeftToggle"
+  data-bs-toggle="offcanvas"
+  data-bs-target="#offcanvasLeft"
+  aria-controls="offcanvasLeft"
+  aria-label="Open left navigation menu"
+>
+  <span aria-hidden="true">&#9776;</span>
+</button>
 
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow">
-    <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="#" style="padding-left:45px;"> Okan Kaplan </a>
-    </div>
+<!-- Right Offcanvas Toggle -->
+<button
+  type="button"
+  class="btn btn-success shadow"
+  id="offcanvasRightToggle"
+  data-bs-toggle="offcanvas"
+  data-bs-target="#offcanvasRight"
+  aria-controls="offcanvasRight"
+  aria-label="Open chat panel"
+>
+  <span aria-hidden="true">
+    <i class="fas fa-comment-dots"></i>
+  </span>
+</button>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow" aria-label="Main navigation">
+  <div class="container-fluid">
+
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="/" aria-label="Homepage - Okan Kaplan">
+      <span>Okan Kaplan</span>
+    </a>
+
+  </div>
 </nav>
 
-<!-- OFFCANVAS -->
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft">
-    <div class="offcanvas-header border-bottom">
-        <h5 class="offcanvas-title">Gezinti</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-    </div>
-    <div class="offcanvas-body p-0">
-        <iframe src="https://okankaplanedu.github.io/archive.html" style="width:100%; height:100%; border:none;"></iframe>
-    </div>
-</div>
+<div
+  class="offcanvas offcanvas-start"
+  tabindex="-1"
+  id="offcanvasLeft"
+  aria-labelledby="offcanvasLeftLabel"
+>
 
+  <!-- Header -->
+  <div class="offcanvas-header border-bottom">
+    <h5 class="offcanvas-title" id="offcanvasLeftLabel">
+      Navigation
+    </h5>
+
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close navigation menu"
+    ></button>
+  </div>
+
+  <!-- Body -->
+  <div class="offcanvas-body p-0">
+    <iframe
+      src="https://okankaplanedu.github.io/archive.html"
+      title="Archive page content"
+      loading="lazy"
+      style="width:100%; height:100%; border:0;"
+    ></iframe>
+  </div>
+
+</div>
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight">
     <div id="toc-placeholder"></div>
 </div>
 
-<!-- MAIN -->
 <main class="container-fluid px-4">
-    <div class="text-center">
+    <div class="text-center" style="display:none">
         <div id="status">
             <div class="spinner-border spinner-border-sm text-primary" role="status" id="status-spinner"></div>
             <span id="status-message">Sistem hazırlanıyor...</span>
@@ -144,28 +195,27 @@
 
 <div id="footer-placeholder"></div>
 
-<!-- SCRIPTS -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
 
 <script>
-/* CONFIGURATION */
+/* YAPILANDIRMA */
 const CONFIG = {
     owner: "okankaplanedu",
     repo: "okankaplanedu.github.io",
     branch: "main",
     baseFolder: "categories",
-    cacheKey: "ok_academy_cache",
-    cacheTime: 3600000, // 1 Saat (ms)
-    fetchDelay: 150
+    cacheKey: "ok_academy_data",    // Kalıcı veri
+    sessionKey: "ok_session_check", // Oturum kontrolü
+    fetchDelay: 120
 };
 
 let masonryGrid;
-let tempArchive = []; // API'den çekilenleri geçici tutar
+let tempArchive = [];
 
-/* INITIALIZE MASONRY */
+
 function initMasonry() {
     masonryGrid = $('#masonry-container').masonry({
         itemSelector: '.grid-item',
@@ -174,40 +224,29 @@ function initMasonry() {
     });
 }
 
-/* CACHE CONTROLS */
-const Cache = {
-    get: () => {
-        const data = localStorage.getItem(CONFIG.cacheKey);
-        if (!data) return null;
-        const parsed = JSON.parse(data);
-        if (Date.now() - parsed.timestamp > CONFIG.cacheTime) return null;
-        return parsed.articles;
-    },
-    set: (articles) => {
-        const obj = { timestamp: Date.now(), articles: articles };
-        localStorage.setItem(CONFIG.cacheKey, JSON.stringify(obj));
-    }
-};
 
-/* RENDER ENGINE */
-function renderCard(article, isAppended = true) {
+function renderCard(article) {
+
+    const cleanContent = article.content.replace(/<img/g, '<img loading="lazy" class="img-fluid"');
+    
     const cardHTML = `
         <div class="grid-item">
             <div class="card-custom">
-                <article>${article.content}</article>
+                <article>${cleanContent}</article>
                 <a href="${article.url}" target="_top" class="btn-open">Detayları Gör →</a>
             </div>
         </div>`;
-    
+        
     const $item = $(cardHTML);
     $('#masonry-container').append($item);
     
-    $item.imagesLoaded(() => {
+    // Resimler yüklendikçe Masonry yerleşimini güncelle
+    $item.imagesLoaded().progress(function() {
         masonryGrid.masonry('appended', $item).masonry('layout');
     });
 }
 
-/* API SCANNER */
+
 async function scanAndCache(path) {
     try {
         const res = await fetch(`https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${path}`);
@@ -218,7 +257,8 @@ async function scanAndCache(path) {
             if (item.type === "dir") {
                 await scanAndCache(item.path);
             } else if (item.name === "index.html" && path !== CONFIG.baseFolder) {
-                updateUIStatus(`Taranıyor: ${item.path.split('/').slice(-2,-1)}`);
+                updateUIStatus(`Arşivleniyor: ${item.path.split('/').slice(-2,-1)}`);
+                
                 const contentRes = await fetch(`https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${item.path}`);
                 if (contentRes.ok) {
                     const html = await contentRes.text();
@@ -236,48 +276,53 @@ async function scanAndCache(path) {
                 await new Promise(r => setTimeout(r, CONFIG.fetchDelay));
             }
         }
-    } catch (e) { console.error("Scan Error:", e); }
+    } catch (e) { console.error("Tarama hatası:", e); }
 }
 
-function updateUIStatus(msg, color = "#0d6efd") {
+function updateUIStatus(msg) {
     const txt = document.getElementById("status-message");
-    if(txt) { txt.innerText = msg; txt.style.color = color; }
+    if(txt) txt.innerText = msg;
 }
 
-function finalizeUI(isCache = false) {
+function finalizeUI() {
     const spinner = document.getElementById("status-spinner");
     if (spinner) spinner.style.display = "none";
     const status = document.getElementById("status");
-    status.innerHTML = `
-        <span style="color:#10b981">●</span> 
-        <span style="font-size:13px; font-weight:600;">${isCache ? 'Hızlı Yükleme Aktif' : 'Arşiv Güncellendi'}</span>
-        <button class="btn btn-sm btn-outline-secondary ms-2" onclick="localStorage.removeItem('${CONFIG.cacheKey}'); location.reload();" style="font-size:10px; border-radius:20px;">Yenile</button>
-    `;
+    if (status) {
+        status.innerHTML = `<span style="color:#10b981">●</span> <span style="font-size:12px; font-weight:600; color:#666;">+</span>`;
+    }
 }
 
-/* START APP */
+
 async function startApp() {
     initMasonry();
-    const cachedArticles = Cache.get();
+    
+    const savedData = localStorage.getItem(CONFIG.cacheKey);
+    const isSessionActive = sessionStorage.getItem(CONFIG.sessionKey);
 
-    if (cachedArticles) {
+    if (savedData && isSessionActive) {
         updateUIStatus("Önbellek yükleniyor...");
-        cachedArticles.forEach(art => renderCard(art));
-        finalizeUI(true);
+        const articles = JSON.parse(savedData);
+        articles.forEach(art => renderCard(art));
+        finalizeUI();
     } else {
-        updateUIStatus("Arşiv taranıyor (Bu işlem bir kez yapılır)...");
+     
+        updateUIStatus("...");
         await scanAndCache(CONFIG.baseFolder);
-        if (tempArchive.length > 0) Cache.set(tempArchive);
-        finalizeUI(false);
+        
+        if (tempArchive.length > 0) {
+            localStorage.setItem(CONFIG.cacheKey, JSON.stringify(tempArchive));
+            sessionStorage.setItem(CONFIG.sessionKey, "active"); // Oturumu başlat
+        }
+        finalizeUI();
     }
 }
 
 $(document).ready(startApp);
 
-// Footer & TOC Fetch
+
 fetch('https://raw.githubusercontent.com/bandanee/root/main/import/toc.html').then(r => r.text()).then(h => document.getElementById('toc-placeholder').innerHTML = h);
 fetch('https://raw.githubusercontent.com/bandanee/root/main/import/footer.html').then(r => r.text()).then(h => document.getElementById('footer-placeholder').innerHTML = h);
-
 </script>
 </body>
 </html>
