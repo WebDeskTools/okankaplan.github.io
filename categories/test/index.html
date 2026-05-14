@@ -1,154 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>New Article - Okan Kaplan Academy</title>
-    <meta name="title" content="New Article - Okan Kaplan Academy">
-    <meta name="description" content="Page description content here.">
-    <meta name="keywords" content="undefined">
-    <meta name="author" content="Okan Kaplan">
-    <meta name="theme-color" content="#0d6efd">
-    <link rel="canonical" href="https://okankaplanedu.github.io/blog/new-article.html">
-    
-    <!-- Fonts & Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
-    <!-- Stylesheets -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
-    <style>
-        body { font-family: 'Montserrat', sans-serif; padding-top: 56px; background:#f5f5f5; }
-        main { max-width:900px; margin:2rem auto; padding:2.5rem; background:#fff; border-radius:8px; box-shadow:0 4px 15px rgba(0,0,0,0.05); }
-        .navbar { background: #212529 !important; }
-        
-        /* Floating Buttons */
-        #offcanvasLeftToggle { position: fixed; top:10px; left:10px; z-index:1080; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; }
-        #offcanvasRightToggle { position: fixed; top:10px; right:10px; z-index:1080; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; }
-        
-        .offcanvas { overflow: auto; }
-        article img { max-width: 100%; height: auto; border-radius: 8px; margin: 20px 0; }
+  <title>New Article - Okan Kaplan Academy</title>
 
-        /* TOC / Right Panel Styling */
-        #right-panel-content ul { list-style: none; padding-left: 0; }
-        #right-panel-content li { margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        #right-panel-content a { text-decoration: none; color: #333; font-size: 0.9rem; }
-        #right-panel-content a:hover { color: #0d6efd; }
-    </style>
+  <meta name="title" content="New Article - Okan Kaplan Academy" />
+  <meta name="description" content="Page description content here." />
+  <meta name="keywords" content="blog, academy, learning" />
+  <meta name="author" content="Okan Kaplan" />
+  <meta name="theme-color" content="#0d6efd" />
 
-    <!-- Head Import (GitHub) -->
-    <script>
-        fetch("https://raw.githubusercontent.com/bandanee/root/main/import/head.html")
-            .then(r => r.text())
-            .then(t => document.head.insertAdjacentHTML("beforeend", t))
-            .catch(e => console.error("Head fetch error:", e));
-    </script>
+  <link rel="canonical" href="https://okankaplanedu.github.io/blog/new-article.html" />
+
+  <!-- Fonts (optimized) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      padding-top: 56px;
+      background: #f5f5f5;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2.5rem;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .navbar { background: #212529 !important; }
+
+    #offcanvasLeftToggle,
+    #offcanvasRightToggle {
+      position: fixed;
+      top: 10px;
+      width: 42px;
+      height: 42px;
+      z-index: 1080;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #offcanvasLeftToggle { left: 10px; }
+    #offcanvasRightToggle { right: 10px; }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .offcanvas { overflow: auto; }
+  </style>
 </head>
+
 <body>
 
-<!-- Sol Toggle -->
-<button class="btn btn-primary shadow" id="offcanvasLeftToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-label="Open left menu">
-    &#9776;
+<!-- LEFT TOGGLE -->
+<button class="btn btn-primary shadow" id="offcanvasLeftToggle"
+  data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft"
+  aria-label="Open left menu">
+  ☰
 </button>
 
-<!-- Sağ Toggle (TOC/Contact) -->
-<button class="btn btn-success shadow" id="offcanvasRightToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-label="Open right panel">
-    <i class="fas fa-comment-dots"></i>
+<!-- RIGHT TOGGLE -->
+<button class="btn btn-success shadow" id="offcanvasRightToggle"
+  data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+  aria-label="Open right panel">
+  <i class="fas fa-comment-dots"></i>
 </button>
 
-<!-- Top Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow">
-    <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="https://okankaplanedu.github.io/" style="padding-left:45px">Okan Kaplan </a>
-    </div>
+<!-- NAVBAR -->
+<nav class="navbar navbar-dark fixed-top shadow">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="/" style="padding-left:45px;">
+      Okan Kaplan
+    </a>
+  </div>
 </nav>
 
-<!-- Sol Offcanvas (Iframe ile Nav) -->
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title fw-bold">Menü</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body p-0" style="overflow: hidden;">
-        <iframe src="https://okankaplanedu.github.io/archive.html" style="width: 600px; height: 100vh; border: none;" title="Navigation Menu"></iframe>
-    </div>
+<!-- LEFT OFFCANVAS -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" aria-labelledby="leftMenuLabel">
+
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title fw-bold" id="leftMenuLabel">Menu</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close menu"></button>
+  </div>
+
+  <div class="offcanvas-body p-0">
+    <iframe
+      src="https://okankaplanedu.github.io/archive.html"
+      title="Navigation Menu"
+      loading="lazy">
+    </iframe>
+  </div>
+
 </div>
 
-<!-- Sağ Offcanvas (Fetch ile İçerik/TOC) -->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight">
-    <div class="offcanvas-header border-bottom">
-        <h5 class="offcanvas-title fw-bold" id="rightPanelTitle">Panel</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+<!-- RIGHT OFFCANVAS -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="rightPanelTitle">
+
+  <div class="offcanvas-header border-bottom">
+    <h5 class="offcanvas-title fw-bold" id="rightPanelTitle">Panel</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close panel"></button>
+  </div>
+
+  <div class="offcanvas-body" id="right-panel-content">
+    <div class="text-center p-3">
+      <div class="spinner-border text-success"></div>
+      <p class="small mt-2">Loading...</p>
     </div>
-    <div class="offcanvas-body">
-        <div id="right-panel-content">
-            <!-- İçerik buraya fetch edilecek -->
-            <div class="text-center p-5">
-                <div class="spinner-border text-success" role="status"></div>
-                <p class="mt-2 small">Yükleniyor...</p>
-            </div>
-        </div>
-    </div>
+  </div>
+
 </div>
 
+<!-- CONTENT -->
 <div class="container">
-    <main>
-        <article>
-            <h1 class="fw-bold mb-4">New Article</h1>
-            <div id="article-body">
-                <h2>Hello World</h2>
-                <p>Content editor is ready. Modern DevOps ve SEO odaklı sistemler için mimari yapılandırılmıştır.</p>
-            </div>
-        </article>
-    </main>
+  <main>
+    <article>
+      <h1 class="fw-bold mb-4">New Article</h1>
+
+      <div id="article-body">
+        <h2>Hello World</h2>
+        <p>Content editor is ready. Modern DevOps ve SEO odaklı sistemler için yapılandırılmıştır.</p>
+      </div>
+
+    </article>
+  </main>
 </div>
 
-<!-- Footer Placeholder -->
+<!-- FOOTER -->
 <div id="footer-placeholder"></div>
 
-<!-- Scripts -->
+<!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    // 1. Footer Fetch
-    fetch('https://raw.githubusercontent.com/bandanee/root/main/import/footer.html')
-        .then(r => r.text())
-        .then(h => document.getElementById('footer-placeholder').innerHTML = h);
+/* Footer */
+fetch('https://raw.githubusercontent.com/bandanee/root/main/import/footer.html')
+  .then(r => r.text())
+  .then(h => document.getElementById('footer-placeholder').innerHTML = h);
 
-    // 2. Sağ Offcanvas TOC/Content Fetch (Unutulmadan eklendi)
-    // Not: Buradaki URL'yi kendi TOC veya contact dosyanızla değiştirebilirsiniz.
-    const rightPanelUrl = 'https://raw.githubusercontent.com/bandanee/root/main/import/toc.html'; // Örnek dosya yolu
-    
-    document.getElementById('offcanvasRight').addEventListener('show.bs.offcanvas', function () {
-        fetch(rightPanelUrl)
-            .then(response => {
-                if(!response.ok) throw new Error("Dosya bulunamadı");
-                return response.text();
-            })
-            .then(data => {
-                document.getElementById('right-panel-content').innerHTML = data;
-                document.getElementById('rightPanelTitle').innerText = "İçerik Tablosu";
-            })
-            .catch(err => {
-                document.getElementById('right-panel-content').innerHTML = `
-                    <div class="alert alert-warning small">
-                        İçerik yüklenemedi. <br> <a href="mailto:info@okankaplanedu.com">İletişime geçin.</a>
-                    </div>`;
-                console.error("Sağ panel fetch hatası:", err);
-            });
-    });
+/* Right panel (TOC) */
+const rightPanelUrl = 'https://raw.githubusercontent.com/bandanee/root/main/import/toc.html';
 
-    // 3. PWA Service Worker
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
-            .then(() => console.log("PWA Service Worker Registered"))
-            .catch(err => console.error("SW Error:", err));
-    }
+document.getElementById('offcanvasRight').addEventListener('show.bs.offcanvas', async () => {
+  const el = document.getElementById('right-panel-content');
+
+  try {
+    const res = await fetch(rightPanelUrl);
+    if (!res.ok) throw new Error();
+
+    el.innerHTML = await res.text();
+    document.getElementById('rightPanelTitle').textContent = 'Table of Contents';
+
+  } catch (e) {
+    el.innerHTML = '<div class="alert alert-warning small">Content failed to load.</div>';
+  }
+});
+
+/* Service Worker */
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js')
+    .catch(console.error);
+}
 </script>
+
 </body>
 </html>
