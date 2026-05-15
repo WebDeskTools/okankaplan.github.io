@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>Image + Graphic Processing Layer (Full Pipeline Architecture) | Okan Kaplan Edu</title>
+
+<!-- ─── Primary Meta ─────────────────────────────── -->
+<meta name="title" content="Image + Graphic Processing Layer (Full Pipeline Architecture) | Okan Kaplan Edu">
+<meta name="description" content="Explore the Image and Graphic Processing Layer including Canvas API, WebGL/WebGPU, GPU shaders, image editing libraries, encoding pipelines, server-side processing engines, and CDN image delivery systems for modern web graphics architecture.">
+<meta name="keywords" content="image processing layer, WebGL, WebGPU, Canvas API, Fabric.js, Konva.js, Three.js, PixiJS, image optimization, graphic rendering, frontend graphics pipeline, server-side image processing, Sharp, ImageMagick, CDN images">
+<meta name="author" content="Okan Kaplan">
+<meta name="creator" content="Okan Kaplan">
+<meta name="publisher" content="Okan Kaplan Academy">
+
+<!-- ─── Robots ───────────────────────────────────── -->
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="googlebot" content="index, follow">
+<meta name="bingbot" content="index, follow">
+
+<!-- ─── Theme / Color ────────────────────────────── -->
+<meta name="theme-color" content="#0d6efd">
+<meta name="color-scheme" content="light">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="msapplication-TileColor" content="#0d6efd">
+
+<!-- ─── Canonical & Language ─────────────────────── -->
+<link rel="canonical" href="https://okankaplanedu.github.io/categories/image-graphic-processing/">
+<meta http-equiv="content-language" content="en">
+<meta name="language" content="en">
+
+<!-- ─── Favicons ─────────────────────────────────── -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<!-- ─── Web App Manifest ──────────────────────────── -->
+<link rel="manifest" href="/manifest.json">
+
+<!-- ─── Open Graph ───────────────────────────────── -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Okan Kaplan Edu">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Image + Graphic Processing Layer (Full Pipeline Architecture) | Okan Kaplan Edu">
+<meta property="og:description" content="Explore the Image and Graphic Processing Layer including Canvas API, WebGL/WebGPU, GPU shaders, image editing libraries, encoding pipelines, server-side processing engines, and CDN image delivery systems for modern web graphics architecture.">
+<meta property="og:url" content="https://okankaplanedu.github.io/">
+<meta property="og:image" content="https://okankaplanedu.github.io/assets/cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Okan Kaplan Academy IoT Courses Cover">
+
+<!-- ─── Twitter Card ─────────────────────────────── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Image + Graphic Processing Layer (Full Pipeline Architecture) | Okan Kaplan Edu">
+<meta name="twitter:description" content="Explore the Image and Graphic Processing Layer including Canvas API, WebGL/WebGPU, GPU shaders, image editing libraries, encoding pipelines, server-side processing engines, and CDN image delivery systems for modern web graphics architecture.">
+<meta name="twitter:image" content="https://okankaplanedu.github.io/assets/cover.jpg">
+
+<!-- ─── Schema.org JSON-LD ───────────────────────── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Okan Kaplan Edu",
+  "url": "https://okankaplanedu.github.io/",
+  "description": "A comprehensive technical architecture describing the Image and Graphic Processing Layer in modern web systems, including browser-based rendering engines (Canvas API, SVG, WebGL, WebGPU), GPU shader pipelines, canvas abstraction libraries, high-performance rendering engines, image editing and cropping tools, image encoding and decoding systems, server-side processing engines, and CDN-based image delivery pipelines that together form a full-stack visual computing system.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Okan Kaplan Edu"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Okan Kaplan Edu",
+  "url": "https://okankaplanedu.github.io/",
+  "logo": "https://okankaplanedu.github.io/assets/logo.png",
+  "sameAs": [
+    "https://github.com/okankaplanedu",
+    "https://github.com/bandanee"
+  ]
+}
+</script>
+
+<!-- ─── DNS Prefetch / Preconnect ────────────────── -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+<link rel="dns-prefetch" href="//raw.githubusercontent.com">
+
+<!-- ─── Google Fonts ─────────────────────────────── -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- ─── Bootstrap (Preload) ──────────────────────── -->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"></noscript>
+
+<!-- ─── Font Awesome (Preload) ───────────────────── -->
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></noscript>
+
+<!-- ─── Custom CSS ───────────────────────────────── -->
+<link href="https://okankaplanedu.github.io/assets/css/ind.css" rel="stylesheet">
+
+<!-- ─── Head Import ──────────────────────────────── -->
+<script>
+  fetch("https://raw.githubusercontent.com/bandanee/root/main/import/head.html")
+    .then(r => r.text())
+    .then(t => document.head.insertAdjacentHTML("beforeend", t))
+    .catch(e => console.error(e));
+</script>
+
+<!-- ─── Page Styles ──────────────────────────────── -->
+<style>body { font-family: 'Montserrat', sans-serif; padding-top: 60px; background: #f8f9fa; }
+main { max-width: 900px; margin: 2rem auto; padding: 2.5rem; background: #fff; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.yt-pro { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin-bottom: 2rem; background: #000; }
+.yt-pro iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+.navbar { background: #1a202c !important; }
+#btnL, #btnR { position: fixed; top: 12px; width: 42px; height: 42px; z-index: 1080; border: 0; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+#btnL { left: 12px; } #btnR { right: 12px; }
+.audio-bottom { margin-top: 3rem; padding-top: 2rem; border-top: 2px solid #f1f1f1; }</style>
+</head>
+<body>
+
+<nav class="navbar navbar-dark fixed-top shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold ms-5" href="/">Okan Kaplan Edu</a>
+  </div>
+</nav>
+<button class="btn btn-primary shadow" id="btnL" data-bs-toggle="offcanvas" data-bs-target="#mL">☰</button>
+<button class="btn btn-success shadow" id="btnR" data-bs-toggle="offcanvas" data-bs-target="#mR"><i class="fas fa-comment-dots"></i></button>
+<div class="offcanvas offcanvas-start" id="mL"><div class="offcanvas-body"><iframe src="https://okankaplanedu.github.io/archive.html" style="width:100%;height:100%;border:0;"></iframe></div></div>
+<div class="offcanvas offcanvas-end" id="mR"><div class="offcanvas-body"><iframe src="https://okankaplanedu.github.io/toc.html" style="width:100%;height:100%;border:0;"></iframe></div></div>
+
+<!-- ─── Main Content ──────────────────────────────── -->
+<main role="main">
+  <article itemscope itemtype="https://schema.org/Article">
+
+    <!-- Page H1 Title -->
+    <h1 itemprop="headline">Image + Graphic Processing Layer (Full Pipeline Architecture)</h1>
+
+    <!-- Quill Body Content (H2/H3/H4/p/img/blockquote/lists from editor) -->
+    <section itemprop="articleBody">
+      <h1>Image + Graphic Processing Layer (Full Pipeline Architecture)</h1><p>This article explains the complete Image and Graphic Processing Layer in modern web systems. It covers everything from browser-level rendering engines to GPU acceleration, canvas-based drawing systems, image editing tools, encoding pipelines, and server-side optimization. This layer represents the full lifecycle of visual data inside the browser and backend systems, combining CPU, GPU, and CDN-based processing into a unified graphics architecture.</p><p><br></p><h2>1. Core Rendering Engine Layer (Browser Foundation)</h2><p>This layer represents the lowest level of graphical rendering inside the browser. It is responsible for drawing pixels, shapes, and vector graphics directly on the screen.</p><h3>Core Rendering APIs</h3><p>Canvas API — 2D raster rendering engine</p><p> OffscreenCanvas — Background rendering in worker threads</p><p> ImageBitmap API — Optimized image decoding pipeline</p><p> SVG Rendering Engine — Vector-based graphics system</p><p> CSS Paint API — Custom paint and drawing logic</p><h2>2. GPU Graphics Layer (WebGL / WebGPU Core)</h2><p>This layer enables high-performance rendering using GPU acceleration. It is the foundation of modern graphics-intensive applications and games.</p><h3>GPU Rendering Systems</h3><p>WebGL — GPU-based rendering pipeline</p><p> WebGL2 — Advanced GPU features and optimizations</p><p> WebGPU — Next-generation GPU compute and rendering API</p><h3>Shader Systems</h3><p>Vertex Shaders — Geometry processing layer</p><p> Fragment Shaders — Pixel-level rendering logic</p><p> Compute Shaders — Parallel GPU computation (WebGPU)</p><h2>3. Canvas Abstraction &amp; Drawing Libraries</h2><p>This layer provides higher-level APIs over Canvas, making graphical programming easier and more structured.</p><h3>Canvas Libraries</h3><p>Fabric.js — Object-based canvas editing engine</p><p> Konva.js — Stage and layer-based rendering system</p><p> Paper.js — Vector graphics scripting engine</p><p> p5.js — Creative coding and visualization framework</p><p> Two.js — Simple vector graphics abstraction</p><h2>4. High-Performance Rendering Engine Layer</h2><p>This layer contains advanced rendering engines used for games, simulations, and complex visual systems.</p><h3>Rendering Engines</h3><p>PixiJS — High-performance 2D WebGL renderer</p><p> Three.js — 3D rendering engine with scene graph</p><p> Babylon.js — Full-featured 3D engine stack</p><p> regl — Functional WebGL abstraction layer</p><h2>5. Image Processing &amp; Editing Layer</h2><p>This layer handles real-time image manipulation, filtering, and transformation inside the browser or GPU pipeline.</p><h3>Processing Techniques</h3><p>Canvas pixel manipulation (getImageData / putImageData)</p><p> WebGL shader-based image effects</p><p> WebGPU compute-based processing</p><p> ImageBitmap + OffscreenCanvas pipelines</p><p> Filter chains (blur, contrast, sharpen, brightness)</p><h2>6. Image Cropping &amp; Editing UI Layer</h2><p>This layer provides user-facing tools for interactive image editing and manipulation.</p><h3>UI Editing Tools</h3><p>Cropper.js — Interactive image cropping system</p><p> Drag &amp; resize selection tools</p><p> Aspect-ratio lock systems</p><p> Zoom and pan image editors</p><p> React-based image editing components</p><h2>7. Image Encoding / Decoding Layer</h2><p>This layer manages image format conversion, compression, and decoding pipelines.</p><h3>Encoding Systems</h3><p>PNG / JPEG decoding pipelines</p><p> WebP encoding support</p><p> AVIF decoding pipelines</p><p> Base64 transformation systems</p><p> ImageData serialization mechanisms</p><h2>8. Lossless / Fast Image Utilities (Browser Side)</h2><p>This layer provides lightweight, client-side image optimization utilities.</p><h3>Utility Libraries</h3><p>UPNG.js — PNG compression and decoding</p><p> JPEG.js — Client-side JPEG encoding</p><p> Canvas resize pipelines</p><p> Thumbnail generation engines</p><h2>9. Server-Side Image Processing Layer</h2><p>This layer handles heavy image processing tasks on backend systems.</p><h3>Backend Engines</h3><p>Sharp — Fast image processing engine</p><p> ImageMagick — Powerful image manipulation tool</p><p> GraphicsMagick — Lightweight alternative</p><p> libvips — High-performance image backend</p><h2>10. Image Delivery &amp; CDN Pipeline</h2><p>This layer ensures optimized delivery of images to users across networks.</p><h3>Delivery Systems</h3><p>Lazy loading image systems</p><p> Responsive image srcset pipelines</p><p> CDN-based image optimization</p><p> Auto format conversion (WebP / AVIF fallback)</p><p> Edge-based image resizing systems</p><h2>FINAL PIPELINE ARCHITECTURE</h2><h3>Input Layer</h3><p>Upload systems, camera input, file processing</p><h3>Processing Layer</h3><p>Canvas API, WebGL/WebGPU shaders, backend engines</p><h3>Editing Layer</h3><p>Cropper.js, Fabric.js, Konva.js</p><h3>Rendering Layer</h3><p>PixiJS, Three.js, Canvas output</p><h3>Output Layer</h3><p>WebP / JPEG / PNG / AVIF + CDN delivery</p><p><br></p><h2>FINAL REALITY CHECK</h2><p>The Image + Graphic Processing Layer is not just a rendering system.</p><p>It is a <strong>full visual computing pipeline</strong>, combining:</p><ul><li>Browser rendering engines</li><li>GPU compute systems</li><li>Canvas-based editing tools</li><li>Server-side optimization engines</li><li>CDN delivery infrastructure&nbsp;</li></ul><p><br></p>
+    </section>
+
+    <!-- YouTube Video (conditional) -->
+    
+  <!-- YouTube Playlist Link -->
+  <div class="yt-link-container">
+    <a href="https://www.youtube.com/playlist?list=PLeqxb0I-hlSXoN_zlckbYtnKGTXx1s76k" target="_blank" rel="noopener noreferrer" class="yt-play-button">
+      <span class="play-icon">▶</span> View Playlist
+    </a>
+  </div>
+
+
+    <!-- Audio Resource (conditional) -->
+    
+
+  </article>
+</main>
+
+<!-- ─── Footer ───────────────────────────────────── -->
+<div id="footer-wrap" role="contentinfo"></div>
+
+<!-- ─── Scripts ──────────────────────────────────── -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  fetch('https://raw.githubusercontent.com/bandanee/root/main/import/footer.html')
+    .then(r => r.text())
+    .then(h => document.getElementById('footer-wrap').innerHTML = h)
+    .catch(e => console.error('Footer load error:', e));
+</script>
+
+</body>
+</html>
