@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Ekstra Tarayıcı Seviyesi Güvenlik Filtresi -->
+    <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'self' https://okankaplanedu.github.io;">
+    
     <title>DailyMind – Optimized Smart Archive</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -10,42 +13,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
-        :root { 
-            --accent: #0ea5e9; 
-            --bg: #ffffff; 
-            --border: #f1f5f9; 
-            --text-main: #1e293b;
+        :root {
+             --accent: #0ea5e9;
+             --bg: #ffffff;
+             --border: #f1f5f9;
+             --text-main: #1e293b;
             --text-muted: #64748b;
         }
 
-        body { 
-            background-color: #f8fafc; 
-            font-family: 'Inter', sans-serif; 
-            margin: 0; 
-            padding: 10px; 
-            display: flex;
+        body {
+             background-color: #f8fafc;
+             font-family: 'Inter', sans-serif;
+             margin: 0;
+             padding: 10px;
+             display: flex;
             justify-content: center;
         }
 
-        .archive-card { 
-            background: var(--bg); 
-            width: 100%; 
-            max-width: 400px; 
-            margin: 0 auto; 
-            border-radius: 12px; 
-            padding: 12px; 
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        .archive-card {
+             background: var(--bg);
+             width: 100%;
+             max-width: 400px;
+             margin: 0 auto;
+             border-radius: 12px;
+             padding: 12px;
+             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
             border: 1px solid #e2e8f0;
-            overflow: hidden; 
-        }
+            overflow: hidden;
+         }
 
-        #status-bar { 
-            font-size: 11px; 
-            color: var(--text-muted); 
-            margin-bottom: 12px; 
-            display: flex; 
-            align-items: center; 
-            min-height: 20px;
+        #status-bar {
+             font-size: 11px;
+             color: var(--text-muted);
+             margin-bottom: 12px;
+             display: flex;
+             align-items: center;
+             min-height: 20px;
         }
 
         /* Search Box styling */
@@ -61,35 +64,35 @@
         }
 
         /* Table Constraint */
-        table.dataTable { 
-            width: 100% !important; 
-            border-collapse: collapse !important;
+        table.dataTable {
+             width: 100% !important;
+             border-collapse: collapse !important;
             margin: 0 !important;
-            table-layout: fixed; 
-        }
+            table-layout: fixed;
+         }
 
-        table.dataTable thead th { 
-            font-size: 10px; 
-            text-transform: uppercase; 
-            background: #f8fafc !important; 
-            padding: 8px !important; 
-            color: var(--text-muted);
+        table.dataTable thead th {
+             font-size: 10px;
+             text-transform: uppercase;
+             background: #f8fafc !important;
+             padding: 8px !important;
+             color: var(--text-muted);
             border-bottom: 2px solid var(--border) !important;
         }
 
-        table.dataTable tbody td { 
-            font-size: 12px; 
-            padding: 8px 4px !important; 
-            vertical-align: top; 
-            border-bottom: 1px solid var(--border) !important;
+        table.dataTable tbody td {
+             font-size: 12px;
+             padding: 8px 4px !important;
+             vertical-align: top;
+             border-bottom: 1px solid var(--border) !important;
         }
 
         /* 50px Height Scrollable Cells */
-        .scroll-box { 
-            height: 50px; 
-            overflow-y: auto; 
-            scrollbar-width: thin; 
-            line-height: 1.4;
+        .scroll-box {
+             height: 50px;
+             overflow-y: auto;
+             scrollbar-width: thin;
+             line-height: 1.4;
             word-break: break-word;
             padding-right: 4px;
         }
@@ -97,19 +100,19 @@
         .scroll-box::-webkit-scrollbar { width: 3px; }
         .scroll-box::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
 
-        .go-btn { 
-            display: flex;
+        .go-btn {
+             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--accent); 
-            color: #fff !important; 
-            text-decoration: none !important; 
-            font-size: 10px; 
-            font-weight: 600; 
-            width: 100%;
+            background: var(--accent);
+             color: #fff !important;
+             text-decoration: none !important;
+             font-size: 10px;
+             font-weight: 600;
+             width: 100%;
             height: 32px;
-            border-radius: 6px; 
-        }
+            border-radius: 6px;
+         }
 
         /* Column ratios for 400px */
         .col-link { width: 50px; }
@@ -145,8 +148,10 @@
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
 <script>
-
-/** * DailyMind – Auto-Session Logic * Prevents redundant API calls by locking sync to once per session. */
+/**
+ * DailyMind – Auto-Session Logic
+ * Prevents redundant API calls by locking sync to once per session.
+ */
 const CONFIG = {
     owner: "okankaplanedu",
     repo: "okankaplanedu.github.io",
@@ -157,64 +162,144 @@ const CONFIG = {
     delay: 150
 };
 
-// --- GÜVENLİK VE IFRAME KONTROLÜ (YENİ EKLENEN KISIM) ---
+// --- GÜVENLİK VE IRAME LOGİC KONTROLÜ ---
 function checkIframeSecurity() {
     const targetDomain = "https://okankaplanedu.github.io";
     
-    // 1. Sayfa bir iframe içinde mi açılmış?
+    // 1. Sayfa iframe içinde mi açılmış?
     const isInIframe = (window.self !== window.top);
 
     if (!isInIframe) {
-        // Doğrudan açılmak istenirse ana siteye yönlendir
+        // Direkt url ile açıldıysa ana siteye yönlendir
         window.location.replace(targetDomain);
         return false;
     }
 
+    // 2. Üst pencere (Parent) domain izin doğrulaması
     try {
-        // 2. Iframe içinde ama üst pencerenin (parent) adresi bizim domain mi?
-        // Tarayıcı güvenlik politikaları (CORS) nedeniyle farklı domain ise burası hata fırlatır (catch'e düşer)
-        if (!window.parent.location.href.startsWith(targetDomain)) {
-            window.top.location.replace(targetDomain);
-            return false;
+        // Tarayıcı destekliyorsa ancestorOrigins ile doğrula (CORS güvenli yol)
+        if (window.location.ancestorOrigins && window.location.ancestorOrigins.length > 0) {
+            const currentOrigin = window.location.ancestorOrigins[0];
+            if (!currentOrigin.startsWith(targetDomain)) {
+                window.top.location.replace(targetDomain);
+                return false;
+            }
+            return true;
+        }
+
+        // Firefox ve diğer tarayıcılar için referrer doğrulaması
+        if (document.referrer && document.referrer.startsWith(targetDomain)) {
+            return true;
+        }
+
+        // Standart URL okuma denemesi (Eğer aynı domaindeyse sorunsuz çalışır)
+        if (window.parent && window.parent.location) {
+            if (!window.parent.location.href.startsWith(targetDomain)) {
+                window.top.location.replace(targetDomain);
+                return false;
+            }
         }
     } catch (e) {
-        // Farklı bir domain altında iframe olarak çağrıldıysa CORS hatası alacaktır.
-        // Bu durumda da kullanıcının üst penceresini ana siteye yönlendiriyoruz.
+        // Eğer yukarıdaki kodlar CORS hatası fırlatırsa, bu parent sitenin yabancı olduğunu gösterir.
+        // Güvenlik amacıyla en üst pencereyi ana sitemize yönlendiriyoruz.
         try {
             window.top.location.replace(targetDomain);
         } catch(err) {
-            // Eğer top.location'a müdahale engellenirse alternatif yönlendirme
             window.location.replace(targetDomain);
         }
         return false;
     }
     return true;
 }
-// -----------------------------------------------------
 
 let archiveData = [];
 const escapeHTML = (s) => s ? s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c])) : "-";
 
-// UI ve diğer fonksiyonlar aynen kalıyor...
-const UI = { /* ... mevcut kodlarınız ... */ };
-async function scan(path) { /* ... mevcut kodlarınız ... */ }
-async function processFile(path) { /* ... mevcut kodlarınız ... */ }
-function addRow(item) { /* ... mevcut kodlarınız ... */ }
-function initTable() { /* ... mevcut kodlarınız ... */ }
+const UI = {
+    update: (msg, loading = true) => {
+        document.getElementById("status-msg").innerText = msg;
+        document.getElementById("spinner").style.display = loading ? "inline-block" : "none";
+    },
+    finalize: (msg) => {
+        document.getElementById("status-bar").innerHTML = `<span><span style="color:#10b981">●</span> ${msg}</span>`;
+    }
+};
+
+async function scan(path) {
+    try {
+        const response = await fetch(`https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${path}`);
+        if (!response.ok) return;
+        const items = await response.json();
+
+        for (const item of items) {
+            await new Promise(r => setTimeout(r, CONFIG.delay));
+            if (item.type === "dir") {
+                await scan(item.path);
+            } else if (item.name === "index.html") {
+                UI.update(`Syncing: ${item.path.split('/').slice(-2, -1)}`);
+                await processFile(item.path);
+            }
+        }
+    } catch (e) { console.error("Sync interrupted", e); }
+}
+
+async function processFile(path) {
+    try {
+        const res = await fetch(`https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${path}`);
+        const html = await res.text();
+        const doc = new DOMParser().parseFromString(html, "text/html");
+                
+        const entry = {
+            url: `https://${CONFIG.owner}.github.io/${path.replace('index.html', '')}`,
+            title: doc.querySelector("title")?.innerText || "Untitled",
+            desc: doc.querySelector('meta[name="description"]')?.content || "No description."
+        };
+        archiveData.push(entry);
+        addRow(entry);
+    } catch (e) { console.error("Parsing error", e); }
+}
+
+function addRow(item) {
+    const html = `
+        <tr>
+            <td><a href="${item.url}" target="_top" class="go-btn">GO</a></td>
+            <td><div class="scroll-box"><strong>${escapeHTML(item.title)}</strong></div></td>
+            <td class="mobile-hide"><div class="scroll-box">${escapeHTML(item.desc)}</div></td>
+        </tr>`;
+    document.getElementById("tableBody").insertAdjacentHTML('beforeend', html);
+}
+
+function initTable() {
+    $("#archiveTable").show();
+    $('#archiveTable').DataTable({
+        pageLength: 10,
+        autoWidth: false,
+        order: [[1, 'asc']],
+        dom: '<"mb-2"f>rtip',
+        language: {
+            search: "",
+            searchPlaceholder: "Instant search...",
+            info: "_TOTAL_ entries",
+            paginate: { previous: "«", next: "»" }
+        }
+    });
+}
 
 async function startEngine() {
-    // Önce iframe ve domain kontrolünü yap, geçemezse motoru hiç çalıştırma
+    // Güvenlik filtresini çalıştır, eğer geçemezse motoru hiç başlatma
     if (!checkIframeSecurity()) return;
 
     const isSessionActive = sessionStorage.getItem(CONFIG.sessionKey);
     const localCache = localStorage.getItem(CONFIG.cacheKey);
 
     if (isSessionActive && localCache) {
+        // Cache modu aktif
         const data = JSON.parse(localCache);
         data.forEach(addRow);
         initTable();
         UI.finalize("Ready (Cached Mode)");
     } else {
+        // Yeni oturum: API üzerinden senkronizasyon başlat
         UI.update("System initializing (Session Sync)...");
         await scan(CONFIG.baseFolder);
                 
@@ -231,6 +316,5 @@ async function startEngine() {
 
 $(document).ready(startEngine);
 </script> 
-
 </body>
 </html>
