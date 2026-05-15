@@ -147,6 +147,37 @@
     .grid-item.is-hidden {
         display: none !important;
     }
+	.card-cover{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    display:block;
+    border-radius:14px 14px 0 0;
+}
+
+.card-body-custom{
+    padding:16px;
+}
+
+.card-title-custom{
+    font-size:20px;
+    font-weight:700;
+    margin-bottom:10px;
+    line-height:1.3;
+}
+
+.card-desc-custom{
+    font-size:14px;
+    opacity:.85;
+    line-height:1.6;
+    margin-bottom:12px;
+}
+
+.card-keywords-custom{
+    font-size:12px;
+    opacity:.6;
+    margin-bottom:15px;
+}
 </style>
 
 <script>
@@ -230,7 +261,7 @@ const CONFIG = {
     repo: "okankaplanedu.github.io",
     branch: "main",
     baseFolder: "categories",
-    cacheKey: "ok_academy_cache",
+   cacheKey: "ok_academy_cache_v3",
     cacheTime: 3600000, 
     fetchDelay: 150
 };
@@ -262,22 +293,74 @@ const Cache = {
 };
 
 function renderCard(article) {
-  
-    const plainText = article.content.replace(/<[^>]*>/g, '').toLowerCase();
+
+    const plainText = `
+        ${article.title}
+        ${article.description}
+        ${article.keywords}
+    `.toLowerCase();
+
+
+
+    const imageHTML = article.image
+        ? `<img src="${article.image}" 
+                loading="lazy"
+                class="card-cover">`
+        : "";
+
+
+
     const cardHTML = `
-      <div class="grid-item" data-search="${plainText}">
+
+    <div class="grid-item" data-search="${plainText}">
+
         <div class="card-custom">
-          <article>${article.content}</article>
-          <a href="${article.url}" class="btn-open" target="_top">View Details →</a>
+
+            ${imageHTML}
+
+            <div class="card-body-custom">
+
+                <h2 class="card-title-custom">
+                    ${article.title}
+                </h2>
+
+                <p class="card-desc-custom">
+                    ${article.description}
+                </p>
+
+                <div class="card-keywords-custom">
+                    ${article.keywords}
+                </div>
+
+                <a href="${article.url}"
+                   class="btn-open"
+                   target="_top">
+
+                   View Details →
+
+                </a>
+
+            </div>
+
         </div>
-      </div>`;
-    
+
+    </div>`;
+
+
+
     const $item = $(cardHTML);
+
     $('#masonry-container').append($item);
-    
+
+
+
     $item.imagesLoaded(() => {
+
         if(masonryGrid) {
-            masonryGrid.masonry('appended', $item).masonry('layout');
+
+            masonryGrid
+                .masonry('appended', $item)
+                .masonry('layout');
         }
     });
 }
@@ -305,28 +388,98 @@ async function scanAndCache(path) {
         if (!res.ok) return;
         const items = await res.json();
 
-        for (const item of items) {
-            if (item.type === "dir") {
-                await scanAndCache(item.path);
-            } else if (item.name === "index.html" && path !== CONFIG.baseFolder) {
-                updateUIStatus(`Taranıyor: ${item.path.split('/').slice(-2,-1)}`);
-                const contentRes = await fetch(`https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${item.path}`);
-                if (contentRes.ok) {
-                    const html = await contentRes.text();
-                    const doc = new DOMParser().parseFromString(html, "text/html");
-                    const article = doc.querySelector("main article");
-                    if (article) {
-                        const data = {
-                            url: `https://${CONFIG.repo}/${item.path.replace('index.html','')}`,
-                            content: article.innerHTML
-                        };
-                        tempArchive.push(data);
-                        renderCard(data);
-                    }
-                }
-                await new Promise(r => setTimeout(r, CONFIG.fetchDelay));
-            }
+for (const item of items) {
+
+    if (item.type === "dir") {
+
+        await scanAndCache(item.path);
+
+    } else if (
+        item.name === "index.html" &&
+        path !== CONFIG.baseFolder
+    ) {
+
+        updateUIStatus(
+            `Taranıyor: ${
+                item.path.split('/').slice(-2,-1)
+            }`
+        );
+
+        const contentRes = await fetch(
+            `https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${item.path}`
+        );
+
+        if (contentRes.ok) {
+
+            const html = await contentRes.text();
+
+            const doc = new DOMParser()
+                .parseFromString(html, "text/html");
+
+
+
+            // SEO VERİLERİ
+            const title =
+                doc.querySelector("title")
+                ?.innerText
+                ?.trim() || "Untitled";
+
+            const description =
+                doc.querySelector(
+                    'meta[name="description"]'
+                )
+                ?.getAttribute("content")
+                ?.trim() || "";
+
+            const keywords =
+                doc.querySelector(
+                    'meta[name="keywords"]'
+                )
+                ?.getAttribute("content")
+                ?.trim() || "";
+
+
+
+            // İSTEĞE BAĞLI OG IMAGE
+            const image =
+                doc.querySelector(
+                    'meta[property="og:image"]'
+                )
+                ?.getAttribute("content")
+                ?.trim() || "";
+
+
+
+            const data = {
+
+                url:
+                    `https://${CONFIG.repo}/${
+                        item.path.replace(
+                            'index.html',
+                            ''
+                        )
+                    }`,
+
+                title,
+                description,
+                keywords,
+                image
+
+            };
+
+
+
+            tempArchive.push(data);
+
+            renderCard(data);
+
         }
+
+        await new Promise(
+            r => setTimeout(r, CONFIG.fetchDelay)
+        );
+    }
+}
     } catch (e) { console.error("Tarama Hatası:", e); }
 }
 
