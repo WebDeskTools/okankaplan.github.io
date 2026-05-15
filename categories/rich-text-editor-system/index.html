@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>Rich Text + Editor System Layer (Content Engine Architecture) | Okan Kaplan Edu</title>
+
+<!-- ─── Primary Meta ─────────────────────────────── -->
+<meta name="title" content="Rich Text + Editor System Layer (Content Engine Architecture) | Okan Kaplan Edu">
+<meta name="description" content="Explore the Rich Text and Editor System Layer including DOM-based editing, AST document models, real-time collaboration (CRDT/OT), block editors, code editors, plugin systems, and modern content engine architectures like Google Docs and Notion.">
+<meta name="keywords" content="rich text editor, editor system layer, Quill.js, TipTap, CKEditor, TinyMCE, ProseMirror, Slate.js, Lexical, CodeMirror, Monaco Editor, CRDT, Yjs, OT, document model, AST editor, block editor, collaborative editing, content engine">
+<meta name="author" content="Okan Kaplan">
+<meta name="creator" content="Okan Kaplan">
+<meta name="publisher" content="Okan Kaplan Academy">
+
+<!-- ─── Robots ───────────────────────────────────── -->
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="googlebot" content="index, follow">
+<meta name="bingbot" content="index, follow">
+
+<!-- ─── Theme / Color ────────────────────────────── -->
+<meta name="theme-color" content="#0d6efd">
+<meta name="color-scheme" content="light">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="msapplication-TileColor" content="#0d6efd">
+
+<!-- ─── Canonical & Language ─────────────────────── -->
+<link rel="canonical" href="https://okankaplanedu.github.io/categories/rich-text-editor-system/">
+<meta http-equiv="content-language" content="en">
+<meta name="language" content="en">
+
+<!-- ─── Favicons ─────────────────────────────────── -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<!-- ─── Web App Manifest ──────────────────────────── -->
+<link rel="manifest" href="/manifest.json">
+
+<!-- ─── Open Graph ───────────────────────────────── -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Okan Kaplan Edu">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Rich Text + Editor System Layer (Content Engine Architecture) | Okan Kaplan Edu">
+<meta property="og:description" content="Explore the Rich Text and Editor System Layer including DOM-based editing, AST document models, real-time collaboration (CRDT/OT), block editors, code editors, plugin systems, and modern content engine architectures like Google Docs and Notion.">
+<meta property="og:url" content="https://okankaplanedu.github.io/">
+<meta property="og:image" content="https://okankaplanedu.github.io/assets/cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Okan Kaplan Academy IoT Courses Cover">
+
+<!-- ─── Twitter Card ─────────────────────────────── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rich Text + Editor System Layer (Content Engine Architecture) | Okan Kaplan Edu">
+<meta name="twitter:description" content="Explore the Rich Text and Editor System Layer including DOM-based editing, AST document models, real-time collaboration (CRDT/OT), block editors, code editors, plugin systems, and modern content engine architectures like Google Docs and Notion.">
+<meta name="twitter:image" content="https://okankaplanedu.github.io/assets/cover.jpg">
+
+<!-- ─── Schema.org JSON-LD ───────────────────────── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Okan Kaplan Edu",
+  "url": "https://okankaplanedu.github.io/",
+  "description": "A complete technical architecture describing the Rich Text and Editor System Layer in modern web applications, including DOM-based editing systems, virtual document models (VDOM), abstract syntax tree (AST) document structures, delta-based editing engines, real-time collaboration systems using Operational Transformation (OT) and Conflict-Free Replicated Data Types (CRDT), modern rich text frameworks (Quill, CKEditor, TipTap), document model engines (ProseMirror, Slate, Lexical), hybrid code and text editors (Monaco, CodeMirror), block-based editing systems, plugin and extension architectures, cloud collaboration layers, and multi-format output pipelines such as HTML, Markdown, PDF, and DOCX, forming a full browser-based content operating system.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Okan Kaplan Edu"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Okan Kaplan Edu",
+  "url": "https://okankaplanedu.github.io/",
+  "logo": "https://okankaplanedu.github.io/assets/logo.png",
+  "sameAs": [
+    "https://github.com/okankaplanedu",
+    "https://github.com/bandanee"
+  ]
+}
+</script>
+
+<!-- ─── DNS Prefetch / Preconnect ────────────────── -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+<link rel="dns-prefetch" href="//raw.githubusercontent.com">
+
+<!-- ─── Google Fonts ─────────────────────────────── -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- ─── Bootstrap (Preload) ──────────────────────── -->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"></noscript>
+
+<!-- ─── Font Awesome (Preload) ───────────────────── -->
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></noscript>
+
+<!-- ─── Custom CSS ───────────────────────────────── -->
+<link href="https://okankaplanedu.github.io/assets/css/ind.css" rel="stylesheet">
+
+<!-- ─── Head Import ──────────────────────────────── -->
+<script>
+  fetch("https://raw.githubusercontent.com/bandanee/root/main/import/head.html")
+    .then(r => r.text())
+    .then(t => document.head.insertAdjacentHTML("beforeend", t))
+    .catch(e => console.error(e));
+</script>
+
+<!-- ─── Page Styles ──────────────────────────────── -->
+<style>body { font-family: 'Montserrat', sans-serif; padding-top: 60px; background: #f8f9fa; }
+main { max-width: 900px; margin: 2rem auto; padding: 2.5rem; background: #fff; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.yt-pro { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin-bottom: 2rem; background: #000; }
+.yt-pro iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+.navbar { background: #1a202c !important; }
+#btnL, #btnR { position: fixed; top: 12px; width: 42px; height: 42px; z-index: 1080; border: 0; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+#btnL { left: 12px; } #btnR { right: 12px; }
+.audio-bottom { margin-top: 3rem; padding-top: 2rem; border-top: 2px solid #f1f1f1; }</style>
+</head>
+<body>
+
+<nav class="navbar navbar-dark fixed-top shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold ms-5" href="/">Okan Kaplan Edu</a>
+  </div>
+</nav>
+<button class="btn btn-primary shadow" id="btnL" data-bs-toggle="offcanvas" data-bs-target="#mL">☰</button>
+<button class="btn btn-success shadow" id="btnR" data-bs-toggle="offcanvas" data-bs-target="#mR"><i class="fas fa-comment-dots"></i></button>
+<div class="offcanvas offcanvas-start" id="mL"><div class="offcanvas-body"><iframe src="https://okankaplanedu.github.io/archive.html" style="width:100%;height:100%;border:0;"></iframe></div></div>
+<div class="offcanvas offcanvas-end" id="mR"><div class="offcanvas-body"><iframe src="https://okankaplanedu.github.io/toc.html" style="width:100%;height:100%;border:0;"></iframe></div></div>
+
+<!-- ─── Main Content ──────────────────────────────── -->
+<main role="main">
+  <article itemscope itemtype="https://schema.org/Article">
+
+    <!-- Page H1 Title -->
+    <h1 itemprop="headline">Rich Text + Editor System Layer (Content Engine Architecture)</h1>
+
+    <!-- Quill Body Content (H2/H3/H4/p/img/blockquote/lists from editor) -->
+    <section itemprop="articleBody">
+      <h1>Rich Text + Editor System Layer (Content Engine Stack)</h1><p>This article explains the full Rich Text and Editor System Layer used in modern web applications. It covers everything from DOM-based editing models to AST document structures, real-time collaboration engines, block-based editors, code editors, plugin systems, and export pipelines. This layer represents the complete content operating system powering tools like Google Docs, Notion, and modern CMS platforms.</p><p><br></p><h2>1. Core Editor Architecture Layer (Fundamental Model)</h2><p>This layer defines how text is structured and manipulated inside the browser.</p><h3>Core Concepts</h3><p>DOM-based editing model — contenteditable foundation</p><p> Virtual Document Model (VDOM) — structured text representation</p><p> AST document structure — tree-based content model</p><p> Delta-based editing system — operation tracking</p><p> Transactional editing engine — undo/redo system</p><h2>2. Modern Rich Text Editor Frameworks</h2><p>This layer provides production-ready rich text editing tools.</p><h3>Editor Frameworks</h3><p>Quill.js — lightweight editor engine</p><p> TipTap — headless modern editor system</p><p> CKEditor — full-featured enterprise editor</p><p> TinyMCE — plugin-based editing system</p><h2>3. Document Model Engine Layer (AST System)</h2><p>This layer defines how documents are structured programmatically.</p><h3>Document Engines</h3><p>ProseMirror — schema-driven document model</p><p> Slate.js — JSON-based editor tree</p><p> Lexical — high-performance text engine</p><p> Tree-based schema systems — structured document architecture</p><p> Block/inline node systems — content hierarchy model</p><h2>4. Real-Time Editing Engine Layer</h2><p>This layer enables multi-user live collaboration.</p><h3>Collaboration Systems</h3><p>Operational Transformation (OT) — conflict resolution system</p><p> CRDT (Yjs, Automerge) — distributed sync model</p><p> Live cursor tracking — presence system</p><p> Multi-user synchronization — real-time updates</p><p> Document merge engine — conflict-free editing</p><h2>5. Code + Text Hybrid Editor Layer</h2><p>This layer combines code editing with rich text editing.</p><h3>Code Editors</h3><p>CodeMirror — syntax-highlighted editor</p><p> Monaco Editor — VS Code engine in browser</p><p> Tree-sitter — syntax parsing system</p><p> Language Server Protocol (LSP) — code intelligence layer</p><p> Hybrid rendering systems — code + rich text integration</p><h2>6. UI + Block-Based Editor System</h2><p>This layer enables modern block-based content editing.</p><h3>Block Systems</h3><p>Block-based structure — Notion-style layout</p><p> Drag &amp; drop block system — visual editing</p><p> Inline formatting engine — text styling</p><p> Embed system — video, image, code blocks</p><p> Slash command system — /insert UI commands</p><h2>7. Content Serialization Layer</h2><p>This layer handles data storage and format conversion.</p><h3>Serialization Systems</h3><p>JSON document export — AST serialization</p><p> Markdown conversion pipelines</p><p> HTML rendering engine</p><p> DOCX / PDF export systems</p><p> Schema versioning system — document evolution</p><h2>8. Plugin &amp; Extension Architecture</h2><p>This layer allows editor customization and extensibility.</p><h3>Extension System</h3><p>Plugin lifecycle system — init/update/destroy</p><p> Toolbar extension APIs</p><p> Custom node registration</p><p> Middleware pipelines</p><p> Content transformation hooks</p><h2>9. Collaboration + Cloud Editing Layer</h2><p>This layer enables real-time cloud-based editing.</p><h3>Cloud Systems</h3><p>WebSocket sync engine — real-time communication</p><p> CRDT-based merging systems — conflict-free sync</p><p> Presence system — live users and cursors</p><p> Version history tracking — document revisions</p><p> Conflict resolution engine — multi-user editing</p><h2>10. Output Rendering Layer</h2><p>This layer converts content into final formats.</p><h3>Output Systems</h3><p>HTML renderer — DOM output generation</p><p> PDF export pipeline</p><p> Markdown renderer</p><p> Email content renderer</p><p> CMS publishing system</p><h2>FULL EDITOR ENGINE ARCHITECTURE</h2><h3>Input Layer</h3><p>Keyboard, paste, drag-drop, voice input</p><h3>Model Layer</h3><p>AST document tree (ProseMirror / Slate / Lexical)</p><h3>Processing Layer</h3><p>OT / CRDT sync engine</p><p> Plugin transformation system</p><h3>Rendering Layer</h3><p>DOM / Canvas hybrid rendering</p><p> CodeMirror / Monaco integration</p><h3>Sync Layer</h3><p>WebSocket / Yjs collaboration system</p><h3>Output Layer</h3><p>HTML / Markdown / PDF / DOCX</p><p><br></p><h2>FINAL REALITY CHECK</h2><p>The Rich Text + Editor System Layer is not just a text editor.</p><p>It is a <strong>browser-based content operating system</strong>, combining:</p><ul><li>Structured document models (AST, JSON trees)</li><li>Real-time collaboration engines (CRDT, OT)</li><li>Code + text hybrid editors</li><li>Plugin-based extensibility systems</li><li>Multi-format export pipelines</li></ul><h2>CORE ARCHITECTURE SUMMARY</h2><h3>Core Model Layer</h3><p>ProseMirror / Slate / Lexical</p><h3>Editor Layer</h3><p>Quill / TipTap / CKEditor</p><h3>Code Layer</h3><p>Monaco / CodeMirror</p><h3>Collaboration Layer</h3><p>Yjs / CRDT / OT</p><h3>Output Layer</h3><p>HTML / Markdown / PDF</p>
+    </section>
+
+    <!-- YouTube Video (conditional) -->
+    
+  <!-- YouTube Playlist Link -->
+  <div class="yt-link-container">
+    <a href="https://www.youtube.com/playlist?list=PLeqxb0I-hlSX1HFPf1mzE1W9ivz1qpVjf" target="_blank" rel="noopener noreferrer" class="yt-play-button">
+      <span class="play-icon">▶</span> View Playlist
+    </a>
+  </div>
+
+
+    <!-- Audio Resource (conditional) -->
+    
+
+  </article>
+</main>
+
+<!-- ─── Footer ───────────────────────────────────── -->
+<div id="footer-wrap" role="contentinfo"></div>
+
+<!-- ─── Scripts ──────────────────────────────────── -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  fetch('https://raw.githubusercontent.com/bandanee/root/main/import/footer.html')
+    .then(r => r.text())
+    .then(h => document.getElementById('footer-wrap').innerHTML = h)
+    .catch(e => console.error('Footer load error:', e));
+</script>
+
+</body>
+</html>
