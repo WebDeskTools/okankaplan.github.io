@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>Code + IDE System Layer (Browser IDE Architecture) | Okan Kaplan Edu</title>
+
+<!-- ─── Primary Meta ─────────────────────────────── -->
+<meta name="title" content="Code + IDE System Layer (Browser IDE Architecture) | Okan Kaplan Edu">
+<meta name="description" content="Learn how modern browser-based IDEs work through core editor engines, language intelligence systems, sandbox runtimes, cloud execution layers, and real-time collaboration architecture. This guide explains the full development environment inside the browser.">
+<meta name="keywords" content="IDE systems, browser IDE, Monaco Editor, CodeMirror, Ace Editor, Language Server Protocol, WebContainers, WebAssembly, cloud IDE, Replit, StackBlitz, sandbox execution, frontend development tools, online code editor">
+<meta name="author" content="Okan Kaplan">
+<meta name="creator" content="Okan Kaplan">
+<meta name="publisher" content="Okan Kaplan Academy">
+
+<!-- ─── Robots ───────────────────────────────────── -->
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="googlebot" content="index, follow">
+<meta name="bingbot" content="index, follow">
+
+<!-- ─── Theme / Color ────────────────────────────── -->
+<meta name="theme-color" content="#0d6efd">
+<meta name="color-scheme" content="light">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="msapplication-TileColor" content="#0d6efd">
+
+<!-- ─── Canonical & Language ─────────────────────── -->
+<link rel="canonical" href="https://okankaplanedu.github.io/categories/code-ide-system/">
+<meta http-equiv="content-language" content="en">
+<meta name="language" content="en">
+
+<!-- ─── Favicons ─────────────────────────────────── -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<!-- ─── Web App Manifest ──────────────────────────── -->
+<link rel="manifest" href="/manifest.json">
+
+<!-- ─── Open Graph ───────────────────────────────── -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Okan Kaplan Edu">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Code + IDE System Layer (Browser IDE Architecture) | Okan Kaplan Edu">
+<meta property="og:description" content="Learn how modern browser-based IDEs work through core editor engines, language intelligence systems, sandbox runtimes, cloud execution layers, and real-time collaboration architecture. This guide explains the full development environment inside the browser.">
+<meta property="og:url" content="https://okankaplanedu.github.io/">
+<meta property="og:image" content="https://okankaplanedu.github.io/assets/cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Okan Kaplan Academy IoT Courses Cover">
+
+<!-- ─── Twitter Card ─────────────────────────────── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Code + IDE System Layer (Browser IDE Architecture) | Okan Kaplan Edu">
+<meta name="twitter:description" content="Learn how modern browser-based IDEs work through core editor engines, language intelligence systems, sandbox runtimes, cloud execution layers, and real-time collaboration architecture. This guide explains the full development environment inside the browser.">
+<meta name="twitter:image" content="https://okankaplanedu.github.io/assets/cover.jpg">
+
+<!-- ─── Schema.org JSON-LD ───────────────────────── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Okan Kaplan Edu",
+  "url": "https://okankaplanedu.github.io/",
+  "description": "A comprehensive guide to browser-based IDE architecture, covering core editor engines, language intelligence systems, runtime execution layers, sandbox security models, cloud IDE infrastructure, dependency management, file system design, and real-time collaboration systems.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Okan Kaplan Edu"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Okan Kaplan Edu",
+  "url": "https://okankaplanedu.github.io/",
+  "logo": "https://okankaplanedu.github.io/assets/logo.png",
+  "sameAs": [
+    "https://github.com/okankaplanedu",
+    "https://github.com/bandanee"
+  ]
+}
+</script>
+
+<!-- ─── DNS Prefetch / Preconnect ────────────────── -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+<link rel="dns-prefetch" href="//raw.githubusercontent.com">
+
+<!-- ─── Google Fonts ─────────────────────────────── -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- ─── Bootstrap (Preload) ──────────────────────── -->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"></noscript>
+
+<!-- ─── Font Awesome (Preload) ───────────────────── -->
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></noscript>
+
+<!-- ─── Custom CSS ───────────────────────────────── -->
+<link href="https://okankaplanedu.github.io/assets/css/ind.css" rel="stylesheet">
+
+<!-- ─── Head Import ──────────────────────────────── -->
+<script>
+  fetch("https://raw.githubusercontent.com/bandanee/root/main/import/head.html")
+    .then(r => r.text())
+    .then(t => document.head.insertAdjacentHTML("beforeend", t))
+    .catch(e => console.error(e));
+</script>
+
+<!-- ─── Page Styles ──────────────────────────────── -->
+<style>body { font-family: 'Montserrat', sans-serif; padding-top: 60px; background: #f8f9fa; }
+main { max-width: 900px; margin: 2rem auto; padding: 2.5rem; background: #fff; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.yt-pro { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin-bottom: 2rem; background: #000; }
+.yt-pro iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+.navbar { background: #1a202c !important; }
+#btnL, #btnR { position: fixed; top: 12px; width: 42px; height: 42px; z-index: 1080; border: 0; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+#btnL { left: 12px; } #btnR { right: 12px; }
+.audio-bottom { margin-top: 3rem; padding-top: 2rem; border-top: 2px solid #f1f1f1; }</style>
+</head>
+<body>
+
+<nav class="navbar navbar-dark fixed-top shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold ms-5" href="/">Okan Kaplan Edu</a>
+  </div>
+</nav>
+<button class="btn btn-primary shadow" id="btnL" data-bs-toggle="offcanvas" data-bs-target="#mL">☰</button>
+<button class="btn btn-success shadow" id="btnR" data-bs-toggle="offcanvas" data-bs-target="#mR"><i class="fas fa-comment-dots"></i></button>
+<div class="offcanvas offcanvas-start" id="mL"><div class="offcanvas-body"><iframe src="https://okankaplanedu.github.io/archive.html" style="width:100%;height:100%;border:0;"></iframe></div></div>
+<div class="offcanvas offcanvas-end" id="mR"><div class="offcanvas-body"><iframe src="https://okankaplanedu.github.io/toc.html" style="width:100%;height:100%;border:0;"></iframe></div></div>
+
+<!-- ─── Main Content ──────────────────────────────── -->
+<main role="main">
+  <article itemscope itemtype="https://schema.org/Article">
+
+    <!-- Page H1 Title -->
+    <h1 itemprop="headline">Code + IDE System Layer (Browser IDE Architecture)</h1>
+
+    <!-- Quill Body Content (H2/H3/H4/p/img/blockquote/lists from editor) -->
+    <section itemprop="articleBody">
+      <h1>Code + IDE System Layer (Browser IDE Architecture)</h1><p>This article explains the full architecture of modern browser-based IDE systems. From core text editing engines to cloud execution environments, sandboxed runtimes, and real-time collaboration layers, this guide breaks down how a browser becomes a complete software development environment. It is designed for developers who want to understand how tools like VS Code Web, StackBlitz, and Replit actually work under the hood.</p><h2>1. Core Editor Engine Layer (Text + Syntax Core)</h2><p>The core editor layer is responsible for handling structured text input, syntax highlighting, and code manipulation. It is the foundation of every IDE system.</p><h3>Main Editor Engines</h3><ul><li><strong>Monaco Editor</strong> – The core engine behind Visual Studio Code.</li><li><strong>CodeMirror</strong> – Lightweight and flexible syntax editor.</li><li><strong>Ace Editor</strong> – High-performance classic browser editor.</li></ul><h3>Conceptual Role</h3><p>This layer treats code as structured, programmable text and provides the base editing experience.</p><p><br></p><h2>2. Language Intelligence Layer (LSP System)</h2><p>This layer transforms a basic editor into an intelligent development environment.</p><h3>Core Components</h3><ul><li><strong>Language Server Protocol (LSP)</strong> – Connects editor to language intelligence services.</li><li>Syntax highlighting engines (Tree-sitter parsing systems)</li><li>Autocomplete and IntelliSense logic</li><li>Error diagnostics and linting engines</li><li>Refactoring systems (rename, extract, optimize)</li></ul><h3>Function</h3><p>This layer turns the IDE into a live coding assistant with contextual understanding of the code.</p><p><br></p><h2>3. Browser Runtime Execution Layer (Virtual Machine)</h2><p>This layer enables code execution directly inside the browser environment.</p><h3>Key Technologies</h3><ul><li><strong>StackBlitz WebContainers</strong> – Full Node.js runtime in the browser using WebAssembly</li><li>WebAssembly (WASM execution engine)</li><li>Sandboxed process simulation</li><li>Virtual filesystem (in-memory OS layer)</li><li>Dependency resolution systems (npm-like behavior)</li></ul><h3>Function</h3><p>It creates a “local development environment inside the browser.”</p><p><br></p><h2>4. Cloud IDE Execution Layer</h2><p>This layer enables remote code execution on cloud infrastructure.</p><h3>Examples</h3><ul><li><strong>Replit</strong> – Cloud-based collaborative IDE</li><li>Docker-based remote execution systems</li><li>WebSocket-based terminal streaming</li><li>Persistent cloud workspaces</li><li>Multi-user development environments</li></ul><h3>Function</h3><p>Acts as a cloud computer where code runs remotely but is controlled from the browser.</p><p><br></p><h2>5. Sandbox Execution Layer (Isolation System)</h2><p>This layer ensures security and execution isolation for untrusted code.</p><h3>Isolation Techniques</h3><ul><li>iframe sandbox environments</li><li>Web Worker execution threads</li><li>WASM sandbox isolation</li><li>Permission-based API control</li><li>Memory-limited execution contexts</li></ul><h3>Function</h3><p>Prevents unsafe or malicious code from affecting the host system.</p><p><br></p><h2>6. Module &amp; Dependency System Layer</h2><p>This layer manages how code dependencies are resolved and loaded.</p><h3>Key Systems</h3><ul><li>npm-like module resolution</li><li>ES module dynamic imports</li><li>Bundler pipelines (esbuild, webpack-style systems)</li><li>Dependency graph resolution</li><li>Hot Module Replacement (HMR)</li></ul><h2>7. File System + Project Model Layer</h2><p>This layer defines how projects are structured inside the IDE.</p><h3>Core Features</h3><ul><li>Virtual File System (VFS)</li><li>In-memory project tree</li><li>File watcher system</li><li>Auto-save and sync engine</li><li>Project snapshot and versioning system</li></ul><h2>8. UI + Editor Experience Layer</h2><p>This layer defines the visual and interactive experience of the IDE.</p><h3>UI Features</h3><ul><li>Split-pane editor layouts (VS Code style)</li><li>Minimap rendering system</li><li>Theme engine (dark/light/custom themes)</li><li>Tab management system</li><li>Drag-and-drop file explorer</li></ul><h2>9. Real-Time Collaboration Layer</h2><p>This layer enables multiple users to work on the same codebase simultaneously.</p><h3>Collaboration Systems</h3><ul><li>WebSocket synchronization engine</li><li>CRDT-based editing (Yjs integration)</li><li>Live cursors and presence indicators</li><li>Conflict resolution systems</li><li>Shared workspace sessions</li></ul><h2>10. Build + Runtime Pipeline Layer</h2><p>This layer handles the transformation of code into executable output.</p><h3>Core Processes</h3><ul><li>Bundling pipelines (Vite-like systems)</li><li>Transpilation (Babel, SWC logic)</li><li>Live preview and hot reload systems</li><li>Build caching engines</li><li>Output artifact generation</li></ul><h2>Final IDE Architecture Model</h2><h3>Editor Layer</h3><p>Monaco / CodeMirror / Ace</p><h3>Intelligence Layer</h3><p>LSP + Tree-sitter + autocomplete + diagnostics</p><h3>Runtime Layer</h3><p>WebContainers / WASM virtual machine</p><h3>Cloud Layer</h3><p>Replit-like remote execution systems</p><h3>Project Layer</h3><p>Virtual filesystem + dependency system</p><h3>Build Layer</h3><p>Bundler + transpiler + hot reload pipeline</p><p><br></p><h2>Key Architectural Insight</h2><p>Modern IDEs are not just editors. They are full-stack development environments combining:</p><ul><li>A <strong>code editor</strong></li><li>An <strong>intelligence engine</strong></li><li>A <strong>virtual runtime system</strong></li><li>A <strong>cloud execution layer</strong></li><li>A <strong>real-time collaboration network</strong></li></ul><h2>Final Reality</h2><p>A browser IDE is effectively:</p><p>A complete operating system for software development running inside the browser.</p><p>Examples:</p><ul><li>VS Code Web → Monaco + LSP + extensions</li><li>StackBlitz → WebContainers + full Node runtime</li><li>Replit → Cloud VM + collaboration + deployment</li><li>CodeMirror apps → Lightweight embedded IDE systems</li></ul><p><br></p>
+    </section>
+
+    <!-- YouTube Video (conditional) -->
+    
+  <!-- YouTube Playlist Link -->
+  <div class="yt-link-container">
+    <a href="https://www.youtube.com/playlist?list=PLeqxb0I-hlSXW6JviaUFZ8zB_Klqu97Yj" target="_blank" rel="noopener noreferrer" class="yt-play-button">
+      <span class="play-icon">▶</span> View Playlist
+    </a>
+  </div>
+
+
+    <!-- Audio Resource (conditional) -->
+    
+
+  </article>
+</main>
+
+<!-- ─── Footer ───────────────────────────────────── -->
+<div id="footer-wrap" role="contentinfo"></div>
+
+<!-- ─── Scripts ──────────────────────────────────── -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  fetch('https://raw.githubusercontent.com/bandanee/root/main/import/footer.html')
+    .then(r => r.text())
+    .then(h => document.getElementById('footer-wrap').innerHTML = h)
+    .catch(e => console.error('Footer load error:', e));
+</script>
+
+</body>
+</html>
