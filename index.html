@@ -195,57 +195,171 @@
 </head>
 <body>
 
-<button type="button" class="btn btn-primary shadow" id="offcanvasLeftToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft">
-  <span>☰</span>
+<button
+  type="button"
+  class="btn btn-primary shadow"
+  id="offcanvasLeftToggle"
+  data-bs-toggle="offcanvas"
+  data-bs-target="#offcanvasLeft"
+  aria-controls="offcanvasLeft"
+  aria-expanded="false"
+  aria-label="Open main navigation menu"
+>
+  <span aria-hidden="true">☰</span>
+  <span class="visually-hidden">Menu</span>
 </button>
 
-<button type="button" class="btn btn-success shadow" id="offcanvasRightToggle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
-  <i class="fas fa-comment-dots"></i>
+
+<button
+  type="button"
+  class="btn btn-success shadow"
+  id="offcanvasRightToggle"
+  data-bs-toggle="offcanvas"
+  data-bs-target="#offcanvasRight"
+  aria-controls="offcanvasRight"
+  aria-expanded="false"
+  aria-label="Open chat panel"
+>
+  <i class="fas fa-comment-dots" aria-hidden="true"></i>
+  <span class="visually-hidden">Chat</span>
 </button>
 
-<nav class="navbar navbar-dark fixed-top shadow">
+
+<nav class="navbar navbar-dark fixed-top shadow" aria-label="Main navigation">
   <div class="container-fluid d-flex justify-content-between align-items-center">
-    <a class="navbar-brand fw-bold ps-4" href="/" style="margin-left:20px"> Okan Kaplan </a>
-    
-    <div class="search-container flex-grow-1 d-flex justify-content-end">
-        <input type="text" id="search-input" placeholder="search ..." aria-label="Search">
-    </div>
+
+    <a
+      class="navbar-brand fw-bold ps-4"
+      href="/"
+      aria-label="Go to homepage - Okan Kaplan"
+    >
+      Okan Kaplan
+    </a>
+
+    <form
+      class="search-container flex-grow-1 d-flex justify-content-end"
+      role="search"
+      action="/search"
+      method="GET"
+    >
+      <label for="search-input" class="visually-hidden">Search</label>
+
+      <input
+        type="search"
+        id="search-input"
+        name="q"
+        placeholder="Search..."
+        aria-label="Search site content"
+        autocomplete="off"
+      >
+    </form>
+
   </div>
 </nav>
 
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft">
-    <div class="offcanvas-header border-bottom">
-        <h5 class="offcanvas-title">Navigation</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-    </div>
-    <div class="offcanvas-body p-0 h-100">
-        <iframe src="https://okankaplanedu.github.io/archive.html" class="w-100 h-100 border-0"></iframe>
-    </div>
+<div
+  class="offcanvas offcanvas-start"
+  tabindex="-1"
+  id="offcanvasLeft"
+  aria-labelledby="offcanvasLeftLabel"
+  aria-hidden="true"
+>
+
+  <div class="offcanvas-header border-bottom">
+    <h5 class="offcanvas-title" id="offcanvasLeftLabel">
+      Navigation Menu
+    </h5>
+
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close navigation menu"
+    ></button>
+  </div>
+
+  <div class="offcanvas-body p-0 h-100">
+    <iframe
+      src="https://okankaplanedu.github.io/archive.html"
+      class="w-100 h-100 border-0"
+      title="Archive navigation content"
+      loading="lazy"
+    ></iframe>
+  </div>
+
 </div>
 
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight">
-  <div id="toc-placeholder" style="width: 100%; height: auto; min-height: 500px;">
-    <iframe 
-        src="https://okankaplanedu.github.io/toc.html" 
-        id="toc-iframe"
-        style="width: 100%; height: 600px; border: none; overflow: hidden;"
-        title="Contact and Social"
-        loading="lazy">
-    </iframe>
+
+<div
+  class="offcanvas offcanvas-end"
+  tabindex="-1"
+  id="offcanvasRight"
+  aria-labelledby="offcanvasRightLabel"
+  aria-hidden="true"
+>
+
+  <div class="offcanvas-header border-bottom">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">
+      Table of Contents
+    </h5>
+
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close table of contents"
+    ></button>
+  </div>
+
+  <div class="offcanvas-body p-0" style="min-height: 500px;">
+    <iframe
+      src="https://okankaplanedu.github.io/toc.html"
+      id="toc-iframe"
+      class="w-100 border-0"
+      style="height: 600px; overflow: hidden;"
+      title="Table of Contents navigation"
+      loading="lazy"
+    ></iframe>
+  </div>
+
 </div>
-</div> 
 
-<main class="container-fluid px-4" >
-    <div class="text-center" id="status-container" style="display:none">
-        <div id="status">
-            <div class="spinner-border spinner-border-sm text-primary" role="status" id="status-spinner"></div>
-            <span id="status-message">Sistem hazırlanıyor...</span>
-        </div>
-    </div>
+<main class="container-fluid px-4" aria-live="polite">
 
-    <div class="grid" id="masonry-container">
-        <div class="grid-sizer"></div>
+  <!-- Page heading (SEO + structure) -->
+  <h1 class="visually-hidden">Content Feed</h1>
+
+  <!-- Status / Loading Area -->
+  <div
+    class="text-center"
+    id="status-container"
+    style="display:none"
+    aria-live="polite"
+    aria-busy="true"
+  >
+    <div id="status" role="status" aria-live="polite">
+
+      <div
+        class="spinner-border spinner-border-sm text-primary"
+        role="img"
+        aria-label="Loading content"
+        id="status-spinner"
+      ></div>
+
+      <span id="status-message">
+        Preparing system...
+      </span>
+
     </div>
+  </div>
+
+ 
+  <div class="grid" id="masonry-container">
+
+    <div class="grid-sizer" aria-hidden="true"></div>
+
+  </div>
+
 </main>
 
 <div id="footer-placeholder"></div>
@@ -416,9 +530,7 @@ for (const item of items) {
             const doc = new DOMParser()
                 .parseFromString(html, "text/html");
 
-
-
-            // SEO VERİLERİ
+ 
             const title =
                 doc.querySelector("title")
                 ?.innerText
