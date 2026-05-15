@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://okankaplanedu.github.io/sitemap.xml
+
+# Özel klasörler (istersen açık bırakabilir veya kısıtlayabilirsin)
+Disallow: /assets/private/
+Disallow: /node_modules/
+Disallow: /.git/
+
+# GitHub Pages için gereksiz dosyalar (opsiyonel)
+Disallow: /README.md
