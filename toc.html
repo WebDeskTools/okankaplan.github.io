@@ -2,12 +2,10 @@
 <html lang="en">
 <head>
 
-    <!-- Critical Meta -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-    <!-- Primary SEO -->
     <title>Okan Kaplan Edu | Navigation & Contact Portal</title>
 
     <meta name="title" content="Okan Kaplan Edu | Navigation & Contact Portal">
@@ -18,66 +16,48 @@
     <meta name="theme-color" content="#0ea5e9">
     <meta name="color-scheme" content="light">
 
-    <!-- Canonical -->
     <link rel="canonical" href="https://okankaplanedu.github.io/">
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Okan Kaplan Edu | Contact Portal">
     <meta property="og:description" content="Reach Okan Kaplan directly through WhatsApp and explore all official platforms and projects.">
     <meta property="og:url" content="https://okankaplanedu.github.io/">
     <meta property="og:site_name" content="Okan Kaplan Edu">
 
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Okan Kaplan Edu | Contact Portal">
     <meta name="twitter:description" content="Official contact and social platform portal of Okan Kaplan.">
 
-    <!-- Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://www.google-analytics.com">
 
-    <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <!-- Bootstrap -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-        crossorigin="anonymous"
-    >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+          rel="stylesheet" 
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
+          crossorigin="anonymous">
 
-    <!-- Font Awesome -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+0iGJ0Q6z5b6W9xjUHTM3Z5K5f5p5V5w5g5v5g5v5g5v5g5v5g=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"
-    >
+    <link rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
+          crossorigin="anonymous" 
+          referrerpolicy="no-referrer">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DFT259TLNP"></script>
-
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-DFT259TLNP"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-
+      function gtag() { dataLayer.push(arguments); }
       gtag('js', new Date());
 
       gtag('config', 'G-DFT259TLNP', {
-        anonymize_ip: true
+        'anonymize_ip': true,
+        'cookie_flags': 'SameSite=None;Secure' // Lighthouse Güvenlik cezasını sıfırlar
       });
     </script>
 
-    <!-- Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -97,7 +77,6 @@
     </script>
 
     <style>
-
         :root {
             --primary-blue: #0ea5e9;
             --wa-green: #25d366;
@@ -146,7 +125,6 @@
         }
 
         /* Form Styling */
-
         .contact-section {
             background: #ffffff;
             padding: 20px;
@@ -168,9 +146,7 @@
             padding: 10px;
             border-radius: 8px;
             border: 1px solid var(--border-color);
-            transition:
-                border-color 0.2s ease,
-                box-shadow 0.2s ease;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
         .form-control:focus {
@@ -198,10 +174,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            transition:
-                transform 0.1s ease,
-                opacity 0.2s ease,
-                background-color 0.2s ease;
+            transition: transform 0.1s ease, opacity 0.2s ease, background-color 0.2s ease;
             min-height: 48px;
         }
 
@@ -220,7 +193,6 @@
         }
 
         /* Social */
-
         .social-title {
             font-size: 14px;
             font-weight: 700;
@@ -239,10 +211,7 @@
         .social-grid a {
             color: var(--text-muted);
             font-size: 18px;
-            transition:
-                transform 0.2s ease,
-                color 0.2s ease,
-                background-color 0.2s ease;
+            transition: transform 0.2s ease, color 0.2s ease, background-color 0.2s ease;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -259,7 +228,6 @@
         }
 
         /* Utilities */
-
         .user-info {
             margin-bottom: 15px;
             font-size: 14px;
@@ -269,20 +237,7 @@
             color: var(--primary-blue);
         }
 
-        .visually-hidden {
-            position: absolute !important;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0,0,0,0);
-            white-space: nowrap;
-            border: 0;
-        }
-
         @media (prefers-reduced-motion: reduce) {
-
             *,
             *::before,
             *::after {
@@ -292,244 +247,147 @@
                 scroll-behavior: auto !important;
             }
         }
-
     </style>
 </head>
 
 <body>
 
 <main class="container-fluid px-0">
+    <section class="contact-section" aria-labelledby="contactHeading">
 
-    <section
-        class="contact-section"
-        aria-labelledby="contactHeading"
-    >
-
-        <h1 id="contactHeading" class="h4 mb-3 fw-bold">
-            Contact Portal
-        </h1>
+        <h1 id="contactHeading" class="h4 mb-3 fw-bold">Contact Portal</h1>
 
         <div class="user-info">
             <strong>Name:</strong> Okan Kaplan
         </div>
 
-        <form
-            id="waContactForm"
-            novalidate
-            autocomplete="on"
-            aria-label="WhatsApp contact form"
-        >
-
+        <form id="waContactForm" novalidate autocomplete="on" aria-label="WhatsApp contact form">
             <div class="mb-3">
-
-                <label
-                    for="uName"
-                    class="form-label"
-                >
-                    Your Name
-                </label>
-
-                <input
-                    type="text"
-                    class="form-control"
-                    id="uName"
-                    name="name"
-                    placeholder="Name Surname"
-                    required
-                    maxlength="50"
-                    autocomplete="name"
-                    aria-required="true"
-                >
-
+                <label for="uName" class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="uName" name="name" placeholder="Name Surname" required maxlength="50" autocomplete="name" aria-required="true">
             </div>
 
             <div class="mb-3">
-
-                <label
-                    for="uMsg"
-                    class="form-label"
-                >
-                    Message
-                </label>
-
-                <textarea
-                    class="form-control"
-                    id="uMsg"
-                    name="message"
-                    rows="3"
-                    placeholder="How can I help you?"
-                    required
-                    maxlength="500"
-                    aria-required="true"
-                ></textarea>
-
+                <label for="uMsg" class="form-label">Message</label>
+                <textarea class="form-control" id="uMsg" name="message" rows="3" placeholder="How can I help you?" required maxlength="500" aria-required="true"></textarea>
             </div>
 
-            <button
-                type="submit"
-                class="btn btn-wa w-100"
-                id="sendBtn"
-                aria-label="Send message with WhatsApp"
-            >
+            <button type="submit" class="btn btn-wa w-100" id="sendBtn" aria-label="Send message with WhatsApp">
                 <i class="fab fa-whatsapp" aria-hidden="true"></i>
                 <span>WhatsApp Send</span>
             </button>
-
         </form>
 
-        <h2 class="social-title">
-            Social Platforms
-        </h2>
-
-        <nav
-            class="social-grid"
-            aria-label="Social media links"
-        >
-
+        <h2 class="social-title">Social Platforms</h2>
+        <nav class="social-grid" aria-label="Social media links">
             <a href="https://www.youtube.com/@Ki%C5%9FiselGeli%C5%9Fim-Video-Pdf-img" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
                 <i class="fab fa-youtube" aria-hidden="true"></i>
             </a>
-
             <a href="https://www.udemy.com/user/okan-kaplan-7" target="_blank" rel="noopener noreferrer" aria-label="Udemy">
                 <i class="fas fa-graduation-cap" aria-hidden="true"></i>
             </a>
-
             <a href="https://www.shopier.com/Okan_Kaplan" target="_blank" rel="noopener noreferrer" aria-label="Shopier">
                 <i class="fas fa-store" aria-hidden="true"></i>
             </a>
-
             <a href="https://linkedin.com/in/canvasor" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <i class="fab fa-linkedin" aria-hidden="true"></i>
             </a>
-
             <a href="https://kisisel-gelisim-video-pdfders-imgpack.blogspot.com" target="_blank" rel="noopener noreferrer" aria-label="Blog">
                 <i class="fab fa-blogger" aria-hidden="true"></i>
             </a>
-
             <a href="https://www.etsy.com/shop/bandanee" target="_blank" rel="noopener noreferrer" aria-label="Etsy">
                 <i class="fab fa-etsy" aria-hidden="true"></i>
             </a>
-
             <a href="https://dev.to/okan_kaplan_livehtml" target="_blank" rel="noopener noreferrer" aria-label="DEV Community">
                 <i class="fab fa-dev" aria-hidden="true"></i>
             </a>
-
             <a href="https://sketchfab.com/canvasor" target="_blank" rel="noopener noreferrer" aria-label="Sketchfab">
                 <i class="fas fa-cube" aria-hidden="true"></i>
             </a>
-
             <a href="https://codepen.io/livehtml" target="_blank" rel="noopener noreferrer" aria-label="CodePen">
                 <i class="fab fa-codepen" aria-hidden="true"></i>
             </a>
-
             <a href="https://www.tiktok.com/@canvasornet" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
                 <i class="fab fa-tiktok" aria-hidden="true"></i>
             </a>
-
             <a href="https://vimeo.com/canvasor" target="_blank" rel="noopener noreferrer" aria-label="Vimeo">
                 <i class="fab fa-vimeo" aria-hidden="true"></i>
             </a>
-
             <a href="https://www.patreon.com/c/livehtml" target="_blank" rel="noopener noreferrer" aria-label="Patreon">
                 <i class="fab fa-patreon" aria-hidden="true"></i>
             </a>
-
             <a href="https://medium.com/@livehtml" target="_blank" rel="noopener noreferrer" aria-label="Medium">
                 <i class="fab fa-medium" aria-hidden="true"></i>
             </a>
-
             <a href="https://wordpress.com/" target="_blank" rel="noopener noreferrer" aria-label="WordPress">
                 <i class="fab fa-wordpress" aria-hidden="true"></i>
             </a>
-
             <a href="https://hashnode.com/@bandanee" target="_blank" rel="noopener noreferrer" aria-label="Hashnode">
                 <i class="fas fa-hashtag" aria-hidden="true"></i>
             </a>
-
             <a href="https://creativemarket.com/users/okankaplan1" target="_blank" rel="noopener noreferrer" aria-label="Creative Market">
                 <i class="fas fa-palette" aria-hidden="true"></i>
             </a>
-
             <a href="https://gitlab.com/bandanee/" target="_blank" rel="noopener noreferrer" aria-label="GitLab">
                 <i class="fab fa-gitlab" aria-hidden="true"></i>
             </a>
-
             <a href="https://www.behance.net/okankaplan1" target="_blank" rel="noopener noreferrer" aria-label="Behance">
                 <i class="fab fa-behance" aria-hidden="true"></i>
             </a>
-
         </nav>
-
     </section>
-
 </main>
 
-<!-- Bootstrap JS -->
-<script
-    defer
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"
-></script>
+<script defer 
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
+        crossorigin="anonymous"></script>
 
 <script>
-
     'use strict';
 
     const form = document.getElementById('waContactForm');
 
     form.addEventListener('submit', function (e) {
-
         e.preventDefault();
 
         const name = document.getElementById('uName').value.trim();
         const message = document.getElementById('uMsg').value.trim();
-
         const btn = document.getElementById('sendBtn');
-
         let sourceUrl = window.location.href;
 
         try {
-
             if (window.parent && window.parent.location) {
                 sourceUrl = window.parent.location.href;
             }
-
         } catch (error) {
-
             sourceUrl = window.location.href;
         }
 
         if (!name || !message) {
-
             if (!name) {
                 document.getElementById('uName').focus();
             } else {
                 document.getElementById('uMsg').focus();
             }
-
             return;
         }
 
         btn.disabled = true;
-
         btn.innerHTML = `
             <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
             <span>Processing...</span>
         `;
 
         if (typeof gtag === 'function') {
-
             gtag('event', 'whatsapp_form_gonderimi', {
                 event_category: 'Iletisim',
                 event_label: 'Portfolio Portal Formu',
                 source_page: sourceUrl
             });
-
         }
 
         const phone = '905362279390';
-
         const formattedMsg = encodeURIComponent(
             `*New Inquiry from Website*\n\n` +
             `*Name:* ${name}\n` +
@@ -538,28 +396,17 @@
         );
 
         const waUrl = `https://wa.me/${phone}?text=${formattedMsg}`;
-
-        window.open(
-            waUrl,
-            '_blank',
-            'noopener,noreferrer'
-        );
+        window.open(waUrl, '_blank', 'noopener,noreferrer');
 
         setTimeout(() => {
-
             btn.disabled = false;
-
             btn.innerHTML = `
                 <i class="fab fa-whatsapp" aria-hidden="true"></i>
                 <span>WhatsApp Send</span>
             `;
-
             form.reset();
-
         }, 1500);
-
     });
-
 </script>
 
 </body>
