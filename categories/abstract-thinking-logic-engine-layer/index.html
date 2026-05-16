@@ -122,13 +122,19 @@
 </head>
 <body>
 
-<nav class="navbar navbar-dark fixed-top shadow-sm">
-  <div class="container-fluid">
-    <a class="navbar-brand fw-bold ms-5" href="/">Okan Kaplan Edu</a>
-  </div>
-</nav>
-<button class="btn btn-primary shadow" id="btnL" data-bs-toggle="offcanvas" data-bs-target="#mL">☰</button>
-<button class="btn btn-success shadow" id="btnR" data-bs-toggle="offcanvas" data-bs-target="#mR"><i class="fas fa-comment-dots"></i></button>
+
+<div id="cat-header-container"></div> 
+
+<script>
+fetch("https://okankaplanedu.github.io/cat-header.html")
+  .then(response => response.text())
+  .then(html => {
+    document.getElementById("cat-header-container").innerHTML = html;
+  })
+  .catch(err => console.error("Header load error:", err));
+</script>
+  
+
 <div class="offcanvas offcanvas-start" id="mL"><div class="offcanvas-body"><iframe src="https://okankaplanedu.github.io/archive.html" style="width:100%;height:100%;border:0;"></iframe></div></div>
 <div class="offcanvas offcanvas-end" id="mR"><div class="offcanvas-body"><iframe src="https://okankaplanedu.github.io/toc.html" style="width:100%;height:100%;border:0;"></iframe></div></div>
 
