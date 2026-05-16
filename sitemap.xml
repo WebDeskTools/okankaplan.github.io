@@ -1,44 +1,206 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-  <!-- Home -->
   <url>
     <loc>https://okankaplanedu.github.io/</loc>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <!-- Index -->
   <url>
-    <loc>https://okankaplanedu.github.io/index.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Archive -->
-  <url>
-    <loc>https://okankaplanedu.github.io/archive.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Table of Contents -->
-  <url>
-    <loc>https://okankaplanedu.github.io/toc.html</loc>
-    <lastmod>2026-05-15</lastmod>
+    <loc>https://okankaplanedu.github.io/categories/abstract-thinking-logic-engine-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
-
-  <!-- Manifest -->
   <url>
-    <loc>https://okankaplanedu.github.io/manifest.json</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://okankaplanedu.github.io/categories/academic-computation-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/audio-sound-engine-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/code-ide-system/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/cognitive-mind-engineering-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/compute-ai-scientific-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/data-science-pattern-engine-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/data-utility-core-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/data-visualization-engine-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/deployment-infrastructure-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/digital-ecosystem-thinking-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/document-file-system-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/experimental-learning-engine-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/form-input-atomic-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/game-interactive-engine-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/human-computer-interaction-experience-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/image-graphic-processing/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/javascript-execution-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/map-geo/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/meta-architecture-self-evolving-system-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/meta-learning-self-improvement-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/motion-animation-engine-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/observability-system-intelligence-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/performance-optimization-engine-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/realtime-stream-event-system/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/rich-text-editor-system/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/security-trust-engine-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/storage-memory-system/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/strategy-game-theory-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/system-design-architecture-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/ui-foundation/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://okankaplanedu.github.io/categories/video-media-engine-layer/</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
 
 </urlset>
