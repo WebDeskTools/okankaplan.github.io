@@ -238,6 +238,9 @@ article video{
 #search-input::placeholder{
     color:rgba(255,255,255,0.6);
 }
+ .navbar-brand.custom-margin {
+    margin-left: 50px;
+  }
 
 /* MOBILE */
 @media(max-width:576px){
