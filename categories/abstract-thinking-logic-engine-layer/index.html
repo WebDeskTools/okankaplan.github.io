@@ -116,6 +116,7 @@
     .catch(e => console.error(e));
 </script>
 
+
 <!-- ─── Page Styles ──────────────────────────────── -->
 <style>body { font-family: 'Montserrat', sans-serif; padding-top: 60px; background: #f8f9fa; }
 main { max-width: 900px; margin: 2rem auto; padding: 2.5rem; background: #fff; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
@@ -128,18 +129,13 @@ main { max-width: 900px; margin: 2rem auto; padding: 2.5rem; background: #fff; b
 </head>
 <body>
 
-<div id="header-container"></div> 
-
-<script>
-fetch("https://okankaplanedu.github.io/header.html")
-  .then(response => response.text())
-  .then(html => {
-    document.getElementById("header-container").innerHTML = html;
-  })
-  .catch(err => console.error("Header load error:", err));
-</script>
-<button class="btn btn-light shadow" id="btnL" data-bs-toggle="offcanvas" data-bs-target="#mL">☰</button>
-<button class="btn btn-light shadow" id="btnR" data-bs-toggle="offcanvas" data-bs-target="#mR"><i class="fas fa-comment-dots"></i></button>
+<nav class="navbar navbar-dark fixed-top shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold ms-5" href="/">Okan Kaplan Edu</a>
+  </div>
+</nav>
+<button class="btn btn-primary shadow" id="btnL" data-bs-toggle="offcanvas" data-bs-target="#mL">☰</button>
+<button class="btn btn-success shadow" id="btnR" data-bs-toggle="offcanvas" data-bs-target="#mR"><i class="fas fa-comment-dots"></i></button>
 <div class="offcanvas offcanvas-start" id="mL"><div class="offcanvas-body"><iframe src="https://okankaplanedu.github.io/archive.html" style="width:100%;height:100%;border:0;"></iframe></div></div>
 <div class="offcanvas offcanvas-end" id="mR"><div class="offcanvas-body"><iframe src="https://okankaplanedu.github.io/toc.html" style="width:100%;height:100%;border:0;"></iframe></div></div>
 
