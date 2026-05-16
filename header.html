@@ -1,74 +1,62 @@
+<nav class="navbar navbar-dark fixed-top shadow py-2" aria-label="Main navigation">
+  <div class="container-fluid d-flex align-items-center justify-content-between flex-nowrap gap-2">
+    
+    <div class="d-flex align-items-center gap-3">
+      <button
+        type="button"
+        class="btn btn-light shadow-sm"
+        id="offcanvasLeftToggle"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasLeft"
+        aria-controls="offcanvasLeft"
+        aria-expanded="false"
+        aria-label="Open main navigation menu"
+      >
+        <span aria-hidden="true">☰</span>
+        <span class="visually-hidden">Menu</span>
+      </button>
 
-<button
-  type="button"
-  class="btn btn-light shadow"
-  id="offcanvasLeftToggle"
-  data-bs-toggle="offcanvas"
-  data-bs-target="#offcanvasLeft"
-  aria-controls="offcanvasLeft"
-  aria-expanded="false"
-  aria-label="Open main navigation menu"
->
-  <span aria-hidden="true">☰</span>
-  <span class="visually-hidden">Menu</span>
-</button>
+      <a class="navbar-brand fw-bold mb-0 p-0 fs-4" href="/" aria-label="Go to homepage - Okan Kaplan">
+        Okan Kaplan
+      </a>
+    </div>
 
+    <div class="flex-grow-1 d-flex justify-content-center" style="max-width: 400px; margin: 0 auto;">
+      <form class="w-100" role="search" action="/search" method="GET">
+        <label for="search-input" class="visually-hidden">Search</label>
+        <input
+          type="search"
+          id="search-input"
+          name="q"
+          class="form-control form-control-sm rounded-pill text-white bg-dark border-secondary opacity-75 px-3"
+          placeholder="Search..."
+          aria-label="Search site content"
+          autocomplete="off"
+        >
+      </form>
+    </div>
 
-<button
-  type="button"
-  class="btn btn-light shadow"
-  id="offcanvasRightToggle"
-  data-bs-toggle="offcanvas"
-  data-bs-target="#offcanvasRight"
-  aria-controls="offcanvasRight"
-  aria-expanded="false"
-  aria-label="Open chat panel"
->
-  <i class="fas fa-comment-dots" aria-hidden="true"></i>
-  <span class="visually-hidden">Chat</span>
-</button>
-<nav class="navbar navbar-dark fixed-top shadow" aria-label="Main navigation">
-  <div class="container-fluid d-flex justify-content-between align-items-center">
-
-    <a
-      class="navbar-brand fw-bold custom-margin"
-      href="/"
-      aria-label="Go to homepage - Okan Kaplan"
-style="margin-left:45px"
-    >
-      Okan Kaplan
-    </a>    
-
-  
-    <div class="d-flex gap-2 align-items-center">
-
+    <div class="d-flex align-items-center gap-2">
       <a href="https://okankaplanedu.github.io/courses/" class="btn btn-sm btn-outline-light">
         Courses
       </a>
-
-      <a href="https://okankaplanedu.github.io/lab/" class="btn btn-sm btn-outline-light">
+      <a href="https://okankaplanedu.github.io/lab/" class="btn btn-sm btn-outline-light d-none">
         Lab
       </a>
-
-    </div>
-
-    <form
-      class="search-container flex-grow-1 d-flex justify-content-end"
-      role="search"
-      action="/search"
-      method="GET"
-    >
-      <label for="search-input" class="visually-hidden">Search</label>
-
-      <input
-        type="search"
-        id="search-input"
-        name="q"
-        placeholder="Search..."
-        aria-label="Search site content"
-        autocomplete="off" 
+      <button
+        type="button"
+        class="btn btn-light shadow-sm"
+        id="offcanvasRightToggle"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasRight"
+        aria-controls="offcanvasRight"
+        aria-expanded="false"
+        aria-label="Open chat panel"
       >
-    </form>
+        <i class="fas fa-comment-dots" aria-hidden="true"></i>
+        <span class="visually-hidden">Chat</span>
+      </button>
+    </div>
 
   </div>
 </nav>
