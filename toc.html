@@ -30,8 +30,6 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-    <link rel="preconnect" href="https://www.google-analytics.com">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
@@ -45,18 +43,6 @@
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
           crossorigin="anonymous" 
           referrerpolicy="no-referrer">
-
-    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-DFT259TLNP"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
-
-      gtag('config', 'G-DFT259TLNP', {
-        'anonymize_ip': true,
-        'cookie_flags': 'SameSite=None;Secure' // Lighthouse Güvenlik cezasını sıfırlar
-      });
-    </script>
 
     <script type="application/ld+json">
     {
@@ -378,14 +364,6 @@
             <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
             <span>Processing...</span>
         `;
-
-        if (typeof gtag === 'function') {
-            gtag('event', 'whatsapp_form_gonderimi', {
-                event_category: 'Iletisim',
-                event_label: 'Portfolio Portal Formu',
-                source_page: sourceUrl
-            });
-        }
 
         const phone = '905362279390';
         const formattedMsg = encodeURIComponent(
