@@ -1,32 +1,48 @@
-<nav class="navbar navbar-dark fixed-top shadow" aria-label="Main navigation">
-  <div class="container-fluid d-flex align-items-center">
+<style>
+ 
+#offcanvasLeftToggle, 
+#offcanvasRightToggle {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  transform: none !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  z-index: 1030;  
+}
+
+ 
+.search-container input {
+  max-width: 140px;
+}
+  </style>
+</style>
+<nav class="navbar navbar-dark fixed-top shadow py-2" aria-label="Main navigation">
+  <div class="container-fluid d-flex align-items-center justify-content-between flex-nowrap">
     
-    <!-- 1. SOL MENÜ BUTONU (Navigasyon içinde en solda) -->
-    <button
-      type="button"
-      class="btn btn-light shadow me-3"
-      id="offcanvasLeftToggle"
-      data-bs-toggle="offcanvas"
-      data-bs-target="#offcanvasLeft"
-      aria-controls="offcanvasLeft"
-      aria-expanded="false"
-      aria-label="Open main navigation menu"
-    >
-      <span aria-hidden="true">☰</span>
-      <span class="visually-hidden">Menu</span>
-    </button>
+    <div class="d-flex align-items-center">
+      <button
+        type="button"
+        class="btn btn-light shadow"
+        id="offcanvasLeftToggle"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasLeft"
+        aria-controls="offcanvasLeft"
+        aria-expanded="false"
+        aria-label="Open main navigation menu"
+      >
+        <span aria-hidden="true">☰</span>
+        <span class="visually-hidden">Menu</span>
+      </button>
 
-  
-   <a
-  class="navbar-brand fw-bold ms-4 me-auto"
-  href="/"
-  aria-label="Go to homepage - Okan Kaplan"
->
-  Okan Kaplan
-</a>
+      <a class="navbar-brand fw-bold ms-2 mb-0" href="/" aria-label="Go to homepage - Okan Kaplan">
+        Okan Kaplan
+      </a>
+    </div>
 
-    <!-- 3. ORTA/SAĞ LİNKLER & SAĞ MENÜ BUTONU -->
-    <div class="d-flex gap-2 align-items-center me-3">
+    <div class="d-flex gap-2 align-items-center">
       <a href="https://okankaplanedu.github.io/courses/" class="btn btn-sm btn-outline-light">
         Courses
       </a>
@@ -34,10 +50,9 @@
         Lab
       </a>
       
-      <!-- SAĞ MENÜ (CHAT) BUTONU -->
       <button
         type="button"
-        class="btn btn-light shadow ms-1"
+        class="btn btn-light shadow"
         id="offcanvasRightToggle"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasRight"
@@ -48,26 +63,20 @@
         <i class="fas fa-comment-dots" aria-hidden="true"></i>
         <span class="visually-hidden">Chat</span>
       </button>
-    </div>
 
-    <!-- 4. ARAMA FORMU (En sağda dengeli durması için) -->
-    <form
-      class="search-container d-flex"
-      role="search"
-      action="/search"
-      method="GET"
-    >
-      <label for="search-input" class="visually-hidden">Search</label>
-      <input
-        type="search"
-        id="search-input"
-        name="q"
-        class="form-control form-control-sm"
-        placeholder="Search..."
-        aria-label="Search site content"
-        autocomplete="off" 
-      >
-    </form>
+      <form class="search-container ms-2" role="search" action="/search" method="GET">
+        <label for="search-input" class="visually-hidden">Search</label>
+        <input
+          type="search"
+          id="search-input"
+          name="q"
+          class="form-control form-control-sm"
+          placeholder="Search..."
+          aria-label="Search site content"
+          autocomplete="off" 
+        >
+      </form>
+    </div>
 
   </div>
 </nav>
