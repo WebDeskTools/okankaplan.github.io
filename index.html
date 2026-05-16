@@ -264,7 +264,7 @@ const CONFIG = {
     repo: "okankaplanedu.github.io",
     branch: "main",
     baseFolder: "categories",
-   cacheKey: "ok_academy_cache_v24",
+    cacheKey: "ok_academy_cache_v24",
     cacheTime: 3600000, 
     fetchDelay: 150
 };
@@ -303,23 +303,17 @@ function renderCard(article) {
         ${article.keywords}
     `.toLowerCase();
 
-
-
     const imageHTML = article.image
         ? `<img src="${article.image}" 
                 loading="lazy"
                 class="card-cover">`
         : "";
 
-
-
     const cardHTML = `
 
     <div class="grid-item" data-search="${plainText}">
 
         <div class="card-custom">
-
-           
 
             <div class="card-body-custom">
 
@@ -349,13 +343,9 @@ function renderCard(article) {
 
     </div>`;
 
-
-
     const $item = $(cardHTML);
 
     $('#masonry-container').append($item);
-
-
 
     $item.imagesLoaded(() => {
 
@@ -368,119 +358,132 @@ function renderCard(article) {
     });
 }
 
- 
-$('#search-input').on('keyup', function() {
-    const val = $(this).val().toLowerCase();
-    
-    $('.grid-item').each(function() {
-        const text = $(this).data('search');
-        if (text.indexOf(val) > -1) {
-            $(this).removeClass('is-hidden');
-        } else {
-            $(this).addClass('is-hidden');
-        }
+/* ─────────────────────────────────────────────────────────────
+   SEARCH — delegated event binding on document so it works
+   regardless of when #search-input appears in the DOM
+   (header.html is fetched asynchronously after page load)
+───────────────────────────────────────────────────────────── */
+function applySearch(val) {
+    val = (val || '').toLowerCase().trim();
+
+    $('.grid-item').each(function () {
+        const text = $(this).data('search') || '';
+        $(this).toggleClass('is-hidden', val !== '' && text.indexOf(val) === -1);
     });
 
- 
-    masonryGrid.masonry('layout');
+    if (masonryGrid) {
+        masonryGrid.masonry('layout');
+    }
+}
+
+/* Bind once on document — catches #search-input even after async header inject */
+$(document).on('input keyup', '#search-input', function () {
+    applySearch($(this).val());
 });
 
+/* Also watch for the header iframe / HTML being injected and re-attach if needed */
+const headerObserver = new MutationObserver(function () {
+    const $input = $('#search-input');
+    if ($input.length) {
+        /* Restore any value that was typed before cards finished loading */
+        applySearch($input.val());
+    }
+});
+headerObserver.observe(document.getElementById('header-container'), {
+    childList: true,
+    subtree: true
+});
+
+/* ─────────────────────────────────────────────────────────────
+   SCAN & CACHE
+───────────────────────────────────────────────────────────── */
 async function scanAndCache(path) {
     try {
         const res = await fetch(`https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${path}`);
         if (!res.ok) return;
         const items = await res.json();
 
-for (const item of items) {
+        for (const item of items) {
 
-    if (item.type === "dir") {
+            if (item.type === "dir") {
 
-        await scanAndCache(item.path);
+                await scanAndCache(item.path);
 
-    } else if (
-        item.name === "index.html" &&
-        path !== CONFIG.baseFolder
-    ) {
+            } else if (
+                item.name === "index.html" &&
+                path !== CONFIG.baseFolder
+            ) {
 
-        updateUIStatus(
-            `Taranıyor: ${
-                item.path.split('/').slice(-2,-1)
-            }`
-        );
+                updateUIStatus(
+                    `Taranıyor: ${
+                        item.path.split('/').slice(-2,-1)
+                    }`
+                );
 
-        const contentRes = await fetch(
-            `https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${item.path}`
-        );
+                const contentRes = await fetch(
+                    `https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${item.path}`
+                );
 
-        if (contentRes.ok) {
+                if (contentRes.ok) {
 
-            const html = await contentRes.text();
+                    const html = await contentRes.text();
 
-            const doc = new DOMParser()
-                .parseFromString(html, "text/html");
+                    const doc = new DOMParser()
+                        .parseFromString(html, "text/html");
 
- 
-            const title =
-                doc.querySelector("title")
-                ?.innerText
-                ?.trim() || "Untitled";
+                    const title =
+                        doc.querySelector("title")
+                        ?.innerText
+                        ?.trim() || "Untitled";
 
-            const description =
-                doc.querySelector(
-                    'meta[name="description"]'
-                )
-                ?.getAttribute("content")
-                ?.trim() || "";
-
-            const keywords =
-                doc.querySelector(
-                    'meta[name="keywords"]'
-                )
-                ?.getAttribute("content")
-                ?.trim() || "";
-
-
-
-            // İSTEĞE BAĞLI OG IMAGE
-            const image =
-                doc.querySelector(
-                    'meta[property="og:image"]'
-                )
-                ?.getAttribute("content")
-                ?.trim() || "";
-
-
-
-            const data = {
-
-                url:
-                    `https://${CONFIG.repo}/${
-                        item.path.replace(
-                            'index.html',
-                            ''
+                    const description =
+                        doc.querySelector(
+                            'meta[name="description"]'
                         )
-                    }`,
+                        ?.getAttribute("content")
+                        ?.trim() || "";
 
-                title,
-                description,
-                keywords,
-                image
+                    const keywords =
+                        doc.querySelector(
+                            'meta[name="keywords"]'
+                        )
+                        ?.getAttribute("content")
+                        ?.trim() || "";
 
-            };
+                    const image =
+                        doc.querySelector(
+                            'meta[property="og:image"]'
+                        )
+                        ?.getAttribute("content")
+                        ?.trim() || "";
 
+                    const data = {
 
+                        url:
+                            `https://${CONFIG.repo}/${
+                                item.path.replace(
+                                    'index.html',
+                                    ''
+                                )
+                            }`,
 
-            tempArchive.push(data);
+                        title,
+                        description,
+                        keywords,
+                        image
 
-            renderCard(data);
+                    };
 
+                    tempArchive.push(data);
+                    renderCard(data);
+
+                }
+
+                await new Promise(
+                    r => setTimeout(r, CONFIG.fetchDelay)
+                );
+            }
         }
-
-        await new Promise(
-            r => setTimeout(r, CONFIG.fetchDelay)
-        );
-    }
-}
     } catch (e) { console.error("Tarama Hatası:", e); }
 }
 
@@ -512,8 +515,6 @@ async function startApp() {
 }
 
 $(document).ready(startApp);
-
- 
 
 fetch('https://raw.githubusercontent.com/bandanee/root/main/import/footer.html').then(r => r.text()).then(h => document.getElementById('footer-placeholder').innerHTML = h);
 
