@@ -104,37 +104,27 @@
 <!-- ─── Font Awesome (Preload) ───────────────────── -->
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></noscript>
-
-<!-- ─── Custom CSS ───────────────────────────────── -->
-<link href="https://okankaplanedu.github.io/assets/css/ind.css" rel="stylesheet">
-
-<!-- ─── Head Import ──────────────────────────────── -->
-<script>
+ <script>
   fetch("https://raw.githubusercontent.com/bandanee/root/main/import/head.html")
     .then(r => r.text())
     .then(t => document.head.insertAdjacentHTML("beforeend", t))
     .catch(e => console.error(e));
 </script>
-
-<!-- ─── Page Styles ──────────────────────────────── -->
-<style>body { font-family: 'Montserrat', sans-serif; padding-top: 60px; background: #f8f9fa; }
-main { max-width: 900px; margin: 2rem auto; padding: 2.5rem; background: #fff; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-.yt-pro { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; margin-bottom: 2rem; background: #000; }
-.yt-pro iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-.navbar { background: #1a202c !important; }
-#btnL, #btnR { position: fixed; top: 12px; width: 42px; height: 42px; z-index: 1080; border: 0; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
-#btnL { left: 12px; } #btnR { right: 12px; }
-.audio-bottom { margin-top: 3rem; padding-top: 2rem; border-top: 2px solid #f1f1f1; }</style>
+<link href="https://okankaplanedu.github.io/assets/css/ind.css" rel="stylesheet">
+<link href="https://okankaplanedu.github.io/assets/css/cat.css" rel="stylesheet">
 </head>
 <body>
-
-<nav class="navbar navbar-dark fixed-top shadow-sm">
-  <div class="container-fluid">
-    <a class="navbar-brand fw-bold ms-5" href="/">Okan Kaplan Edu</a>
-  </div>
-</nav>
-<button class="btn btn-primary shadow" id="btnL" data-bs-toggle="offcanvas" data-bs-target="#mL">☰</button>
-<button class="btn btn-success shadow" id="btnR" data-bs-toggle="offcanvas" data-bs-target="#mR"><i class="fas fa-comment-dots"></i></button>
+<div id="cat-header-container"></div> 
+<script>
+fetch("https://okankaplanedu.github.io/cat-header-container.html")
+  .then(response => response.text())
+  .then(html => {
+    document.getElementById("cat-header-container").innerHTML = html;
+  })
+  .catch(err => console.error("Header load error:", err));
+</script>
+  
+  
 <div class="offcanvas offcanvas-start" id="mL"><div class="offcanvas-body"><iframe src="https://okankaplanedu.github.io/archive.html" style="width:100%;height:100%;border:0;"></iframe></div></div>
 <div class="offcanvas offcanvas-end" id="mR"><div class="offcanvas-body"><iframe src="https://okankaplanedu.github.io/toc.html" style="width:100%;height:100%;border:0;"></iframe></div></div>
 
