@@ -1,12 +1,5 @@
 User-agent: *
 Allow: /
 
-# Özel klasörler ve teknik dosyalar
-Disallow: /assets/private/
-Disallow: /node_modules/
-Disallow: /.git/
-Disallow: /README.md
-Disallow: /readme.md
-
-# Site Haritası Yönlendirmesi
+# Site Haritasının Yerini Arama Motorlarına Bildir
 Sitemap: https://okankaplanedu.github.io/sitemap.xml
