@@ -1,77 +1,75 @@
- <button
-  type="button"
-  class="btn btn-light shadow"
-  id="offcanvasLeftToggle"
-  data-bs-toggle="offcanvas"
-  data-bs-target="#offcanvasLeft"
-  aria-controls="offcanvasLeft"
-  aria-expanded="false"
-  aria-label="Open main navigation menu"
->
-  <span aria-hidden="true">☰</span>
-  <span class="visually-hidden">Menu</span>
-</button>
-
-
-<button
-  type="button"
-  class="btn btn-light shadow"
-  id="offcanvasRightToggle"
-  data-bs-toggle="offcanvas"
-  data-bs-target="#offcanvasRight"
-  aria-controls="offcanvasRight"
-  aria-expanded="false"
-  aria-label="Open chat panel"
->
-  <i class="fas fa-comment-dots" aria-hidden="true"></i>
-  <span class="visually-hidden">Chat</span>
-</button>
 <nav class="navbar navbar-dark fixed-top shadow" aria-label="Main navigation">
-  <div class="container-fluid d-flex justify-content-between align-items-center">
+  <div class="container-fluid d-flex align-items-center">
+    
+    <!-- 1. SOL MENÜ BUTONU (Navigasyon içinde en solda) -->
+    <button
+      type="button"
+      class="btn btn-light shadow me-3"
+      id="offcanvasLeftToggle"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasLeft"
+      aria-controls="offcanvasLeft"
+      aria-expanded="false"
+      aria-label="Open main navigation menu"
+    >
+      <span aria-hidden="true">☰</span>
+      <span class="visually-hidden">Menu</span>
+    </button>
 
-    <a
-      class="navbar-brand fw-bold custom-margin"
-      href="/"
-      aria-label="Go to homepage - Okan Kaplan"
-style="margin-left:45px"
-    >
-      Okan Kaplan
-    </a>    
+    <!-- 2. LOGO / MARKA -->
+    <a
+      class="navbar-brand fw-bold me-auto"
+      href="/"
+      aria-label="Go to homepage - Okan Kaplan"
+    >
+      Okan Kaplan
+    </a>    
 
-  
-    <div class="d-flex gap-2 align-items-center">
+    <!-- 3. ORTA/SAĞ LİNKLER & SAĞ MENÜ BUTONU -->
+    <div class="d-flex gap-2 align-items-center me-3">
+      <a href="https://okankaplanedu.github.io/courses/" class="btn btn-sm btn-outline-light">
+        Courses
+      </a>
+      <a href="https://okankaplanedu.github.io/lab/" class="btn btn-sm btn-outline-light">
+        Lab
+      </a>
+      
+      <!-- SAĞ MENÜ (CHAT) BUTONU -->
+      <button
+        type="button"
+        class="btn btn-light shadow ms-1"
+        id="offcanvasRightToggle"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasRight"
+        aria-controls="offcanvasRight"
+        aria-expanded="false"
+        aria-label="Open chat panel"
+      >
+        <i class="fas fa-comment-dots" aria-hidden="true"></i>
+        <span class="visually-hidden">Chat</span>
+      </button>
+    </div>
 
-      <a href="https://okankaplanedu.github.io/courses/" class="btn btn-sm btn-outline-light">
-        Courses
-      </a>
+    <!-- 4. ARAMA FORMU (En sağda dengeli durması için) -->
+    <form
+      class="search-container d-flex"
+      role="search"
+      action="/search"
+      method="GET"
+    >
+      <label for="search-input" class="visually-hidden">Search</label>
+      <input
+        type="search"
+        id="search-input"
+        name="q"
+        class="form-control form-control-sm"
+        placeholder="Search..."
+        aria-label="Search site content"
+        autocomplete="off" 
+      >
+    </form>
 
-      <a href="https://okankaplanedu.github.io/lab/" class="btn btn-sm btn-outline-light">
-        Lab
-      </a>
-
-    </div>
-
-    <form
-      class="search-container flex-grow-1 d-flex justify-content-end"
-      role="search"
-      action="/search"
-      method="GET"
-    >
-      <label for="search-input" class="visually-hidden">Search</label>
-
-      <input
-        type="search"
-        id="search-input"
-        name="q"
-        placeholder="Search..."
-        aria-label="Search site content"
-        autocomplete="off" 
-      >
-    </form>
-
-  </div>
+  </div>
 </nav>
-    </form>
-
   </div>
 </nav>
