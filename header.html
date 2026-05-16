@@ -1,84 +1,269 @@
 <style>
- 
-#offcanvasLeftToggle, 
-#offcanvasRightToggle {
-  position: relative !important;
-  left: auto !important;
-  right: auto !important;
-  top: auto !important;
-  transform: none !important;
-  display: inline-flex !important;
-  align-items: center;
-  justify-content: center;
-  z-index: 1030;  
-}
 
- 
-.search-container input {
-  max-width: 140px;
-}
-  </style>
+  :root{
+    --nav-height: 64px;
+  }
+
+  *,
+  *::before,
+  *::after{
+    box-sizing:border-box;
+  }
+
+  html{
+    -webkit-text-size-adjust:100%;
+    scroll-behavior:smooth;
+  }
+
+  body{
+    margin:0;
+    padding-top:var(--nav-height);
+    text-rendering:optimizeLegibility;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  /* Accessibility */
+
+  .visually-hidden{
+    position:absolute !important;
+    width:1px !important;
+    height:1px !important;
+    padding:0 !important;
+    margin:-1px !important;
+    overflow:hidden !important;
+    clip:rect(0,0,0,0) !important;
+    white-space:nowrap !important;
+    border:0 !important;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible{
+    outline:3px solid rgba(255,255,255,.45);
+    outline-offset:2px;
+  }
+
+  /* Navbar */
+
+  .navbar{
+    min-height:var(--nav-height);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+  }
+
+  .navbar-brand{
+    font-size:1rem;
+    line-height:1.2;
+    letter-spacing:.2px;
+  }
+
+  /* Toggle Buttons */
+
+  #offcanvasLeftToggle,
+  #offcanvasRightToggle{
+    position:relative !important;
+    left:auto !important;
+    right:auto !important;
+    top:auto !important;
+    transform:none !important;
+
+    display:inline-flex !important;
+    align-items:center;
+    justify-content:center;
+
+    width:42px;
+    height:42px;
+
+    z-index:1030;
+    flex-shrink:0;
+
+    border-radius:10px;
+    transition:
+      transform .15s ease,
+      opacity .2s ease,
+      box-shadow .2s ease;
+  }
+
+  #offcanvasLeftToggle:hover,
+  #offcanvasRightToggle:hover{
+    opacity:.95;
+  }
+
+  #offcanvasLeftToggle:active,
+  #offcanvasRightToggle:active{
+    transform:scale(.97);
+  }
+
+  /* Search */
+
+  .search-container{
+    min-width:0;
+  }
+
+  .search-container input{
+    max-width:140px;
+    min-width:90px;
+
+    border-radius:10px;
+
+    transition:
+      width .2s ease,
+      border-color .2s ease,
+      box-shadow .2s ease;
+  }
+
+  .search-container input:focus{
+    width:180px;
+  }
+
+  /* CLS protection */
+
+  .btn,
+  .form-control{
+    min-height:38px;
+  }
+
+  /* Mobile */
+
+  @media (max-width:768px){
+
+    .navbar-brand{
+      max-width:120px;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+
+    .search-container input{
+      max-width:100px;
+    }
+
+    .search-container input:focus{
+      width:120px;
+    }
+
+  }
+
+  /* Reduced Motion */
+
+  @media (prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+      animation-duration:.01ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.01ms !important;
+      scroll-behavior:auto !important;
+    }
+
+  }
+
 </style>
-<nav class="navbar navbar-dark fixed-top shadow py-2" aria-label="Main navigation">
-  <div class="container-fluid d-flex align-items-center justify-content-between flex-nowrap">
-    
-    <div class="d-flex align-items-center">
-      <button
-        type="button"
-        class="btn btn-light shadow"
-        id="offcanvasLeftToggle"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasLeft"
-        aria-controls="offcanvasLeft"
-        aria-expanded="false"
-        aria-label="Open main navigation menu"
-      >
-        <span aria-hidden="true">☰</span>
-        <span class="visually-hidden">Menu</span>
-      </button>
 
-      <a class="navbar-brand fw-bold ms-2 mb-0" href="/" aria-label="Go to homepage - Okan Kaplan">
-        Okan Kaplan
-      </a>
-    </div>
+<header>
 
-    <div class="d-flex gap-2 align-items-center">
-      <a href="https://okankaplanedu.github.io/courses/" class="btn btn-sm btn-outline-light">
-        Courses
-      </a>
-      <a href="https://okankaplanedu.github.io/lab/" class="btn btn-sm btn-outline-light">
-        Lab
-      </a>
-      
-      <button
-        type="button"
-        class="btn btn-light shadow"
-        id="offcanvasRightToggle"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasRight"
-        aria-controls="offcanvasRight"
-        aria-expanded="false"
-        aria-label="Open chat panel"
-      >
-        <i class="fas fa-comment-dots" aria-hidden="true"></i>
-        <span class="visually-hidden">Chat</span>
-      </button>
+  <nav
+    class="navbar navbar-dark fixed-top shadow py-2"
+    aria-label="Main navigation"
+  >
 
-      <form class="search-container ms-2" role="search" action="/search" method="GET">
-        <label for="search-input" class="visually-hidden">Search</label>
-        <input
-          type="search"
-          id="search-input"
-          name="q"
-          class="form-control form-control-sm"
-          placeholder="Search..."
-          aria-label="Search site content"
-          autocomplete="off" 
+    <div class="container-fluid d-flex align-items-center justify-content-between flex-nowrap">
+
+      <!-- Left Area -->
+      <div class="d-flex align-items-center min-w-0">
+
+        <button
+          type="button"
+          class="btn btn-light shadow-sm"
+          id="offcanvasLeftToggle"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasLeft"
+          aria-controls="offcanvasLeft"
+          aria-expanded="false"
+          aria-label="Open main navigation menu"
         >
-      </form>
+          <span aria-hidden="true">☰</span>
+          <span class="visually-hidden">Menu</span>
+        </button>
+
+        <a
+          class="navbar-brand fw-bold ms-2 mb-0 text-truncate"
+          href="/"
+          aria-label="Go to homepage - Okan Kaplan"
+        >
+          Okan Kaplan
+        </a>
+
+      </div>
+
+      <!-- Right Area -->
+      <div class="d-flex gap-2 align-items-center">
+
+        <a
+          href="https://okankaplanedu.github.io/courses/"
+          class="btn btn-sm btn-outline-light"
+          aria-label="View courses"
+        >
+          Courses
+        </a>
+
+        <a
+          href="https://okankaplanedu.github.io/lab/"
+          class="btn btn-sm btn-outline-light"
+          aria-label="Open laboratory projects"
+        >
+          Lab
+        </a>
+
+        <button
+          type="button"
+          class="btn btn-light shadow-sm"
+          id="offcanvasRightToggle"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasRight"
+          aria-controls="offcanvasRight"
+          aria-expanded="false"
+          aria-label="Open chat panel"
+        >
+          <i class="fas fa-comment-dots" aria-hidden="true"></i>
+          <span class="visually-hidden">Chat</span>
+        </button>
+
+        <form
+          class="search-container ms-1"
+          role="search"
+          action="/search"
+          method="GET"
+          aria-label="Site search form"
+        >
+
+          <label
+            for="search-input"
+            class="visually-hidden"
+          >
+            Search
+          </label>
+
+          <input
+            type="search"
+            id="search-input"
+            name="q"
+            class="form-control form-control-sm"
+            placeholder="Search..."
+            aria-label="Search site content"
+            autocomplete="off"
+            enterkeyhint="search"
+            inputmode="search"
+          >
+
+        </form>
+
+      </div>
+
     </div>
 
-  </div>
-</nav>
-  </div>
-</nav>
+  </nav>
+
+</header>
