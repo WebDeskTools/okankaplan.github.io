@@ -94,43 +94,45 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Okan Kaplan Academy",
-  "url": "https://okankaplanedu.github.io/",
-  "description": "Okan Kaplan Academy offers expert-led IoT courses and real-world projects covering Internet of Things, embedded systems, microcontrollers, and smart device development.",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Okan Kaplan Academy"
-  }
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Okan Kaplan Academy",
-  "url": "https://okankaplanedu.github.io/",
-  "logo": "https://okankaplanedu.github.io/assets/logo.png",
-  "sameAs": [
-    "https://github.com/okankaplanedu",
-    "https://github.com/bandanee"
-  ]
-}
-</script>  
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Okan Kaplan",
-  "url": "https://okankaplanedu.github.io/",
-  "jobTitle": "Web Developer & Digital Content Creator",
-  "sameAs": [
-    "https://linkedin.com/in/canvasor",
-    "https://www.youtube.com/@Ki%C5%9FiselGeli%C5%9Fim-Video-Pdf-img",
-    "https://www.udemy.com/user/okan-kaplan-7",
-    "https://www.behance.net/okankaplan1",
-    "https://github.com/okankaplanedu"
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://okankaplanedu.github.io/#website",
+      "url": "https://okankaplanedu.github.io/",
+      "name": "Okan Kaplan Academy",
+      "description": "Okan Kaplan Academy offers expert-led IoT courses and real-world projects covering Internet of Things, embedded systems, microcontrollers, and smart device development.",
+      "publisher": {
+        "@id": "https://okankaplanedu.github.io/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://okankaplanedu.github.io/#organization",
+      "name": "Okan Kaplan Academy",
+      "url": "https://okankaplanedu.github.io/",
+      "logo": "https://okankaplanedu.github.io/assets/logo.png",
+      "sameAs": [
+        "https://github.com/okankaplanedu",
+        "https://github.com/bandanee"
+      ],
+      "founder": {
+        "@id": "https://okankaplanedu.github.io/#person"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://okankaplanedu.github.io/#person",
+      "name": "Okan Kaplan",
+      "url": "https://okankaplanedu.github.io/",
+      "jobTitle": "Web Developer & Digital Content Creator",
+      "sameAs": [
+        "https://linkedin.com/in/canvasor",
+        "https://www.youtube.com/@Ki%C5%9FiselGeli%C5%9Fim-Video-Pdf-img",
+        "https://www.udemy.com/user/okan-kaplan-7",
+        "https://www.behance.net/okankaplan1",
+        "https://github.com/okankaplanedu"
+      ]
+    }
   ]
 }
 </script>
