@@ -308,45 +308,50 @@ function renderCard(article) {
         ${article.keywords}
     `.toLowerCase();
 
-    const imageHTML = article.image
-        ? `<img src="${article.image}" 
-                loading="lazy"
-                class="card-cover">`
-        : "";
+const imageHTML = article.image
+    ? `<img 
+        src="${article.image}"
+        loading="lazy"
+        class="card-cover"
+        alt="${article.title ? article.title : 'Article image'}"
+        decoding="async"
+      >`
+    : "";
+const cardHTML = `
 
-    const cardHTML = `
+<div class="grid-item" data-search="${plainText}" role="article">
 
-    <div class="grid-item" data-search="${plainText}">
+    <div class="card-custom">
 
-        <div class="card-custom">
+        <div class="card-body-custom">
 
-            <div class="card-body-custom">
+            <h2 class="card-title-custom">
+                <span itemprop="headline">${article.title}</span>
+            </h2>
 
-                <h2 class="card-title-custom">
-                    ${article.title}
-                </h2>
+            <p class="card-desc-custom">
+                ${article.description || ""}
+            </p>
 
-                <p class="card-desc-custom">
-                    ${article.description}
-                </p>
-
-                <div class="card-keywords-custom">
-                    ${article.keywords}
-                </div>
-
-                <a href="${article.url}"
-                   class="btn-open"
-                   target="_top">
-
-                   View Details →
-
-                </a>
-
+            <div class="card-keywords-custom" aria-label="Article keywords">
+                ${article.keywords}
             </div>
+
+            <a href="${article.url}"
+               class="btn-open"
+               target="_top"
+               rel="noopener noreferrer"
+               aria-label="View details for ${article.title}">
+
+               View Details →
+
+            </a>
 
         </div>
 
-    </div>`;
+    </div>
+
+</div>`;
 
     const $item = $(cardHTML);
 
