@@ -1,7 +1,38 @@
-<nav class="navbar navbar-dark fixed-top shadow-sm">
-  <div class="container-fluid">
-    <a class="navbar-brand fw-bold ms-5" href="/">Okan Kaplan Edu</a>
-  </div>
-</nav>
-<button class="btn btn-light shadow" id="btnL" data-bs-toggle="offcanvas" data-bs-target="#mL">☰</button>
-<button class="btn btn-light shadow" id="btnR" data-bs-toggle="offcanvas" data-bs-target="#mR"><i class="fas fa-comment-dots"></i></button>
+<header>
+  <nav class="navbar navbar-dark fixed-top shadow-sm" aria-label="Main navigation">
+    <div class="container-fluid">
+      
+      <a class="navbar-brand fw-bold ms-5" href="/" aria-label="Okan Kaplan Edu Home">
+        Okan Kaplan Edu
+      </a>
+
+    </div>
+  </nav>
+</header>
+
+<!-- Left Offcanvas Trigger -->
+<button
+  class="btn btn-light shadow"
+  id="btnL"
+  type="button"
+  data-bs-toggle="offcanvas"
+  data-bs-target="#mL"
+  aria-controls="mL"
+  aria-label="Open menu"
+>
+  <span aria-hidden="true">☰</span>
+</button>
+
+<!-- Right Offcanvas Trigger -->
+<button
+  class="btn btn-light shadow"
+  id="btnR"
+  type="button"
+  data-bs-toggle="offcanvas"
+  data-bs-target="#mR"
+  aria-controls="mR"
+  aria-label="Open chat panel"
+>
+  <i class="fas fa-comment-dots" aria-hidden="true"></i>
+  <span class="visually-hidden">Chat</span>
+</button>
