@@ -61,7 +61,7 @@
 
 <link href="https://okankaplanedu.github.io/assets/css/ind.css" rel="stylesheet">
 
- 
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
@@ -118,9 +118,8 @@
     "https://github.com/bandanee"
   ]
 }
-</script>
-
-<style>
+</script>  
+ <style>
  
     .search-container {
         max-width: 300px;
@@ -179,7 +178,7 @@
     margin-bottom:15px;
 }
 </style>
-
+ 
 <script>
     if (!sessionStorage.getItem('auto_refreshed')) {
         localStorage.removeItem("ok_academy_cache");
@@ -195,73 +194,16 @@
 </head>
 <body>
 
-<button
-  type="button"
-  class="btn btn-primary shadow"
-  id="offcanvasLeftToggle"
-  data-bs-toggle="offcanvas"
-  data-bs-target="#offcanvasLeft"
-  aria-controls="offcanvasLeft"
-  aria-expanded="false"
-  aria-label="Open main navigation menu"
->
-  <span aria-hidden="true">☰</span>
-  <span class="visually-hidden">Menu</span>
-</button>
+<div id="header-container"></div> 
 
-
-<button
-  type="button"
-  class="btn btn-success shadow"
-  id="offcanvasRightToggle"
-  data-bs-toggle="offcanvas"
-  data-bs-target="#offcanvasRight"
-  aria-controls="offcanvasRight"
-  aria-expanded="false"
-  aria-label="Open chat panel"
->
-  <i class="fas fa-comment-dots" aria-hidden="true"></i>
-  <span class="visually-hidden">Chat</span>
-</button>
-
-
-<nav class="navbar navbar-dark fixed-top shadow" aria-label="Main navigation">
-  <div class="container-fluid d-flex justify-content-between align-items-center">
-
-<style>
-  .navbar-brand.custom-margin {
-    margin-left: 50px;
-  }
-</style>
-
-<a
-  class="navbar-brand fw-bold custom-margin"
-  href="/"
-  aria-label="Go to homepage - Okan Kaplan"
->
-  Okan Kaplan
-</a>
-
-    <form
-      class="search-container flex-grow-1 d-flex justify-content-end"
-      role="search"
-      action="/search"
-      method="GET"
-    >
-      <label for="search-input" class="visually-hidden">Search</label>
-
-      <input
-        type="search"
-        id="search-input"
-        name="q"
-        placeholder="Search..."
-        aria-label="Search site content"
-        autocomplete="off"
-      >
-    </form>
-
-  </div>
-</nav>
+<script>
+fetch("https://okankaplanedu.github.io/header.html")
+  .then(response => response.text())
+  .then(html => {
+    document.getElementById("header-container").innerHTML = html;
+  })
+  .catch(err => console.error("Header load error:", err));
+</script>
 
 <div
   class="offcanvas offcanvas-start"
